@@ -4,8 +4,8 @@
 
       <div :class="2 == 1 ? 'left' : 2 == 2 ? 'left center' : 'left right'">
         <el-form class="login-form" label-position="left" :label-width="1 == 3 || 1 == 2 ? '30px': '0px'">
-          <div class="title-container"><h3 class="title">社区活动中心登录</h3></div>
-          <el-form-item :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0 auto 12px","borderColor":"rgba(36, 36, 36, 0.95)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"70%","borderStyle":"solid","height":"auto"}' :label="1 == 3 ? '用户名' : ''" :class="'style'+1">
+          <div class="title-container"><h3 class="title"> Login</h3></div>
+            <el-form-item :style='{"padding":"0","boxShadow":"0 06px rgba(0,0,0,0)","margin":"0 auto 12px","borderColor":"rgba(36, 36, 36, 0.95)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"70%","borderStyle":"solid","height":"auto"}' :label="1 == 3 ? '用户名' : ''" :class="'style'+1">
             <span v-if="1 != 3" class="svg-container" style="
 			color:#333;
 			line-height:30px;
@@ -20,7 +20,7 @@
 			background-color:rgba(0,0,0,0);
 			box-shadow:0 0 6px rgba(0,0,0,0);
 			}"><svg-icon icon-class="user" /></span>
-            <el-input placeholder="请输入用户名" name="username" type="text" v-model="rulesForm.username" />
+            <el-input placeholder="Please input username" name="username" type="text" v-model="rulesForm.username" />
           </el-form-item>
           <el-form-item :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0 auto 12px","borderColor":"rgba(36, 36, 36, 0.95)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"70%","borderStyle":"solid","height":"auto"}' :label="1 == 3 ? '密码' : ''" :class="'style'+1">
             <span v-if="1 != 3" class="svg-container" style="color:#333;
@@ -35,7 +35,7 @@
 			border-color:rgba(0,0,0,0);
 			background-color:rgba(0,0,0,0);
 			box-shadow:0 0 6px rgba(0,0,0,0);"><svg-icon icon-class="password" /></span>
-            <el-input placeholder="请输入密码" name="password" type="password" v-model="rulesForm.password" />
+            <el-input placeholder="Please input password" name="password" type="password" v-model="rulesForm.password" />
           </el-form-item>
           <el-form-item v-if="roles.length>1" label="角色" prop="loginInRole" class="role" style="display: flex;align-items: center;">
             <el-radio
@@ -117,16 +117,16 @@ export default {
     // 登陆
     login() {
       if (!this.rulesForm.username) {
-         this.$message.error("请输入用户名");
+         this.$message.error("please input username");
         return;
       }
       if (!this.rulesForm.password) {
-         this.$message.error("请输入密码");
+         this.$message.error("please input password");
         return;
       }
       if(this.roles.length>1) {
           if (!this.rulesForm.role) {
-             this.$message.error("请选择角色");
+             this.$message.error("please choose role");
             return;
           }
           let menus = this.menus;

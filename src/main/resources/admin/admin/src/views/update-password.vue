@@ -7,17 +7,17 @@
       :model="ruleForm"
       label-width="80px"
     >
-      <el-form-item label="原密码" prop="password">
+      <el-form-item label="old password" prop="password">
         <el-input v-model="ruleForm.password" show-password></el-input>
       </el-form-item>
-      <el-form-item label="新密码" prop="newpassword">
+      <el-form-item label="new password" prop="newpassword">
         <el-input v-model="ruleForm.newpassword" show-password></el-input>
       </el-form-item>
-      <el-form-item label="确认密码" prop="repassword">
+      <el-form-item label="repassword" prop="repassword">
         <el-input v-model="ruleForm.repassword" show-password></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onUpdateHandler">确 定</el-button>
+        <el-button type="primary" @click="onUpdateHandler">ok</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -33,21 +33,21 @@ export default {
         password: [
           {
             required: true,
-            message: "密码不能为空",
+            message: "Password cannot be empty",
             trigger: "blur"
           }
         ],
         newpassword: [
           {
             required: true,
-            message: "新密码不能为空",
+            message: "new password cannot be empty",
             trigger: "blur"
           }
         ],
         repassword: [
           {
             required: true,
-            message: "确认密码不能为空",
+            message: "repassword cannot be empty",
             trigger: "blur"
           }
         ]
@@ -82,11 +82,11 @@ export default {
             password = this.user.password;
           }
           if (this.ruleForm.password != password) {
-            this.$message.error("原密码错误");
+            this.$message.error("old password is err");
             return;
           }
           if (this.ruleForm.newpassword != this.ruleForm.repassword) {
-            this.$message.error("两次密码输入不一致");
+            this.$message.error("The two password inputs are inconsistent");
             return;
           }
           this.user.password = this.ruleForm.newpassword;
@@ -98,7 +98,7 @@ export default {
           }).then(({ data }) => {
             if (data && data.code === 0) {
               this.$message({
-                message: "修改密码成功,下次登录系统生效",
+                message: "Successfully modified password, effective for next login to the system",
                 type: "success",
                 duration: 1500,
                 onClose: () => {

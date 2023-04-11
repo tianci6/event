@@ -2,7 +2,7 @@
   <div>
         <div class="container">
       <div class="login-form">
-        <h1 class="h1">社区活动中心注册</h1>
+        <h1 class="h1">Registration Center</h1>
 		<el-form ref="rgsForm" class="rgs-form" :model="rgsForm">
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">居民号</div>
@@ -10,8 +10,8 @@
 			     <input v-model="ruleForm.juminhao" class="input" type="text" placeholder="居民号">
 			   </div>
 			 </div> -->
-			<el-form-item label="居民号" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.juminhao" autocomplete="off" placeholder="居民号"  />
+			<el-form-item label="Resident ID" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.juminhao" autocomplete="off" placeholder="Resident ID"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">密码</div>
@@ -19,11 +19,11 @@
 			     <input v-model="ruleForm.mima" class="input" type="text" placeholder="密码">
 			   </div>
 			 </div> -->
-			<el-form-item label="密码" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.mima" autocomplete="off" placeholder="密码" type="password"#elsetype="text" />
+			<el-form-item label="password" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.mima" autocomplete="off" placeholder="password" type="password"#elsetype="text" />
 			</el-form-item>
-			<el-form-item label="确认密码" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.mima2" autocomplete="off" placeholder="确认密码" type="password"/>
+			<el-form-item label="confirm password" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.mima2" autocomplete="off" placeholder="confirm password" type="password"/>
 			</el-form-item>
 
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
@@ -32,8 +32,8 @@
 			     <input v-model="ruleForm.juminxingming" class="input" type="text" placeholder="居民姓名">
 			   </div>
 			 </div> -->
-			<el-form-item label="居民姓名" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.juminxingming" autocomplete="off" placeholder="居民姓名"  />
+			<el-form-item label="Resident name" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.juminxingming" autocomplete="off" placeholder="residen name"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">年龄</div>
@@ -41,8 +41,8 @@
 			     <input v-model="ruleForm.nianling" class="input" type="text" placeholder="年龄">
 			   </div>
 			 </div> -->
-			<el-form-item label="年龄" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.nianling" autocomplete="off" placeholder="年龄"  />
+			<el-form-item label="Age" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.nianling" autocomplete="off" placeholder="Age"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">居民手机</div>
@@ -50,8 +50,8 @@
 			     <input v-model="ruleForm.juminshouji" class="input" type="text" placeholder="居民手机">
 			   </div>
 			 </div> -->
-			<el-form-item label="居民手机" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.juminshouji" autocomplete="off" placeholder="居民手机"  />
+			<el-form-item label="Resident phone" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.juminshouji" autocomplete="off" placeholder="Resident phone"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">居住地址</div>
@@ -59,8 +59,8 @@
 			     <input v-model="ruleForm.juzhudizhi" class="input" type="text" placeholder="居住地址">
 			   </div>
 			 </div> -->
-			<el-form-item label="居住地址" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.juzhudizhi" autocomplete="off" placeholder="居住地址"  />
+			<el-form-item label="address" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.juzhudizhi" autocomplete="off" placeholder="address"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">门牌号</div>
@@ -68,8 +68,8 @@
 			     <input v-model="ruleForm.menpaihao" class="input" type="text" placeholder="门牌号">
 			   </div>
 			 </div> -->
-			<el-form-item label="门牌号" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.menpaihao" autocomplete="off" placeholder="门牌号"  />
+			<el-form-item label="room number" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.menpaihao" autocomplete="off" placeholder="room number"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">单元号</div>
@@ -77,12 +77,12 @@
 			     <input v-model="ruleForm.danyuanhao" class="input" type="text" placeholder="单元号">
 			   </div>
 			 </div> -->
-			<el-form-item label="单元号" class="input" v-if="tableName=='jumin'">
-			  <el-input v-model="ruleForm.danyuanhao" autocomplete="off" placeholder="单元号"  />
+			<el-form-item label="unit" class="input" v-if="tableName=='jumin'">
+			  <el-input v-model="ruleForm.danyuanhao" autocomplete="off" placeholder="unit"  />
 			</el-form-item>
 			<div style="display: flex;flex-wrap: wrap;width: 100%;justify-content: center;">
-				<el-button class="btn" type="primary" @click="login()">注册</el-button>
-				<el-button class="btn close" type="primary" @click="close()">取消</el-button>
+				<el-button class="btn" type="primary" @click="login()">register</el-button>
+				<el-button class="btn close" type="primary" @click="close()">cancel</el-button>
 			</div>
 		</el-form>
       </div>
@@ -125,23 +125,23 @@ export default {
     login() {
 	var url=this.tableName+"/register";
       if((!this.ruleForm.juminhao) && `jumin` == this.tableName){
-        this.$message.error(`居民号不能为空`);
+        this.$message.error(`id cannot be empty`);
         return
       }
       if((!this.ruleForm.mima) && `jumin` == this.tableName){
-        this.$message.error(`密码不能为空`);
+        this.$message.error(`password cannot be empty`);
         return
       }
       if((this.ruleForm.mima!=this.ruleForm.mima2) && `jumin` == this.tableName){
-	    this.$message.error(`两次密码输入不一致`);
+	    this.$message.error(`The two password inputs are inconsistent`);
 	    return
       }
       if(`jumin` == this.tableName && this.ruleForm.nianling&&(!this.$validate.isIntNumer(this.ruleForm.nianling))){
-        this.$message.error(`年龄应输入整数`);
+        this.$message.error(`Age should be entered as an integer`);
         return
       }
       if(`jumin` == this.tableName && this.ruleForm.juminshouji&&(!this.$validate.isMobile(this.ruleForm.juminshouji))){
-        this.$message.error(`居民手机应输入手机格式`);
+        this.$message.error(`Resident mobile phones should be entered in phone format`);
         return
       }
       this.$http({
@@ -151,7 +151,7 @@ export default {
       }).then(({ data }) => {
         if (data && data.code === 0) {
           this.$message({
-            message: "注册成功",
+            message: "login was successful",
             type: "success",
             duration: 1500,
             onClose: () => {

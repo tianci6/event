@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>注册</title>
+		<title>register</title>
 		<!-- bootstrap样式，地图插件使用 -->
 		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../layui/css/layui.css">
@@ -119,25 +119,25 @@
 				<form class="layui-form layui-form-pane add" lay-filter="myForm">
 					
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">居民号：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Resident ID：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.juminhao" type="text" :readonly="ro.juminhao" name="juminhao" id="juminhao" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">密码：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Password：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.mima" type="text" :readonly="ro.mima" name="mima" id="mima" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">居民姓名：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Resident name：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.juminxingming" type="text" :readonly="ro.juminxingming" name="juminxingming" id="juminxingming" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-                        <label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">性别：</label>
+                        <label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Gender：</label>
                         <div class="layui-input-block">
                             <select name="xingbie" id="xingbie" lay-filter="xingbie" >
                                 <option value="">请选择</option>
@@ -146,43 +146,43 @@
                         </div>
                     </div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">年龄：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Age：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.nianling" type="text" :readonly="ro.nianling" name="nianling" id="nianling" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">居民照片：</label>
+						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Photo：</label>
 						<div class="layui-input-block">
 							<div v-if="detail.juminzhaopian" style="display:inline-block;margin-right:10px;">
 								<img id="juminzhaopianImg" style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;" :src="baseurl+detail.juminzhaopian.split(',')[0]">
 								<input type="hidden" :value="detail.juminzhaopian" id="juminzhaopian" name="juminzhaopian" />
 							</div>
 							<button v-if="!ro.juminzhaopian" :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="button" class="layui-btn btn-theme" id="juminzhaopianUpload">
-								<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>上传居民照片
+								<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>upload photo
 							</button>
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">居民手机：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">mobile number：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.juminshouji" type="text" :readonly="ro.juminshouji" name="juminshouji" id="juminshouji" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">居住地址：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">address：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.juzhudizhi" type="text" :readonly="ro.juzhudizhi" name="juzhudizhi" id="juzhudizhi" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">门牌号：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">room number：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.menpaihao" type="text" :readonly="ro.menpaihao" name="menpaihao" id="menpaihao" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">单元号：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">unit：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.danyuanhao" type="text" :readonly="ro.danyuanhao" name="danyuanhao" id="danyuanhao" autocomplete="off" class="layui-input">
 						</div>
@@ -191,8 +191,8 @@
 
 					<div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item">
 						<div class="layui-input-block" style="text-align: right;">
-							<button  :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit" lay-submit lay-filter="*">提交</button>
-							<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button  :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit" lay-submit lay-filter="*">submit</button>
+							<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="reset" class="layui-btn layui-btn-primary">reset</button>
 						</div>
 					</div>
 				</form>
@@ -251,7 +251,7 @@
                         menpaihao: '',
                         danyuanhao: '',
                     },
-					xingbie: '男,女'.split(','),
+					xingbie: 'male,female'.split(','),
 					centerMenu: centerMenu
 				},
 				updated: function() {
@@ -349,7 +349,7 @@
 						console.log(res);
 						layer.closeAll();
 						if (res.code == 0) {
-							layer.msg("上传成功", {
+							layer.msg("upload susscefully", {
 								time: 2000,
 								icon: 6
 							})
@@ -367,7 +367,7 @@
 					//请求异常回调
 					error: function() {
 						layer.closeAll();
-						layer.msg("请求接口异常", {
+						layer.msg("err", {
 							time: 2000,
 							icon: 5
 						})
@@ -447,28 +447,28 @@
 			data = data.field;
                     // 数据校验
                     if(!data.juminhao){
-                        layer.msg('居民号不能为空', {
+                        layer.msg('Resident ID cannot be empty', {
 				time: 2000,
 				icon: 5
-			});
+						});
                         return false
                     }
                     if(!data.mima){
-                        layer.msg('密码不能为空', {
+                        layer.msg('password cannot be empty', {
 				time: 2000,
 				icon: 5
 			});
                         return false
                     }
                     if(!isIntNumer(data.nianling)){
-                        layer.msg('年龄应输入整数', {
+                        layer.msg('Age should be entered as an integer', {
 				time: 2000,
 				icon: 5
 			});
                         return false
                     }
                     if(!isMobile(data.juminshouji)){
-                        layer.msg('居民手机应输入手机格式', {
+                        layer.msg('mobile phones should be entered in phone format', {
 				time: 2000,
 				icon: 5
 			});
@@ -525,7 +525,7 @@
 
 						// 提交数据
 						http.requestJson('jumin' + '/add', 'post', data, function(res) {
-							layer.msg('提交成功', {
+							layer.msg('Successfully submitted', {
 								time: 2000,
 								icon: 6
 							}, function() {
@@ -538,7 +538,7 @@
                 // 跨表计算
 				// 提交数据
 				http.requestJson('jumin' + '/add', 'post', data, function(res) {
-					layer.msg('提交成功', {
+					layer.msg('Successfully submitted', {
 						time: 2000,
 						icon: 6
 					}, function() {

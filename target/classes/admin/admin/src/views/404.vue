@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <img class="backgroud" src="@/assets/img/404.png" alt>
-    <div class="text main-text">出错了...页面失踪了</div>
+    <div class="text main-text">Something went wrong The page is missing</div>
     <div>
-      <el-button class="text" @click="back()" type="text" icon="el-icon-back">返回</el-button>
+      <el-button class="text" @click="back()" type="text" icon="el-icon-back">return</el-button>
     </div>
   </div>
 </template>

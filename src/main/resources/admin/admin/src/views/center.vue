@@ -9,18 +9,18 @@
     >  
      <el-row>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="居民号" prop="juminhao">
-          <el-input v-model="ruleForm.juminhao" readonly              placeholder="居民号" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="Resident ID" prop="juminhao">
+          <el-input v-model="ruleForm.juminhao" readonly              placeholder="Resident ID" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="居民姓名" prop="juminxingming">
-          <el-input v-model="ruleForm.juminxingming"               placeholder="居民姓名" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="Resident name" prop="juminxingming">
+          <el-input v-model="ruleForm.juminxingming"               placeholder="Resident name" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item v-if="flag=='jumin'"  label="性别" prop="xingbie">
-          <el-select v-model="ruleForm.xingbie"  placeholder="请选择性别">
+        <el-form-item v-if="flag=='jumin'"  label="gender" prop="xingbie">
+          <el-select v-model="ruleForm.xingbie"  placeholder="please choose gender">
             <el-option
                 v-for="(item,index) in juminxingbieOptions"
                 v-bind:key="index"
@@ -31,14 +31,14 @@
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="年龄" prop="nianling">
-          <el-input v-model="ruleForm.nianling"               placeholder="年龄" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="Age" prop="nianling">
+          <el-input v-model="ruleForm.nianling"               placeholder="Age" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="24">  
-        <el-form-item v-if="flag=='jumin'" label="居民照片" prop="juminzhaopian">
+        <el-form-item v-if="flag=='jumin'" label="Resident photo" prop="juminzhaopian">
           <file-upload
-          tip="点击上传居民照片"
+          tip="upload photo"
           action="file/upload"
           :limit="3"
           :multiple="true"
@@ -48,32 +48,32 @@
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="居民手机" prop="juminshouji">
-          <el-input v-model="ruleForm.juminshouji"               placeholder="居民手机" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="Resident phone" prop="juminshouji">
+          <el-input v-model="ruleForm.juminshouji"               placeholder="Resident phone" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="居住地址" prop="juzhudizhi">
-          <el-input v-model="ruleForm.juzhudizhi"               placeholder="居住地址" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="Resident address" prop="juzhudizhi">
+          <el-input v-model="ruleForm.juzhudizhi"               placeholder="Resident address" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="门牌号" prop="menpaihao">
-          <el-input v-model="ruleForm.menpaihao"               placeholder="门牌号" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="room number" prop="menpaihao">
+          <el-input v-model="ruleForm.menpaihao"               placeholder="room number" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item   v-if="flag=='jumin'"  label="单元号" prop="danyuanhao">
-          <el-input v-model="ruleForm.danyuanhao"               placeholder="单元号" clearable></el-input>
+        <el-form-item   v-if="flag=='jumin'"  label="unit" prop="danyuanhao">
+          <el-input v-model="ruleForm.danyuanhao"               placeholder="unit" clearable></el-input>
         </el-form-item>
       </el-col>
-      <el-form-item v-if="flag=='users'" label="用户名" prop="username">
+      <el-form-item v-if="flag=='users'" label="username" prop="username">
         <el-input v-model="ruleForm.username" 
-        placeholder="用户名"></el-input>
+        placeholder="username"></el-input>
       </el-form-item>
       <el-col :span="24">
       <el-form-item>
-        <el-button type="primary" @click="onUpdateHandler">修 改</el-button>
+        <el-button type="primary" @click="onUpdateHandler">change</el-button>
       </el-form-item>
       </el-col>
       </el-row>
@@ -106,7 +106,7 @@ export default {
         this.$message.error(data.msg);
       }
     });
-    this.juminxingbieOptions = "男,女".split(',')
+    this.juminxingbieOptions = "male,female".split(',')
   },
   methods: {
     juminjuminzhaopianUploadChange(fileUrls) {
@@ -114,26 +114,26 @@ export default {
     },
     onUpdateHandler() {
       if((!this.ruleForm.juminhao)&& 'jumin'==this.flag){
-        this.$message.error('居民号不能为空');
+        this.$message.error('Resident ID cannot be empty');
         return
       }
       if((!this.ruleForm.mima)&& 'jumin'==this.flag){
-        this.$message.error('密码不能为空');
+        this.$message.error('password cannot be empty');
         return
       }
       if( 'jumin' ==this.flag && this.ruleForm.nianling&&(!isIntNumer(this.ruleForm.nianling))){
-       this.$message.error(`年龄应输入整数`);
+       this.$message.error(`Age should be entered as an integer`);
         return
       }
         if(this.ruleForm.juminzhaopian!=null) {
                 this.ruleForm.juminzhaopian = this.ruleForm.juminzhaopian.replace(new RegExp(this.$base.url,"g"),"");
         }
       if( 'jumin' ==this.flag && this.ruleForm.juminshouji&&(!isMobile(this.ruleForm.juminshouji))){
-        this.$message.error(`居民手机应输入手机格式`);
+        this.$message.error(`Resident mobile phones should be entered in phone format`);
         return
       }
       if('users'==this.flag && this.ruleForm.username.trim().length<1) {
-	this.$message.error(`用户名不能为空`);
+	this.$message.error(`User name cannot be empty`);
         return	
       }
       this.$http({
@@ -143,7 +143,7 @@ export default {
       }).then(({ data }) => {
         if (data && data.code === 0) {
           this.$message({
-            message: "修改信息成功",
+            message: "Successfully modified information",
             type: "success",
             duration: 1500,
             onClose: () => {
