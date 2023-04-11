@@ -24,6 +24,7 @@ import com.utils.R;
 
 /**
  * 权限(Token)验证
+ * 总之是什么人都有，比如我
  */
 @Component
 public class AuthorizationInterceptor implements HandlerInterceptor {
