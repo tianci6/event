@@ -14,10 +14,6 @@ import com.entity.view.DiscussshequchangdiView;
 
 /**
  * 社区场地评论表
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface DiscussshequchangdiDao extends BaseMapper<DiscussshequchangdiEntity> {
 	

@@ -14,10 +14,7 @@ import com.entity.view.ToupiaoxinxiView;
 
 /**
  * 投票信息
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
+ *
  */
 public interface ToupiaoxinxiDao extends BaseMapper<ToupiaoxinxiEntity> {
 	

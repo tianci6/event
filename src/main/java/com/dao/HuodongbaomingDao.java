@@ -14,10 +14,6 @@ import com.entity.view.HuodongbaomingView;
 
 /**
  * 活动报名
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface HuodongbaomingDao extends BaseMapper<HuodongbaomingEntity> {
 	

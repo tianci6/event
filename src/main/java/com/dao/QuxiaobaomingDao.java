@@ -14,10 +14,6 @@ import com.entity.view.QuxiaobaomingView;
 
 /**
  * 取消报名
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface QuxiaobaomingDao extends BaseMapper<QuxiaobaomingEntity> {
 	

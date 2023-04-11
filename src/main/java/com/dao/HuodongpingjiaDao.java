@@ -14,10 +14,6 @@ import com.entity.view.HuodongpingjiaView;
 
 /**
  * 活动评价
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface HuodongpingjiaDao extends BaseMapper<HuodongpingjiaEntity> {
 	

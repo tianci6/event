@@ -14,10 +14,6 @@ import com.entity.view.ShequgonggaoView;
 
 /**
  * 社区公告
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface ShequgonggaoDao extends BaseMapper<ShequgonggaoEntity> {
 	

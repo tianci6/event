@@ -14,10 +14,6 @@ import com.entity.view.DiscussshequhuodongView;
 
 /**
  * 社区活动评论表
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface DiscussshequhuodongDao extends BaseMapper<DiscussshequhuodongEntity> {
 	

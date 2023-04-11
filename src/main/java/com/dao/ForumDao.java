@@ -14,10 +14,6 @@ import com.entity.view.ForumView;
 
 /**
  * 社区论坛
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface ForumDao extends BaseMapper<ForumEntity> {
 	

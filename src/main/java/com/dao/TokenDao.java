@@ -12,6 +12,7 @@ import com.entity.TokenEntity;
 
 /**
  * token
+ * 可能会过滤
  */
 public interface TokenDao extends BaseMapper<TokenEntity> {
 	

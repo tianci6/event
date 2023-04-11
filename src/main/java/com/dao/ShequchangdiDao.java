@@ -14,10 +14,6 @@ import com.entity.view.ShequchangdiView;
 
 /**
  * 社区场地
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface ShequchangdiDao extends BaseMapper<ShequchangdiEntity> {
 	

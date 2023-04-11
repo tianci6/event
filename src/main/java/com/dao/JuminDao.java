@@ -14,10 +14,6 @@ import com.entity.view.JuminView;
 
 /**
  * 居民
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface JuminDao extends BaseMapper<JuminEntity> {
 	

@@ -6,6 +6,8 @@ import java.util.Map;
 
 /**
  * 通用接口
+ *
+ * 1.今天心情好
  */
 public interface CommonDao{
 	List<String> getOption(Map<String, Object> params);

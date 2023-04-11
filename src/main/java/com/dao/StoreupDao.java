@@ -14,10 +14,6 @@ import com.entity.view.StoreupView;
 
 /**
  * 收藏表
- * 
- * @author 
- * @email 
- * @date 2022-08-01 07:36:10
  */
 public interface StoreupDao extends BaseMapper<StoreupEntity> {
 	
