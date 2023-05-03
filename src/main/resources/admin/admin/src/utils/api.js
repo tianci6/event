@@ -6,6 +6,7 @@ const api = {
     ordersave: 'orders/save',
     orderupdate: 'orders/update',
     // 配置
+
     configpage: 'config/page',
     configdelete: 'config/delete',
     configinfo: 'config/info/',

@@ -8,6 +8,7 @@
       label-width="80px"
 	  :style="{backgroundColor:addEditForm.addEditBoxColor}"
     >
+
       <el-row >
       <el-col :span="12">
         <el-form-item class="input" v-if="type!='info'"  label="场地名称" prop="changdimingcheng">
@@ -354,7 +355,7 @@ export default {
         this.ruleForm = data.data;
 	//解决前台上传图片后台不显示的问题
 	let reg=new RegExp('../../../upload','g')//g代表全部
-	this.ruleForm.changdixiangqing = this.ruleForm.changdixiangqing.replace(reg,'../../../springboot7znd1/upload');
+	this.ruleForm.changdixiangqing = this.ruleForm.changdixiangqing.replace(reg,'../../../eventi/upload');
         } else {
           this.$message.error(data.msg);
         }

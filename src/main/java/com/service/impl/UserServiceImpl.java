@@ -19,7 +19,7 @@ import com.utils.Query;
 
 
 /**
- * 系统用户
+ * 系统用户user
  */
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements UserService {

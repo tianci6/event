@@ -65,5 +65,6 @@
                         SELECT DATE_FORMAT(${xColumn},'%Y') ${xColumn}, sum(${yColumn}) total FROM ${table} group by DATE_FORMAT(${xColumn},'%Y')
                 </if>
         </select>
-	
+
+
 </mapper>

@@ -8,6 +8,7 @@ function publicPath(){
         return "././";
     } else {
         return "/";
+
     }
 }
 // vue.config.js
@@ -32,12 +33,12 @@ lintOnSave: false,
         hot: true, // 开启热更新
         https: false, // 是否开启https模式
         proxy: { // 请求代理服务器
-            '/springboot7znd1': { //带上api前缀的
-                target: 'http://localhost:8080/springboot7znd1/', //代理目标地址
+            '/eventi': { //带上api前缀的
+                target: 'http://localhost:8080/eventi/', //代理目标地址
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: { // 在发出请求后将/api替换为''空值，这样不影响接口请求
-                    '^/springboot7znd1': ''
+                    '^/eventi': ''
                 }
             }
         }

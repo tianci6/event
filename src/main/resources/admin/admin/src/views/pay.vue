@@ -11,6 +11,7 @@
       <span>金额</span>
       <span>￥99.0</span>
     </div> -->
+
     <div class="pay-type-content">
       <div class="pay-type-item">
         <el-radio v-model="type" label="微信支付"></el-radio>

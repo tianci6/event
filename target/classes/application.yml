@@ -4,7 +4,7 @@ server:
         uri-encoding: UTF-8
     port: 8080
     servlet:
-        context-path: /springboot7znd1
+        context-path: /eventi
 
 spring:
     datasource:

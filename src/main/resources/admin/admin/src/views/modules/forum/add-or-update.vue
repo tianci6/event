@@ -60,7 +60,7 @@
       <el-form-item class="btn">
         <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
         <el-button v-if="type!='info'" class="btn-close" @click="back()">取消</el-button>
-        <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
+        <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
     </el-form>
     
@@ -248,7 +248,7 @@ export default {
         this.ruleForm = data.data;
 	//解决前台上传图片后台不显示的问题
 	let reg=new RegExp('../../../upload','g')//g代表全部
-	this.ruleForm.content = this.ruleForm.content.replace(reg,'../../../springboot7znd1/upload');
+	this.ruleForm.content = this.ruleForm.content.replace(reg,'../../../eventi/upload');
         } else {
           this.$message.error(data.msg);
         }

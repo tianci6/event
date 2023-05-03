@@ -5,6 +5,7 @@
       <span>
         <el-tag size="small" :type="titleTag">{{titleUnit}}</el-tag>
       </span>
+
     </div>
     <div class="content">
       {{content}}&nbsp;&nbsp;

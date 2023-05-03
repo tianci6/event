@@ -13,7 +13,6 @@ import com.entity.view.ForumView;
 
 /**
  * 社区论坛
-
  */
 public interface ForumService extends IService<ForumEntity> {
 

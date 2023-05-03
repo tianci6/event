@@ -62,7 +62,7 @@ public class FileController{
 		String fileName = new Date().getTime()+"."+fileExt;
 		File dest = new File(upload.getAbsolutePath()+"/"+fileName);
 		file.transferTo(dest);
-		FileUtils.copyFile(dest, new File("D:\\biye\\springboot7znd1\\src\\main\\resources\\static\\upload"+"/"+fileName));
+		FileUtils.copyFile(dest, new File("D:\\biye\\eventi\\src\\main\\resources\\static\\upload"+"/"+fileName));
 		/**
   		 * 如果使用idea或者eclipse重启项目，发现之前上传的图片或者文件丢失，将下面一行代码注释打开
    		 * 请将以下的"D:\\springbootq33sd\\src\\main\\resources\\static\\upload"替换成你本地项目的upload路径，

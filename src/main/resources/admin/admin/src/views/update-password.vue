@@ -7,6 +7,7 @@
       :model="ruleForm"
       label-width="80px"
     >
+
       <el-form-item label="old password" prop="password">
         <el-input v-model="ruleForm.password" show-password></el-input>
       </el-form-item>

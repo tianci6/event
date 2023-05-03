@@ -13,7 +13,7 @@ import com.entity.view.DiscussshequhuodongView;
 
 /**
  * 社区活动评论表
-
+	fengtianci
  */
 public interface DiscussshequhuodongService extends IService<DiscussshequhuodongEntity> {
 

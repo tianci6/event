@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>首页</title>
+		<title>Home</title>
 		<link rel="stylesheet" href="./layui/css/layui.css">
 		<link rel="stylesheet" href="./xznstatic/css/common.css"/>
 		<link rel="stylesheet" href="./xznstatic/css/style.css"/>
@@ -189,10 +189,11 @@
 				<div class="title" v-if="false" v-text="projectName"></div>
 				<div class="list">
 					<ul>
-						<li class='current'><a href="javascript:navPage('./pages/home/home.html')" class="menumain"><i v-if="false" class="layui-icon layui-icon-home"></i>首页</a></li>
+						<li><a href="https://www.inproeast.com/" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>Main</a></li>
+						<li class='current'><a href="javascript:navPage('./pages/home/home.html')" class="menumain"><i v-if="false" class="layui-icon layui-icon-home"></i>Home</a></li>
 						<li v-for="(item,index) in indexNav" v-bind:key="index"><a :href="'javascript:navPage(\''+item.url+'\')'" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon" :class="iconArr[index]"></i>{{item.name}}</a></li>
-						<li><a href="javascript:centerPage();" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>个人中心</a></li>
-						<li><a :href="adminurl" target="_blank" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon layui-icon-link"></i>后台管理</a></li>
+						<li><a href="javascript:centerPage();" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>Individual center</a></li>
+						<li><a :href="adminurl" target="_blank" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon layui-icon-link"></i>background</a></li>
 					</ul>
 				</div>
 		    </div>
@@ -253,7 +254,7 @@
 				if (userTable) {
 					layui.layer.open({
 						type: 2,
-						title: '客服',
+						title: 'service',
 						area: ['600px', '600px'],
 						content: './pages/chat/chat.html'
 					});

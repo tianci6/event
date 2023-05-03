@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dao.ShequgonggaoDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 也许要使用 -->
     <resultMap type="com.entity.ShequgonggaoEntity" id="shequgonggaoMap">
         <result property="biaoti" column="biaoti"/>
         <result property="neirong" column="neirong"/>

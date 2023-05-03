@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 /**
  * 查询参数
+ *
  */
 public class Query<T> extends LinkedHashMap<String, Object> {
 	private static final long serialVersionUID = 1L;

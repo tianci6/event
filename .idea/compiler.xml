@@ -6,18 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="eventi" />
         <module name="ssm03fc1" />
-        <module name="springboot7znd1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="springboot7znd1" target="1.8" />
+      <module name="eventi" target="1.8" />
       <module name="ssm03fc1" target="1.7" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="springboot7znd1" options="-parameters" />
+      <module name="eventi" options="-parameters" />
     </option>
   </component>
 </project>

@@ -13,7 +13,6 @@ import com.entity.view.HuodongbaomingView;
 
 /**
  * 活动报名
-
  */
 public interface HuodongbaomingService extends IService<HuodongbaomingEntity> {
 

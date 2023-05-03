@@ -7,6 +7,7 @@
 		</el-container>
 	</el-container>
 </template>
+
 <script>
 	import IndexHeader from '@/components/index/IndexHeader'
 	import IndexAside from '@/components/index/IndexAsideStatic'

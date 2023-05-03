@@ -8,5 +8,6 @@ export function generateTitle(title) {
 
     return translatedTitle
   }
+
   return title
 }

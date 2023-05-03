@@ -13,7 +13,6 @@ import com.entity.view.ToupiaotongjiView;
 
 /**
  * 投票统计
-
  */
 public interface ToupiaotongjiService extends IService<ToupiaotongjiEntity> {
 

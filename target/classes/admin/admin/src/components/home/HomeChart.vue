@@ -123,4 +123,5 @@ export default {
   background: #ffffff;
   padding: 20px 0;
 }
+
 </style>

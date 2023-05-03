@@ -8,6 +8,7 @@ import java.net.URL;
 
 /**
  * HttpClient工具类
+ * 写点儿啥
  */
 public class HttpClientUtils {
 

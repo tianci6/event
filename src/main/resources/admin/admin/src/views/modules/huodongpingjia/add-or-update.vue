@@ -206,7 +206,7 @@ export default {
       if(!value){
         callback();
       } else if (!isNumber(value)) {
-        callback(new Error("请输入数字"));
+        callback(new Error("Please input number"));
       } else {
         callback();
       }

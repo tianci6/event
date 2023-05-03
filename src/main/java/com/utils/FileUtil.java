@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
-* 类说明 : 
+* 类说明 :
+ *
 */
 
 public class FileUtil {

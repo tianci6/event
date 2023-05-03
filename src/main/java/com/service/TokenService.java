@@ -12,6 +12,7 @@ import com.utils.PageUtils;
 
 /**
  * token
+
  */
 public interface TokenService extends IService<TokenEntity> {
  	PageUtils queryPage(Map<String, Object> params);

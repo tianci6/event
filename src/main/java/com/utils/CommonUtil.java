@@ -12,7 +12,7 @@ public class CommonUtil {
 	/**
      * 获取随机字符串
      *
-     * @param num
+     * @param
      * @return
      */
     public static String getRandomString(Integer num) {

@@ -498,4 +498,5 @@ export default {
 				box-shadow: 0 0 6px rgba(30, 144, 255, 0);
 				text-align: center;
 			}
+
 </style>

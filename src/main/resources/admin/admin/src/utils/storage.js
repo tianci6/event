@@ -1,3 +1,4 @@
+//12
 const storage = {
     set(key, value) {
         localStorage.setItem(key, JSON.stringify(value));

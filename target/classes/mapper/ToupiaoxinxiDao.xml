@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dao.ToupiaoxinxiDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 也许要使用 -->
     <resultMap type="com.entity.ToupiaoxinxiEntity" id="toupiaoxinxiMap">
         <result property="toupiaobiaoti" column="toupiaobiaoti"/>
         <result property="kaishishijian" column="kaishishijian"/>

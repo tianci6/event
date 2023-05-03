@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dao.JuminDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 也许要使用 -->
     <resultMap type="com.entity.JuminEntity" id="juminMap">
         <result property="juminhao" column="juminhao"/>
         <result property="mima" column="mima"/>

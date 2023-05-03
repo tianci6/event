@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 
 /**
-* 类说明 : 
+* 类说明 : 备用，也许会用到
 */
 
 public class BaiduUtil {

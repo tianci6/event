@@ -18,6 +18,9 @@ import com.service.JuminService;
 import com.entity.vo.JuminVO;
 import com.entity.view.JuminView;
 
+/**
+ *
+ */
 @Service("juminService")
 public class JuminServiceImpl extends ServiceImpl<JuminDao, JuminEntity> implements JuminService {
 	

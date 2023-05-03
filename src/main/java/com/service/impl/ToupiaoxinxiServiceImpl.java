@@ -18,6 +18,9 @@ import com.service.ToupiaoxinxiService;
 import com.entity.vo.ToupiaoxinxiVO;
 import com.entity.view.ToupiaoxinxiView;
 
+/**
+ *
+ */
 @Service("toupiaoxinxiService")
 public class ToupiaoxinxiServiceImpl extends ServiceImpl<ToupiaoxinxiDao, ToupiaoxinxiEntity> implements ToupiaoxinxiService {
 	

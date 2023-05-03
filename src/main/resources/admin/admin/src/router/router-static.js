@@ -26,7 +26,7 @@ import center from '@/views/center'
     import shequchangdi from '@/views/modules/shequchangdi/list'
 
 
-//2.配置路由   注意：名字
+//2.配置路由   注意：name
 const routes = [{
     path: '/index',
     name: '首页',

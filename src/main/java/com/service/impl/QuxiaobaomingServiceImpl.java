@@ -18,6 +18,9 @@ import com.service.QuxiaobaomingService;
 import com.entity.vo.QuxiaobaomingVO;
 import com.entity.view.QuxiaobaomingView;
 
+/**
+ *
+ */
 @Service("quxiaobaomingService")
 public class QuxiaobaomingServiceImpl extends ServiceImpl<QuxiaobaomingDao, QuxiaobaomingEntity> implements QuxiaobaomingService {
 	

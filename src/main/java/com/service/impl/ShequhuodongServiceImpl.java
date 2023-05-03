@@ -18,6 +18,9 @@ import com.service.ShequhuodongService;
 import com.entity.vo.ShequhuodongVO;
 import com.entity.view.ShequhuodongView;
 
+/**
+ *
+ */
 @Service("shequhuodongService")
 public class ShequhuodongServiceImpl extends ServiceImpl<ShequhuodongDao, ShequhuodongEntity> implements ShequhuodongService {
 	

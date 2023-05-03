@@ -141,4 +141,5 @@
 	.detail-form-content {
 	    background: transparent;
 	}
+
 </style>

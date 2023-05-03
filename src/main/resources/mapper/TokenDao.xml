@@ -9,5 +9,6 @@
 		SELECT  t.* FROM token  t 	        
         <where> 1=1 ${ew.sqlSegment}</where>
 	</select>
+
 	
 </mapper>

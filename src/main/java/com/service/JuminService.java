@@ -13,7 +13,6 @@ import com.entity.view.JuminView;
 
 /**
  * 居民
- 0
  */
 public interface JuminService extends IService<JuminEntity> {
 

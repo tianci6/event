@@ -7,6 +7,7 @@
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
 			   <div class="label">居民号</div>
 			   <div class="input-container">
+
 			     <input v-model="ruleForm.juminhao" class="input" type="text" placeholder="居民号">
 			   </div>
 			 </div> -->

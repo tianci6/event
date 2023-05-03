@@ -1,5 +1,8 @@
 package com.utils;
 
+/**
+ *
+ */
 public class JQPageInfo{
 	private Integer page;
 	

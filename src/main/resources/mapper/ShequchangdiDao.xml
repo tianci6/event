@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dao.ShequchangdiDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 也许要使用 -->
     <resultMap type="com.entity.ShequchangdiEntity" id="shequchangdiMap">
         <result property="changdimingcheng" column="changdimingcheng"/>
         <result property="changdisheshi" column="changdisheshi"/>

@@ -13,8 +13,6 @@ import com.entity.view.ShequhuodongView;
 
 /**
  * 社区活动
- *
-
  */
 public interface ShequhuodongService extends IService<ShequhuodongEntity> {
 

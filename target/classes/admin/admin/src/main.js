@@ -72,6 +72,7 @@ Vue.component('editor', Editor)
 Vue.component('downloadExcel', JsonExcel)
 //MD5
 Vue.prototype.$md5 = md5;
+
 new Vue({
   render: h => h(App),
   router

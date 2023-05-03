@@ -13,7 +13,6 @@ import com.entity.view.QuxiaobaomingView;
 
 /**
  * 取消报名
-
  */
 public interface QuxiaobaomingService extends IService<QuxiaobaomingEntity> {
 

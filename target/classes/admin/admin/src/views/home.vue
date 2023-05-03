@@ -3,6 +3,7 @@
 			<div class="text main-text" :style='{"padding":"0","boxShadow":"0 0 0px rgba(0,0,0,.1)","margin":"15% auto 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(247, 247, 247, 0)","color":"#333","borderRadius":"6px","borderWidth":"0","width":"auto","lineHeight":"auto","fontSize":"45px","borderStyle":"solid"}'>欢迎使用 {{this.$project.projectName}}</div>
 	</div>
 </template>
+
 <script>
 import router from '@/router/router-static'
 export default {

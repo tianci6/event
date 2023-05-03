@@ -13,7 +13,6 @@ import com.entity.view.StoreupView;
 
 /**
  * 收藏表
-
  */
 public interface StoreupService extends IService<StoreupEntity> {
 

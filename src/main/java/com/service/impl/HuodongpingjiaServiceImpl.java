@@ -18,6 +18,9 @@ import com.service.HuodongpingjiaService;
 import com.entity.vo.HuodongpingjiaVO;
 import com.entity.view.HuodongpingjiaView;
 
+/**
+ *
+ */
 @Service("huodongpingjiaService")
 public class HuodongpingjiaServiceImpl extends ServiceImpl<HuodongpingjiaDao, HuodongpingjiaEntity> implements HuodongpingjiaService {
 	

@@ -13,7 +13,6 @@ import com.entity.view.HuodongpingjiaView;
 
 /**
  * 活动评价
-
  */
 public interface HuodongpingjiaService extends IService<HuodongpingjiaEntity> {
 

@@ -18,6 +18,9 @@ import com.service.DiscussshequhuodongService;
 import com.entity.vo.DiscussshequhuodongVO;
 import com.entity.view.DiscussshequhuodongView;
 
+/**
+ * meiyouxiangxiede
+ */
 @Service("discussshequhuodongService")
 public class DiscussshequhuodongServiceImpl extends ServiceImpl<DiscussshequhuodongDao, DiscussshequhuodongEntity> implements DiscussshequhuodongService {
 	

@@ -13,7 +13,6 @@ import com.entity.view.ShequgonggaoView;
 
 /**
  * 社区公告
-
  */
 public interface ShequgonggaoService extends IService<ShequgonggaoEntity> {
 

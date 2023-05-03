@@ -8,6 +8,7 @@
       label-width="80px"
 	  :style="{backgroundColor:addEditForm.addEditBoxColor}"
     >
+
       <el-row >
       <el-col :span="12">
         <el-form-item class="input" v-if="type!='info'"  label="收藏名称" prop="name">

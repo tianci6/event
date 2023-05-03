@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dao.QuxiaobaomingDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 也许要使用 -->
     <resultMap type="com.entity.QuxiaobaomingEntity" id="quxiaobaomingMap">
         <result property="huodongmingcheng" column="huodongmingcheng"/>
         <result property="huodongleixing" column="huodongleixing"/>

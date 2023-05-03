@@ -153,6 +153,7 @@
 </template>
 <script>
 // 数字，邮件，手机，url，身份证校验
+
 import { isNumber,isIntNumer,isEmail,isPhone, isMobile,isURL,checkIdCard } from "@/utils/validate";
 export default {
   data() {

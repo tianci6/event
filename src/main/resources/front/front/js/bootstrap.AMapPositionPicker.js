@@ -1,6 +1,5 @@
 /**
  * BootstrapAMapPositionPicker v0.8.3
- * @author: Kinegratii
  */
 (function (factory) {
     'use strict';

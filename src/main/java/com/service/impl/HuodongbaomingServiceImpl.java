@@ -18,6 +18,9 @@ import com.service.HuodongbaomingService;
 import com.entity.vo.HuodongbaomingVO;
 import com.entity.view.HuodongbaomingView;
 
+/**
+ *
+ */
 @Service("huodongbaomingService")
 public class HuodongbaomingServiceImpl extends ServiceImpl<HuodongbaomingDao, HuodongbaomingEntity> implements HuodongbaomingService {
 	

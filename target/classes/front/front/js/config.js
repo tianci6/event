@@ -69,7 +69,7 @@ var indexNav = [
 }, 
 ]
 
-var adminurl =  "http://localhost:8080/springboot7znd1/admin/dist/index.html";
+var adminurl =  "http://localhost:8080/eventi/admin/dist/index.html";
 
 var cartFlag = false
 

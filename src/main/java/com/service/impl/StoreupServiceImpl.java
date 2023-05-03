@@ -18,6 +18,9 @@ import com.service.StoreupService;
 import com.entity.vo.StoreupVO;
 import com.entity.view.StoreupView;
 
+/**
+ *
+ */
 @Service("storeupService")
 public class StoreupServiceImpl extends ServiceImpl<StoreupDao, StoreupEntity> implements StoreupService {
 	

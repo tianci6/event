@@ -8,6 +8,7 @@ public class MD5Util {
 	 * @param text明文
 	 * @param key密钥
 	 * @return 密文
+	 * 写着玩，也许会用到
 	 */
 	// 带秘钥加密
 	public static String md5(String text) {

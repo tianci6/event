@@ -3,7 +3,7 @@
 
 <mapper namespace="com.dao.HuodongpingjiaDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+	<!-- 也许要使用 -->
     <resultMap type="com.entity.HuodongpingjiaEntity" id="huodongpingjiaMap">
         <result property="baomingbianhao" column="baomingbianhao"/>
         <result property="huodongmingcheng" column="huodongmingcheng"/>

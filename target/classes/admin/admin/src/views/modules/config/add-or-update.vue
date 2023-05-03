@@ -495,4 +495,5 @@ var objcross = this.$storage.getObj('crossObj');
 .btn .el-button {
   padding: 0;
 }
+
 </style>

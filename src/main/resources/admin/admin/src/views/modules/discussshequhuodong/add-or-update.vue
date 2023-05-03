@@ -14,6 +14,7 @@
             <el-col :span="24">
               <el-form-item class="textarea" v-if="type!='info'" label="评论内容" prop="content">
                 <el-input
+
                   style="min-width: 200px; max-width: 600px;"
                   type="textarea"
                   :rows="8"

@@ -18,6 +18,10 @@ import com.service.ForumService;
 import com.entity.vo.ForumVO;
 import com.entity.view.ForumView;
 
+/**
+ *
+ */
+
 @Service("forumService")
 public class ForumServiceImpl extends ServiceImpl<ForumDao, ForumEntity> implements ForumService {
 	

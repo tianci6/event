@@ -1,6 +1,7 @@
 import storage from './storage';
 import menu from './menu';
 /**
+ * quan xian guanli
  * 是否有权限
  * @param {*} key
  */
