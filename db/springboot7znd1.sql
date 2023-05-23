@@ -545,3 +545,66 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-08-01  7:40:12
+-- 创建交通表
+CREATE TABLE 交通 (
+                    userId INT NOT NULL AUTO_INCREMENT,
+                    用户名 VARCHAR(50),
+                    手机号 VARCHAR(15),
+                    电子邮箱 VARCHAR(100),
+                    地点 VARCHAR(100),
+                    时间 DATETIME,
+                    描述 VARCHAR(200),
+                    type VARCHAR(50),
+                    PRIMARY KEY (userId)
+);
+
+-- 插入示例数据
+INSERT INTO 交通 (用户名, 手机号, 电子邮箱, 地点, 时间, 描述, type)
+VALUES
+    ('张三', '123456789', 'zhangsan@example.com', '北京', '2023-05-20 09:00:00', '乘坐地铁到公司', '地铁'),
+    ('李四', '987654321', 'lisi@example.com', '上海', '2023-05-20 08:30:00', '开车去上班', '私家车'),
+    ('王五', '555555555', 'wangwu@example.com', '广州', '2023-05-20 10:15:00', '坐公交去购物中心', '公交车');
+
+
+-- 创建犯罪报告表
+CREATE TABLE 犯罪报告 (
+                      userId INT,
+                      用户名 VARCHAR(50),
+                      手机号 VARCHAR(15),
+                      电子邮箱 VARCHAR(100),
+                      地点 VARCHAR(100),
+                      时间 DATETIME,
+                      描述 VARCHAR(200),
+                      type VARCHAR(50)
+);
+
+-- 插入示例数据
+INSERT INTO 犯罪报告 (userId, 用户名, 手机号, 电子邮箱, 地点, 时间, 描述, type)
+VALUES
+    (1, '张三', '123456789', 'zhangsan@example.com', '北京', '2023-05-20 09:00:00', '目击抢劫案发生', '抢劫'),
+    (2, '李四', '987654321', 'lisi@example.com', '上海', '2023-05-20 08:30:00', '车辆被盗', '盗窃'),
+    (3, '王五', '555555555', 'wangwu@example.com', '广州', '2023-05-20 10:15:00', '遭遇电信诈骗', '电信诈骗');
+
+
+-- 创建求救信息表
+CREATE TABLE help_messages (
+                               id INT PRIMARY KEY AUTO_INCREMENT,
+                               sender_name VARCHAR(255),
+                               sender_email VARCHAR(255),
+                               sender_phone VARCHAR(20),
+                               message TEXT,
+                               latitude FLOAT,
+                               longitude FLOAT,
+                               timestamp DATETIME
+);
+
+-- 插入示例信息
+INSERT INTO help_messages (sender_name, sender_email, sender_phone, message, latitude, longitude, timestamp)
+VALUES ('John Doe', 'john@example.com', '1234567890', 'Help! I''m trapped in a building.', 40.7128, -74.0060, NOW());
+
+INSERT INTO help_messages (sender_name, sender_email, sender_phone, message, latitude, longitude, timestamp)
+VALUES ('Jane Smith', 'jane@example.com', '9876543210', 'Urgent assistance needed at my location.', 37.7749, -122.4194, NOW());
+
+INSERT INTO help_messages (sender_name, sender_email, sender_phone, message, latitude, longitude, timestamp)
+VALUES ('Samuel Lee', 'sam@example.com', '5555555555', 'Emergency situation, please send help immediately.', 35.6895, 139.6917, NOW());
+
