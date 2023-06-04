@@ -7,7 +7,7 @@
 					<div>{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
 				</el-menu-item>
 				<el-menu-item @click="onLogout" index="2">
-					<div>退出登录</div>
+					<div>LogOut</div>
 				</el-menu-item>
 			</div>
 		</el-menu>
@@ -19,8 +19,8 @@
 		</div>
 		<div class="right-menu">
 			<div class="user-info" :style="{color:heads.headUserInfoFontColor,fontSize:heads.headUserInfoFontSize}">{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
-			<div v-if="this.$storage.get('role')!='管理员'" class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onIndexTap">退出到前台</div>
-			<div class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onLogout">退出登录</div>
+			<div v-if="this.$storage.get('role')!='administered'" class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onIndexTap">退出到前台</div>
+			<div class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onLogout">LogOut</div>
 		</div>
 	</div>
 </template>

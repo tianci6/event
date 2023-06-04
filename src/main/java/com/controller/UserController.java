@@ -150,7 +150,7 @@ public class UserController{
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     public R update(@RequestBody UserEntity user){
@@ -164,7 +164,7 @@ public class UserController{
     }
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

@@ -5,10 +5,10 @@
         <h1 class="h1">Registration Center</h1>
 		<el-form ref="rgsForm" class="rgs-form" :model="rgsForm">
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">居民号</div>
+			   <div class="label">ID</div>
 			   <div class="input-container">
 
-			     <input v-model="ruleForm.juminhao" class="input" type="text" placeholder="居民号">
+			     <input v-model="ruleForm.juminhao" class="input" type="text" placeholder="ID">
 			   </div>
 			 </div> -->
 			<el-form-item label="Resident ID" class="input" v-if="tableName=='jumin'">
@@ -28,54 +28,54 @@
 			</el-form-item>
 
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">居民姓名</div>
+			   <div class="label">Name</div>
 			   <div class="input-container">
-			     <input v-model="ruleForm.juminxingming" class="input" type="text" placeholder="居民姓名">
+			     <input v-model="ruleForm.juminxingming" class="input" type="text" placeholder="Name">
 			   </div>
 			 </div> -->
 			<el-form-item label="Resident name" class="input" v-if="tableName=='jumin'">
 			  <el-input v-model="ruleForm.juminxingming" autocomplete="off" placeholder="residen name"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">年龄</div>
+			   <div class="label">Age</div>
 			   <div class="input-container">
-			     <input v-model="ruleForm.nianling" class="input" type="text" placeholder="年龄">
+			     <input v-model="ruleForm.nianling" class="input" type="text" placeholder="Age">
 			   </div>
 			 </div> -->
 			<el-form-item label="Age" class="input" v-if="tableName=='jumin'">
 			  <el-input v-model="ruleForm.nianling" autocomplete="off" placeholder="Age"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">居民手机</div>
+			   <div class="label">Mobile</div>
 			   <div class="input-container">
-			     <input v-model="ruleForm.juminshouji" class="input" type="text" placeholder="居民手机">
+			     <input v-model="ruleForm.juminshouji" class="input" type="text" placeholder="Mobile">
 			   </div>
 			 </div> -->
 			<el-form-item label="Resident phone" class="input" v-if="tableName=='jumin'">
 			  <el-input v-model="ruleForm.juminshouji" autocomplete="off" placeholder="Resident phone"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">居住地址</div>
+			   <div class="label">Address</div>
 			   <div class="input-container">
-			     <input v-model="ruleForm.juzhudizhi" class="input" type="text" placeholder="居住地址">
+			     <input v-model="ruleForm.juzhudizhi" class="input" type="text" placeholder="Address">
 			   </div>
 			 </div> -->
 			<el-form-item label="address" class="input" v-if="tableName=='jumin'">
 			  <el-input v-model="ruleForm.juzhudizhi" autocomplete="off" placeholder="address"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">门牌号</div>
+			   <div class="label">HouseNumber</div>
 			   <div class="input-container">
-			     <input v-model="ruleForm.menpaihao" class="input" type="text" placeholder="门牌号">
+			     <input v-model="ruleForm.menpaihao" class="input" type="text" placeholder="HouseNumber">
 			   </div>
 			 </div> -->
 			<el-form-item label="room number" class="input" v-if="tableName=='jumin'">
 			  <el-input v-model="ruleForm.menpaihao" autocomplete="off" placeholder="room number"  />
 			</el-form-item>
 			<!-- <div v-if="tableName=='jumin'" class="input-group">
-			   <div class="label">单元号</div>
+			   <div class="label">UnitNumber</div>
 			   <div class="input-container">
-			     <input v-model="ruleForm.danyuanhao" class="input" type="text" placeholder="单元号">
+			     <input v-model="ruleForm.danyuanhao" class="input" type="text" placeholder="UnitNumber">
 			   </div>
 			 </div> -->
 			<el-form-item label="unit" class="input" v-if="tableName=='jumin'">

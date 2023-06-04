@@ -11,20 +11,20 @@
 
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="标题" prop="biaoti">
+        <el-form-item class="input" v-if="type!='info'"  label="title" prop="biaoti">
           <el-input v-model="ruleForm.biaoti" 
-              placeholder="标题" clearable  :readonly="ro.biaoti"></el-input>
+              placeholder="title" clearable  :readonly="ro.biaoti"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="标题" prop="biaoti">
+          <el-form-item class="input" label="title" prop="biaoti">
               <el-input v-model="ruleForm.biaoti" 
-                placeholder="标题" readonly></el-input>
+                placeholder="title" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="select" v-if="type!='info'"  label="投票选项" prop="toupiaoxuanxiang">
-          <el-select :disabled="ro.toupiaoxuanxiang" v-model="ruleForm.toupiaoxuanxiang" placeholder="请选择投票选项">
+        <el-form-item class="select" v-if="type!='info'"  label="options" prop="toupiaoxuanxiang">
+          <el-select :disabled="ro.toupiaoxuanxiang" v-model="ruleForm.toupiaoxuanxiang" placeholder="Please choose">
             <el-option
                 v-for="(item,index) in toupiaoxuanxiangOptions"
                 v-bind:key="index"
@@ -34,9 +34,9 @@
           </el-select>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="投票选项" prop="toupiaoxuanxiang">
+          <el-form-item class="input" label="options" prop="toupiaoxuanxiang">
 	      <el-input v-model="ruleForm.toupiaoxuanxiang"
-                placeholder="投票选项" readonly></el-input>
+                placeholder="options" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -70,26 +70,26 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="居民号" prop="juminhao">
+        <el-form-item class="input" v-if="type!='info'"  label="ID" prop="juminhao">
           <el-input v-model="ruleForm.juminhao" 
-              placeholder="居民号" clearable  :readonly="ro.juminhao"></el-input>
+              placeholder="ID" clearable  :readonly="ro.juminhao"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="居民号" prop="juminhao">
+          <el-form-item class="input" label="ID" prop="juminhao">
               <el-input v-model="ruleForm.juminhao" 
-                placeholder="居民号" readonly></el-input>
+                placeholder="ID" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="居民姓名" prop="juminxingming">
+        <el-form-item class="input" v-if="type!='info'"  label="Name" prop="juminxingming">
           <el-input v-model="ruleForm.juminxingming" 
-              placeholder="居民姓名" clearable  :readonly="ro.juminxingming"></el-input>
+              placeholder="Name" clearable  :readonly="ro.juminxingming"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="居民姓名" prop="juminxingming">
+          <el-form-item class="input" label="Name" prop="juminxingming">
               <el-input v-model="ruleForm.juminxingming" 
-                placeholder="居民姓名" readonly></el-input>
+                placeholder="Name" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>

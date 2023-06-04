@@ -10,175 +10,175 @@
     >
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'" label="报名编号" prop="baomingbianhao">
+        <el-form-item class="input" v-if="type!='info'" label="RegisterNo" prop="baomingbianhao">
             <el-input v-model="ruleForm.baomingbianhao" 
-                placeholder="报名编号" readonly></el-input>
+                placeholder="RegisterNo" readonly></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.baomingbianhao" label="报名编号" prop="baomingbianhao">
+          <el-form-item class="input" v-if="ruleForm.baomingbianhao" label="RegisterNo" prop="baomingbianhao">
               <el-input v-model="ruleForm.baomingbianhao" 
-                placeholder="报名编号" readonly></el-input>
+                placeholder="RegisterNo" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="活动名称" prop="huodongmingcheng">
+        <el-form-item class="input" v-if="type!='info'"  label="EventName" prop="huodongmingcheng">
           <el-input v-model="ruleForm.huodongmingcheng" 
-              placeholder="活动名称" clearable  :readonly="ro.huodongmingcheng"></el-input>
+              placeholder="EventName" clearable  :readonly="ro.huodongmingcheng"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="活动名称" prop="huodongmingcheng">
+          <el-form-item class="input" label="EventName" prop="huodongmingcheng">
               <el-input v-model="ruleForm.huodongmingcheng" 
-                placeholder="活动名称" readonly></el-input>
+                placeholder="EventName" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="活动类型" prop="huodongleixing">
+        <el-form-item class="input" v-if="type!='info'"  label="Type" prop="huodongleixing">
           <el-input v-model="ruleForm.huodongleixing" 
-              placeholder="活动类型" clearable  :readonly="ro.huodongleixing"></el-input>
+              placeholder="Type" clearable  :readonly="ro.huodongleixing"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="活动类型" prop="huodongleixing">
+          <el-form-item class="input" label="Type" prop="huodongleixing">
               <el-input v-model="ruleForm.huodongleixing" 
-                placeholder="活动类型" readonly></el-input>
+                placeholder="Type" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="活动地点" prop="huodongdidian">
+        <el-form-item class="input" v-if="type!='info'"  label="Location" prop="huodongdidian">
           <el-input v-model="ruleForm.huodongdidian" 
-              placeholder="活动地点" clearable  :readonly="ro.huodongdidian"></el-input>
+              placeholder="Location" clearable  :readonly="ro.huodongdidian"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="活动地点" prop="huodongdidian">
+          <el-form-item class="input" label="Location" prop="huodongdidian">
               <el-input v-model="ruleForm.huodongdidian" 
-                placeholder="活动地点" readonly></el-input>
+                placeholder="Location" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="开始时间" prop="kaishishijian">
+        <el-form-item class="input" v-if="type!='info'"  label="StartTime" prop="kaishishijian">
           <el-input v-model="ruleForm.kaishishijian" 
-              placeholder="开始时间" clearable  :readonly="ro.kaishishijian"></el-input>
+              placeholder="StartTime" clearable  :readonly="ro.kaishishijian"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="开始时间" prop="kaishishijian">
+          <el-form-item class="input" label="StartTime" prop="kaishishijian">
               <el-input v-model="ruleForm.kaishishijian" 
-                placeholder="开始时间" readonly></el-input>
+                placeholder="StartTime" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="结束时间" prop="jieshushijian">
+        <el-form-item class="input" v-if="type!='info'"  label="EndTime" prop="jieshushijian">
           <el-input v-model="ruleForm.jieshushijian" 
-              placeholder="结束时间" clearable  :readonly="ro.jieshushijian"></el-input>
+              placeholder="EndTime" clearable  :readonly="ro.jieshushijian"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="结束时间" prop="jieshushijian">
+          <el-form-item class="input" label="EndTime" prop="jieshushijian">
               <el-input v-model="ruleForm.jieshushijian" 
-                placeholder="结束时间" readonly></el-input>
+                placeholder="EndTime" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="报名截止" prop="baomingjiezhi">
+        <el-form-item class="input" v-if="type!='info'"  label="RegisterDeadline" prop="baomingjiezhi">
           <el-input v-model="ruleForm.baomingjiezhi" 
-              placeholder="报名截止" clearable  :readonly="ro.baomingjiezhi"></el-input>
+              placeholder="RegisterDeadline" clearable  :readonly="ro.baomingjiezhi"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="报名截止" prop="baomingjiezhi">
+          <el-form-item class="input" label="RegisterDeadline" prop="baomingjiezhi">
               <el-input v-model="ruleForm.baomingjiezhi" 
-                placeholder="报名截止" readonly></el-input>
+                placeholder="RegisterDeadline" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="报名人数" prop="baomingrenshu">
+        <el-form-item class="input" v-if="type!='info'"  label="NumberOfApplicants" prop="baomingrenshu">
           <el-input v-model="ruleForm.baomingrenshu" 
-              placeholder="报名人数" clearable  :readonly="ro.baomingrenshu"></el-input>
+              placeholder="NumberOfApplicants" clearable  :readonly="ro.baomingrenshu"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="报名人数" prop="baomingrenshu">
+          <el-form-item class="input" label="NumberOfApplicants" prop="baomingrenshu">
               <el-input v-model="ruleForm.baomingrenshu" 
-                placeholder="报名人数" readonly></el-input>
+                placeholder="NumberOfApplicants" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="联系人" prop="lianxiren">
+        <el-form-item class="input" v-if="type!='info'"  label="contactperson" prop="lianxiren">
           <el-input v-model="ruleForm.lianxiren" 
-              placeholder="联系人" clearable  :readonly="ro.lianxiren"></el-input>
+              placeholder="contactperson" clearable  :readonly="ro.lianxiren"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="联系人" prop="lianxiren">
+          <el-form-item class="input" label="contactperson" prop="lianxiren">
               <el-input v-model="ruleForm.lianxiren" 
-                placeholder="联系人" readonly></el-input>
+                placeholder="contactperson" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="联络电话" prop="lianluodianhua">
+        <el-form-item class="input" v-if="type!='info'"  label="contactPhone" prop="lianluodianhua">
           <el-input v-model="ruleForm.lianluodianhua" 
-              placeholder="联络电话" clearable  :readonly="ro.lianluodianhua"></el-input>
+              placeholder="contactPhone" clearable  :readonly="ro.lianluodianhua"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="联络电话" prop="lianluodianhua">
+          <el-form-item class="input" label="contactPhone" prop="lianluodianhua">
               <el-input v-model="ruleForm.lianluodianhua" 
-                placeholder="联络电话" readonly></el-input>
+                placeholder="contactPhone" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="居民号" prop="juminhao">
+        <el-form-item class="input" v-if="type!='info'"  label="ID" prop="juminhao">
           <el-input v-model="ruleForm.juminhao" 
-              placeholder="居民号" clearable  :readonly="ro.juminhao"></el-input>
+              placeholder="ID" clearable  :readonly="ro.juminhao"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="居民号" prop="juminhao">
+          <el-form-item class="input" label="ID" prop="juminhao">
               <el-input v-model="ruleForm.juminhao" 
-                placeholder="居民号" readonly></el-input>
+                placeholder="ID" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="居民姓名" prop="juminxingming">
+        <el-form-item class="input" v-if="type!='info'"  label="Name" prop="juminxingming">
           <el-input v-model="ruleForm.juminxingming" 
-              placeholder="居民姓名" clearable  :readonly="ro.juminxingming"></el-input>
+              placeholder="Name" clearable  :readonly="ro.juminxingming"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="居民姓名" prop="juminxingming">
+          <el-form-item class="input" label="Name" prop="juminxingming">
               <el-input v-model="ruleForm.juminxingming" 
-                placeholder="居民姓名" readonly></el-input>
+                placeholder="Name" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="居民手机" prop="juminshouji">
+        <el-form-item class="input" v-if="type!='info'"  label="Mobile" prop="juminshouji">
           <el-input v-model="ruleForm.juminshouji" 
-              placeholder="居民手机" clearable  :readonly="ro.juminshouji"></el-input>
+              placeholder="Mobile" clearable  :readonly="ro.juminshouji"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="居民手机" prop="juminshouji">
+          <el-form-item class="input" label="Mobile" prop="juminshouji">
               <el-input v-model="ruleForm.juminshouji" 
-                placeholder="居民手机" readonly></el-input>
+                placeholder="Mobile" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="报名时间" prop="baomingshijian">
+        <el-form-item class="date" v-if="type!='info'" label="RegisterTime" prop="baomingshijian">
             <el-date-picker
                 value-format="yyyy-MM-dd HH:mm:ss"
                 v-model="ruleForm.baomingshijian" 
                 type="datetime"
                 :readonly="ro.baomingshijian"
-                placeholder="报名时间">
+                placeholder="RegisterTime">
             </el-date-picker>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.baomingshijian" label="报名时间" prop="baomingshijian">
+          <el-form-item class="input" v-if="ruleForm.baomingshijian" label="RegisterTime" prop="baomingshijian">
               <el-input v-model="ruleForm.baomingshijian" 
-                placeholder="报名时间" readonly></el-input>
+                placeholder="RegisterTime" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>

@@ -60,7 +60,7 @@ public class StoreupController {
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,StoreupEntity storeup,
 		HttpServletRequest request){
-    	if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
+    	if(!request.getSession().getAttribute("role").toString().equals("administered")) {
     		storeup.setUserid((Long)request.getSession().getAttribute("userId"));
     	}
         EntityWrapper<StoreupEntity> ew = new EntityWrapper<StoreupEntity>();
@@ -76,7 +76,7 @@ public class StoreupController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,StoreupEntity storeup, 
 		HttpServletRequest request){
-    	if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
+    	if(!request.getSession().getAttribute("role").toString().equals("administered")) {
     		storeup.setUserid((Long)request.getSession().getAttribute("userId"));
     	}
         EntityWrapper<StoreupEntity> ew = new EntityWrapper<StoreupEntity>();
@@ -153,7 +153,7 @@ public class StoreupController {
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     @Transactional
@@ -165,7 +165,7 @@ public class StoreupController {
     
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
@@ -210,7 +210,7 @@ public class StoreupController {
 		if(map.get("remindend")!=null) {
 			wrapper.le(columnName, map.get("remindend"));
 		}
-		if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
+		if(!request.getSession().getAttribute("role").toString().equals("administered")) {
     		wrapper.eq("userid", (Long)request.getSession().getAttribute("userId"));
     	}
 

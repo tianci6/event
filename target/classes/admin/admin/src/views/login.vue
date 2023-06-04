@@ -37,7 +37,7 @@
 			box-shadow:0 0 6px rgba(0,0,0,0);"><svg-icon icon-class="password" /></span>
             <el-input placeholder="Please input password" name="password" type="password" v-model="rulesForm.password" />
           </el-form-item>
-          <el-form-item v-if="roles.length>1" label="角色" prop="loginInRole" class="role" style="display: flex;align-items: center;">
+          <el-form-item v-if="roles.length>1" label="role" prop="loginInRole" class="role" style="display: flex;align-items: center;">
             <el-radio
               v-for="item in roles"
               v-bind:key="item.roleName"
@@ -47,9 +47,9 @@
           </el-form-item>
           <el-form-item v-if="roles.length==1" label=" " prop="loginInRole" class="role" style="display: flex;align-items: center;">
           </el-form-item>
-          <el-button type="primary" @click="login()" class="loginInBt">{{'1' == '1' ? '登录' : 'login'}}</el-button>
+          <el-button type="primary" @click="login()" class="loginInBt">{{'1' == '1' ? 'Log in' : 'login'}}</el-button>
           <el-form-item class="setting">
-            <!-- <div style="color:${template2.back.login.loginInSettingFontColor}" class="reset">修改密码</div> -->
+            <!-- <div style="color:${template2.back.login.loginInSettingFontColor}" class="reset">Change密码</div> -->
           </el-form-item>
         </el-form>
       </div>
@@ -101,7 +101,7 @@ export default {
 	let menus = menu.list();
 	this.menus = menus;
     for (let i = 0; i < this.menus.length; i++) {
-      if (this.menus[i].hasBackLogin=='是') {
+      if (this.menus[i].hasBackLogin=='yes') {
             this.roles.push(this.menus[i])
       }
     }

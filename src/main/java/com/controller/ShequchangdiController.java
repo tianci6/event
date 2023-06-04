@@ -156,7 +156,7 @@ public class ShequchangdiController {
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     @Transactional
@@ -168,7 +168,7 @@ public class ShequchangdiController {
     
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

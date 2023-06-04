@@ -32,7 +32,7 @@ public class JuminVO  implements Serializable {
 	private String juminxingming;
 		
 	/**
-	 * 性别
+	 * Gender
 	 */
 	
 	private String xingbie;
@@ -50,7 +50,7 @@ public class JuminVO  implements Serializable {
 	private String juminzhaopian;
 		
 	/**
-	 * 居民手机
+	 * Mobile
 	 */
 	
 	private String juminshouji;

@@ -11,14 +11,14 @@
 
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="标题" prop="biaoti">
+        <el-form-item class="input" v-if="type!='info'"  label="title" prop="biaoti">
           <el-input v-model="ruleForm.biaoti" 
-              placeholder="标题" clearable  :readonly="ro.biaoti"></el-input>
+              placeholder="title" clearable  :readonly="ro.biaoti"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="标题" prop="biaoti">
+          <el-form-item class="input" label="title" prop="biaoti">
               <el-input v-model="ruleForm.biaoti" 
-                placeholder="标题" readonly></el-input>
+                placeholder="title" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -72,7 +72,7 @@
       </el-row>
           <el-row>
             <el-col :span="24">
-              <el-form-item v-if="type!='info'"  label="内容" prop="neirong">
+              <el-form-item v-if="type!='info'"  label="content" prop="neirong">
                 <editor 
                     style="min-width: 200px; max-width: 600px;"
                     v-model="ruleForm.neirong" 
@@ -81,7 +81,7 @@
                 </editor>
               </el-form-item>
               <div v-else>
-                <el-form-item v-if="ruleForm.neirong" label="内容" prop="neirong">
+                <el-form-item v-if="ruleForm.neirong" label="content" prop="neirong">
                     <span v-html="ruleForm.neirong"></span>
                 </el-form-item>
               </div>

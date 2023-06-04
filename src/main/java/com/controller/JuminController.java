@@ -66,7 +66,7 @@ public class JuminController {
 			return R.error("账号或密码不正确");
 		}
 		
-		String token = tokenService.generateToken(user.getId(), username,"jumin",  "居民" );
+		String token = tokenService.generateToken(user.getId(), username,"jumin",  "resident" );
 		return R.ok().put("token", token);
 	}
 	
@@ -225,7 +225,7 @@ public class JuminController {
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     @Transactional
@@ -237,7 +237,7 @@ public class JuminController {
     
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

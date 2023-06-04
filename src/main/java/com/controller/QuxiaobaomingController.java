@@ -150,7 +150,7 @@ public class QuxiaobaomingController {
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     @Transactional
@@ -162,7 +162,7 @@ public class QuxiaobaomingController {
     
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

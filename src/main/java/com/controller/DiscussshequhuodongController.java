@@ -146,7 +146,7 @@ public class DiscussshequhuodongController {
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     @Transactional
@@ -158,7 +158,7 @@ public class DiscussshequhuodongController {
     
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

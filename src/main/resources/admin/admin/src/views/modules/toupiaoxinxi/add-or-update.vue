@@ -11,57 +11,57 @@
 
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="投票标题" prop="toupiaobiaoti">
+        <el-form-item class="input" v-if="type!='info'"  label="title" prop="toupiaobiaoti">
           <el-input v-model="ruleForm.toupiaobiaoti" 
-              placeholder="投票标题" clearable  :readonly="ro.toupiaobiaoti"></el-input>
+              placeholder="title" clearable  :readonly="ro.toupiaobiaoti"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="投票标题" prop="toupiaobiaoti">
+          <el-form-item class="input" label="title" prop="toupiaobiaoti">
               <el-input v-model="ruleForm.toupiaobiaoti" 
-                placeholder="投票标题" readonly></el-input>
+                placeholder="title" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="开始时间" prop="kaishishijian">
+        <el-form-item class="date" v-if="type!='info'" label="StartTime" prop="kaishishijian">
             <el-date-picker
                 format="yyyy 年 MM 月 dd 日"
                 value-format="yyyy-MM-dd"
                 v-model="ruleForm.kaishishijian" 
                 type="date"
                 :readonly="ro.kaishishijian"
-                placeholder="开始时间">
+                placeholder="StartTime">
             </el-date-picker> 
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.kaishishijian" label="开始时间" prop="kaishishijian">
+          <el-form-item class="input" v-if="ruleForm.kaishishijian" label="StartTime" prop="kaishishijian">
               <el-input v-model="ruleForm.kaishishijian" 
-                placeholder="开始时间" readonly></el-input>
+                placeholder="StartTime" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="截止时间" prop="jiezhishijian">
+        <el-form-item class="date" v-if="type!='info'" label="deadline" prop="jiezhishijian">
             <el-date-picker
                 format="yyyy 年 MM 月 dd 日"
                 value-format="yyyy-MM-dd"
                 v-model="ruleForm.jiezhishijian" 
                 type="date"
                 :readonly="ro.jiezhishijian"
-                placeholder="截止时间">
+                placeholder="deadline">
             </el-date-picker> 
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.jiezhishijian" label="截止时间" prop="jiezhishijian">
+          <el-form-item class="input" v-if="ruleForm.jiezhishijian" label="deadline" prop="jiezhishijian">
               <el-input v-model="ruleForm.jiezhishijian" 
-                placeholder="截止时间" readonly></el-input>
+                placeholder="deadline" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="24">  
-        <el-form-item class="upload" v-if="type!='info' && !ro.fengmian" label="封面" prop="fengmian">
+        <el-form-item class="upload" v-if="type!='info' && !ro.fengmian" label="cover" prop="fengmian">
           <file-upload
-          tip="点击上传封面"
+          tip="click to upload cover"
           action="file/upload"
           :limit="3"
           :multiple="true"
@@ -70,7 +70,7 @@
           ></file-upload>
         </el-form-item>
         <div v-else>
-          <el-form-item v-if="ruleForm.fengmian" label="封面" prop="fengmian">
+          <el-form-item v-if="ruleForm.fengmian" label="cover" prop="fengmian">
             <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.fengmian.split(',')" :src="$base.url+item" width="100" height="100">
           </el-form-item>
         </div>

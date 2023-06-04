@@ -8,7 +8,7 @@ import menu from './menu';
 export function isAuth(tableName,key) {
     let role = storage.get("role");
     if(!role){
-        role = '管理员';
+        role = 'administered';
     }
     let menus = menu.list();
     for(let i=0;i<menus.length;i++){

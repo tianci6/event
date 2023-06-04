@@ -26,7 +26,7 @@
 <script>
 // 工具栏配置
 const toolbarOptions = [
-  ["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 删除线
+  ["bold", "italic", "underline", "strike"], // 加粗 斜体 下划线 Delete线
   ["blockquote", "code-block"], // 引用  代码块
   [{ header: 1 }, { header: 2 }], // 1、2 级标题
   [{ list: "ordered" }, { list: "bullet" }], // 有序、无序列表

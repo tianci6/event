@@ -4,23 +4,23 @@
     <div v-if="showFlag">
       <el-form :inline="true" :model="searchForm" class="form-content">
         <el-row  :gutter="20" class="slt" :style="{justifyContent:contents.searchBoxPosition=='1'?'flex-start':contents.searchBoxPosition=='2'?'center':'flex-end'}">
-                <el-form-item :label="contents.inputTitle == 1 ? '活动名称' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.huodongmingcheng" placeholder="活动名称" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.huodongmingcheng" placeholder="活动名称" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'EventName' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.huodongmingcheng" placeholder="EventName" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.huodongmingcheng" placeholder="EventName" clearable></el-input>
                   <el-input v-if="contents.inputIcon == 0" v-model="searchForm.huodongmingcheng" placeholder="活动名称" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '活动类型' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.huodongleixing" placeholder="活动类型" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.huodongleixing" placeholder="活动类型" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.huodongleixing" placeholder="活动类型" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'Type' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.huodongleixing" placeholder="Type" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.huodongleixing" placeholder="Type" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.huodongleixing" placeholder="Type" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '活动地点' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.huodongdidian" placeholder="活动地点" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.huodongdidian" placeholder="活动地点" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.huodongdidian" placeholder="活动地点" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'Location' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.huodongdidian" placeholder="Location" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.huodongdidian" placeholder="Location" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.huodongdidian" placeholder="Location" clearable></el-input>
                 </el-form-item>
-		<el-form-item class="select" label="是否通过" prop="sfsh">
-		  <el-select  @change="sfshChange" clearable v-model="searchForm.sfsh" placeholder="是否通过">
+		<el-form-item class="select" label="whether to pass" prop="sfsh">
+		  <el-select  @change="sfshChange" clearable v-model="searchForm.sfsh" placeholder="whether to pass">
 		    <el-option
 			v-for="(item,index) in sfshOptions"
 			v-bind:key="index"
@@ -30,49 +30,49 @@
 		  </el-select>
 		</el-form-item>
           <el-form-item>
-            <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'查询':'' }}</el-button>
-            <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 2" type="success" @click="search()">{{ contents.searchBtnFont == 1?'查询':'' }}<i class="el-icon-search el-icon--right"/></el-button>
-            <el-button v-if="contents.searchBtnIcon == 0" type="success" @click="search()">{{ contents.searchBtnFont == 1?'查询':'' }}</el-button>
+            <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
+            <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 2" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}<i class="el-icon-search el-icon--right"/></el-button>
+            <el-button v-if="contents.searchBtnIcon == 0" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
           </el-form-item>
         </el-row>
 
         <el-row class="ad" :style="{justifyContent:contents.btnAdAllBoxPosition=='1'?'flex-start':contents.btnAdAllBoxPosition=='2'?'center':'flex-end'}">
           <el-form-item>
             <el-button
-              v-if="isAuth('quxiaobaoming','新增') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 1"
+              v-if="isAuth('quxiaobaoming','Add') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 1"
               type="success"
               icon="el-icon-plus"
               @click="addOrUpdateHandler()"
-            >{{ contents.btnAdAllFont == 1?'新增':'' }}</el-button>
+            >{{ contents.btnAdAllFont == 1?'Add':'' }}</el-button>
             <el-button
-              v-if="isAuth('quxiaobaoming','新增') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 2"
+              v-if="isAuth('quxiaobaoming','Add') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 2"
               type="success"
               @click="addOrUpdateHandler()"
-            >{{ contents.btnAdAllFont == 1?'新增':'' }}<i class="el-icon-plus el-icon--right" /></el-button>
+            >{{ contents.btnAdAllFont == 1?'Add':'' }}<i class="el-icon-plus el-icon--right" /></el-button>
             <el-button
-              v-if="isAuth('quxiaobaoming','新增') && contents.btnAdAllIcon == 0"
+              v-if="isAuth('quxiaobaoming','Add') && contents.btnAdAllIcon == 0"
               type="success"
               @click="addOrUpdateHandler()"
-            >{{ contents.btnAdAllFont == 1?'新增':'' }}</el-button>
+            >{{ contents.btnAdAllFont == 1?'Add':'' }}</el-button>
             <el-button
-              v-if="isAuth('quxiaobaoming','删除') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 1 && contents.tableSelection"
+              v-if="isAuth('quxiaobaoming','Delete') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 1 && contents.tableSelection"
               :disabled="dataListSelections.length <= 0"
               type="danger"
               icon="el-icon-delete"
               @click="deleteHandler()"
-            >{{ contents.btnAdAllFont == 1?'删除':'' }}</el-button>
+            >{{ contents.btnAdAllFont == 1?'Delete':'' }}</el-button>
             <el-button
-              v-if="isAuth('quxiaobaoming','删除') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 2 && contents.tableSelection"
+              v-if="isAuth('quxiaobaoming','Delete') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 2 && contents.tableSelection"
               :disabled="dataListSelections.length <= 0"
               type="danger"
               @click="deleteHandler()"
-            >{{ contents.btnAdAllFont == 1?'删除':'' }}<i class="el-icon-delete el-icon--right" /></el-button>
+            >{{ contents.btnAdAllFont == 1?'Delete':'' }}<i class="el-icon-delete el-icon--right" /></el-button>
             <el-button
-              v-if="isAuth('quxiaobaoming','删除') && contents.btnAdAllIcon == 0 && contents.tableSelection"
+              v-if="isAuth('quxiaobaoming','Delete') && contents.btnAdAllIcon == 0 && contents.tableSelection"
               :disabled="dataListSelections.length <= 0"
               type="danger"
               @click="deleteHandler()"
-            >{{ contents.btnAdAllFont == 1?'删除':'' }}</el-button>
+            >{{ contents.btnAdAllFont == 1?'Delete':'' }}</el-button>
 
 
 
@@ -98,11 +98,11 @@
                 align="center"
                 width="50">
             </el-table-column>
-            <el-table-column label="索引" :align="contents.tableAlign"  v-if="contents.tableIndex" type="index" width="50" />
+            <el-table-column label="indexNo" :align="contents.tableAlign"  v-if="contents.tableIndex" type="index" width="50" />
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="huodongmingcheng"
                    :header-align="contents.tableAlign"
-		    label="活动名称">
+		    label="EventName">
 		     <template slot-scope="scope">
                        {{scope.row.huodongmingcheng}}
                      </template>
@@ -110,7 +110,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="huodongleixing"
                    :header-align="contents.tableAlign"
-		    label="活动类型">
+		    label="Type">
 		     <template slot-scope="scope">
                        {{scope.row.huodongleixing}}
                      </template>
@@ -118,7 +118,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="huodongdidian"
                    :header-align="contents.tableAlign"
-		    label="活动地点">
+		    label="Location">
 		     <template slot-scope="scope">
                        {{scope.row.huodongdidian}}
                      </template>
@@ -126,7 +126,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="kaishishijian"
                    :header-align="contents.tableAlign"
-		    label="开始时间">
+		    label="StartTime">
 		     <template slot-scope="scope">
                        {{scope.row.kaishishijian}}
                      </template>
@@ -134,7 +134,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="jieshushijian"
                    :header-align="contents.tableAlign"
-		    label="结束时间">
+		    label="EndTime">
 		     <template slot-scope="scope">
                        {{scope.row.jieshushijian}}
                      </template>
@@ -142,7 +142,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="baomingjiezhi"
                    :header-align="contents.tableAlign"
-		    label="报名截止">
+		    label="RegisterDeadline">
 		     <template slot-scope="scope">
                        {{scope.row.baomingjiezhi}}
                      </template>
@@ -150,7 +150,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="baomingrenshu"
                    :header-align="contents.tableAlign"
-		    label="报名人数">
+		    label="NumberOfApplicants">
 		     <template slot-scope="scope">
                        {{scope.row.baomingrenshu}}
                      </template>
@@ -158,7 +158,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="lianxiren"
                    :header-align="contents.tableAlign"
-		    label="联系人">
+		    label="contactperson">
 		     <template slot-scope="scope">
                        {{scope.row.lianxiren}}
                      </template>
@@ -166,7 +166,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="lianluodianhua"
                    :header-align="contents.tableAlign"
-		    label="联络电话">
+		    label="contactPhone">
 		     <template slot-scope="scope">
                        {{scope.row.lianluodianhua}}
                      </template>
@@ -174,7 +174,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="juminhao"
                    :header-align="contents.tableAlign"
-		    label="居民号">
+		    label="ID">
 		     <template slot-scope="scope">
                        {{scope.row.juminhao}}
                      </template>
@@ -182,7 +182,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="juminxingming"
                    :header-align="contents.tableAlign"
-		    label="居民姓名">
+		    label="Name">
 		     <template slot-scope="scope">
                        {{scope.row.juminxingming}}
                      </template>
@@ -190,7 +190,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="juminshouji"
                    :header-align="contents.tableAlign"
-		    label="居民手机">
+		    label="Mobile">
 		     <template slot-scope="scope">
                        {{scope.row.juminshouji}}
                      </template>
@@ -198,7 +198,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="quxiaoyuanyin"
                    :header-align="contents.tableAlign"
-		    label="取消原因">
+		    label="Reason for cancel">
 		     <template slot-scope="scope">
                        {{scope.row.quxiaoyuanyin}}
                      </template>
@@ -206,7 +206,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="quxiaoshijian"
                    :header-align="contents.tableAlign"
-		    label="取消时间">
+		    label="cancel time">
 		     <template slot-scope="scope">
                        {{scope.row.quxiaoshijian}}
                      </template>
@@ -214,42 +214,42 @@
               <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign" 
                   prop="shhf"
                  :header-align="contents.tableAlign"
-                  label="审核回复">
+                  label="reviewreply">
               </el-table-column>
               <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign" 
                   prop="sfsh"
                  :header-align="contents.tableAlign"
-                  label="审核状态">
+                  label="Status">
                   <template slot-scope="scope">
-                    <span style="margin-right:10px">{{scope.row.sfsh=='是'?'通过':'未通过'}}</span>
+                    <span style="margin-right:10px">{{scope.row.sfsh=='yes'?'pass':'Didnt pass'}}</span>
                   </template>
               </el-table-column>
               <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign" 
-                  v-if="isAuth('quxiaobaoming','审核')"
+                  v-if="isAuth('quxiaobaoming','review')"
                   prop="sfsh"
                  :header-align="contents.tableAlign"
-                  label="审核">
+                  label="review">
                   <template slot-scope="scope">
-                    <el-button  type="text" icon="el-icon-edit" size="small" @click="shDialog(scope.row)">审核</el-button>
+                    <el-button  type="text" icon="el-icon-edit" size="small" @click="shDialog(scope.row)">review</el-button>
                   </template>
               </el-table-column>
             <el-table-column width="300" :align="contents.tableAlign" 
                :header-align="contents.tableAlign"
-                label="操作">
+                label="Operate">
                 <template slot-scope="scope">
-                <el-button v-if="isAuth('quxiaobaoming','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'详情':'' }}</el-button>
-                <el-button v-if="isAuth('quxiaobaoming','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'详情':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
-                <el-button v-if="isAuth('quxiaobaoming','查看') && contents.tableBtnIcon == 0" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'详情':'' }}</el-button>
-                <el-button v-if=" isAuth('quxiaobaoming','修改') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="primary" icon="el-icon-edit" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'修改':'' }}</el-button>
-                <el-button v-if=" isAuth('quxiaobaoming','修改') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'修改':'' }}<i class="el-icon-edit el-icon--right" /></el-button>
-                <el-button v-if=" isAuth('quxiaobaoming','修改') && contents.tableBtnIcon == 0" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'修改':'' }}</el-button>
+                <el-button v-if="isAuth('quxiaobaoming','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}</el-button>
+                <el-button v-if="isAuth('quxiaobaoming','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
+                <el-button v-if="isAuth('quxiaobaoming','查看') && contents.tableBtnIcon == 0" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}</el-button>
+                <el-button v-if=" isAuth('quxiaobaoming','Change') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="primary" icon="el-icon-edit" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}</el-button>
+                <el-button v-if=" isAuth('quxiaobaoming','Change') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}<i class="el-icon-edit el-icon--right" /></el-button>
+                <el-button v-if=" isAuth('quxiaobaoming','Change') && contents.tableBtnIcon == 0" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}</el-button>
 
 
 
 
-                <el-button v-if="isAuth('quxiaobaoming','删除') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="danger" icon="el-icon-delete" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'删除':'' }}</el-button>
-                <el-button v-if="isAuth('quxiaobaoming','删除') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="danger" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'删除':'' }}<i class="el-icon-delete el-icon--right" /></el-button>
-                <el-button v-if="isAuth('quxiaobaoming','删除') && contents.tableBtnIcon == 0" type="danger" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'删除':'' }}</el-button>
+                <el-button v-if="isAuth('quxiaobaoming','Delete') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="danger" icon="el-icon-delete" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Delete':'' }}</el-button>
+                <el-button v-if="isAuth('quxiaobaoming','Delete') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="danger" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Delete':'' }}<i class="el-icon-delete el-icon--right" /></el-button>
+                <el-button v-if="isAuth('quxiaobaoming','Delete') && contents.tableBtnIcon == 0" type="danger" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Delete':'' }}</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -269,22 +269,22 @@
         ></el-pagination>
       </div>
     </div>
-    <!-- 添加/修改页面  将父组件的search方法传递给子组件-->
+    <!-- 添加/Change页面  将父组件的search方法传递给子组件-->
     <add-or-update v-if="addOrUpdateFlag" :parent="this" ref="addOrUpdate"></add-or-update>
 
 
     <el-dialog
-      title="审核"
+      title="review"
       :visible.sync="sfshVisiable"
       width="50%">
       <el-form ref="form" :model="form" label-width="80px">
-        <el-form-item label="审核状态">
-          <el-select v-model="shForm.sfsh" placeholder="审核状态">
-            <el-option label="通过" value="是"></el-option>
-            <el-option label="不通过" value="否"></el-option>
+        <el-form-item label="Status">
+          <el-select v-model="shForm.sfsh" placeholder="Status">
+            <el-option label="pass" value="yes"></el-option>
+            <el-option label="fail" value="no"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="内容">
+        <el-form-item label="content">
           <el-input type="textarea" :rows="8" v-model="shForm.shhf"></el-input>
         </el-form-item>
       </el-form>
@@ -405,7 +405,7 @@ export default {
         })
       })
     },
-    // 新增、批量删除
+    // Add、批量Delete
     contentBtnAdAllStyleChange() {
       this.$nextTick(()=>{
         document.querySelectorAll('.form-content .ad .el-button--success').forEach(el=>{
@@ -520,7 +520,7 @@ export default {
     },
 
     init () {
-        this.sfshOptions = "是,否".split(',');
+        this.sfshOptions = "yes,no".split(',');
     },
     search() {
       this.pageIndex = 1;
@@ -628,7 +628,7 @@ export default {
     selectionChangeHandler(val) {
       this.dataListSelections = val;
     },
-    // 添加/修改
+    // 添加/Change
     addOrUpdateHandler(id,type) {
       this.showFlag = false;
       this.addOrUpdateFlag = true;
@@ -700,14 +700,14 @@ export default {
     download(file){
       window.open(`${file}`)
     },
-    // 删除
+    // Delete
     deleteHandler(id) {
       var ids = id
         ? [Number(id)]
         : this.dataListSelections.map(item => {
             return Number(item.id);
           });
-      this.$confirm(`确定进行[${id ? "删除" : "批量删除"}]操作?`, "提示", {
+      this.$confirm(`确定进行[${id ? "Delete" : "批量Delete"}]操作?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"

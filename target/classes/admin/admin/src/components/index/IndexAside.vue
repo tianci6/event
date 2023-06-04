@@ -4,7 +4,7 @@
       <el-menu default-active="1">
         <el-menu-item @click="menuHandler('/')" index="1">
           <!-- <i class="el-icon-s-home"></i> -->
-          首页
+          Home
         </el-menu-item>
         <sub-menu
           v-for="menu in menuList"

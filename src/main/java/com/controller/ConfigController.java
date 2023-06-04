@@ -92,7 +92,7 @@ public class ConfigController{
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     public R update(@RequestBody ConfigEntity config){
@@ -102,7 +102,7 @@ public class ConfigController{
     }
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

@@ -9,7 +9,7 @@
           default-active="0"
           v-if="role==item.roleName"
         >
-          <el-menu-item @click="menuHandler('home')" index="0">首页</el-menu-item>
+          <el-menu-item @click="menuHandler('home')" index="0">Home</el-menu-item>
           <el-submenu
             :index="1+''"
           >
@@ -19,11 +19,11 @@
             <el-menu-item
               @click="menuHandler('updatePassword')"
               :index="1-1"
-            >修改密码</el-menu-item>
+            >Change密码</el-menu-item>
              <el-menu-item
               @click="menuHandler('center')"
               :index="1-2"
-            >个人信息</el-menu-item>
+            >information</el-menu-item>
           </el-submenu>
           <el-submenu
             v-for=" (menu,index) in item.backMenu"

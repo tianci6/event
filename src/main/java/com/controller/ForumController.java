@@ -60,7 +60,7 @@ public class ForumController {
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,ForumEntity forum,
 		HttpServletRequest request){
-    	if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
+    	if(!request.getSession().getAttribute("role").toString().equals("administered")) {
     		forum.setUserid((Long)request.getSession().getAttribute("userId"));
     	}
         EntityWrapper<ForumEntity> ew = new EntityWrapper<ForumEntity>();
@@ -76,7 +76,7 @@ public class ForumController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,ForumEntity forum, 
 		HttpServletRequest request){
-    	if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
+    	if(!request.getSession().getAttribute("role").toString().equals("administered")) {
     		forum.setUserid((Long)request.getSession().getAttribute("userId"));
     	}
         EntityWrapper<ForumEntity> ew = new EntityWrapper<ForumEntity>();
@@ -177,7 +177,7 @@ public class ForumController {
     }
 
     /**
-     * 修改
+     * Change
      */
     @RequestMapping("/update")
     @Transactional
@@ -189,7 +189,7 @@ public class ForumController {
     
 
     /**
-     * 删除
+     * Delete
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){

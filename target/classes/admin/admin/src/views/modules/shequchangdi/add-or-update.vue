@@ -76,14 +76,14 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="联系电话" prop="lianxidianhua">
+        <el-form-item class="input" v-if="type!='info'"  label="contactPhone" prop="lianxidianhua">
           <el-input v-model="ruleForm.lianxidianhua" 
-              placeholder="联系电话" clearable  :readonly="ro.lianxidianhua"></el-input>
+              placeholder="contactPhone" clearable  :readonly="ro.lianxidianhua"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="联系电话" prop="lianxidianhua">
+          <el-form-item class="input" label="contactPhone" prop="lianxidianhua">
               <el-input v-model="ruleForm.lianxidianhua" 
-                placeholder="联系电话" readonly></el-input>
+                placeholder="contactPhone" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>

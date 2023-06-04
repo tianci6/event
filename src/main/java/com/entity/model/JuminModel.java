@@ -40,7 +40,7 @@ public class JuminModel  implements Serializable {
 	private Integer nianling;
 		
 	/**
-	 * 居民照片
+	 * Photo
 	 */
 	
 	private String juminzhaopian;
@@ -52,13 +52,13 @@ public class JuminModel  implements Serializable {
 	private String juminshouji;
 		
 	/**
-	 * 居住地址
+	 * Address
 	 */
 	
 	private String juzhudizhi;
 		
 	/**
-	 * 门牌号
+	 * HouseNumber
 	 */
 	
 	private String menpaihao;

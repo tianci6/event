@@ -434,7 +434,7 @@ CREATE TABLE `token` (
   `tablename` varchar(100) DEFAULT NULL COMMENT '表名',
   `role` varchar(100) DEFAULT NULL COMMENT '角色',
   `token` varchar(200) NOT NULL COMMENT '密码',
-  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '新增时间',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Add时间',
   `expiratedtime` timestamp NOT NULL COMMENT '过期时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='token表';
@@ -519,8 +519,8 @@ CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `username` varchar(100) NOT NULL COMMENT '用户名',
   `password` varchar(100) NOT NULL COMMENT '密码',
-  `role` varchar(100) DEFAULT '管理员' COMMENT '角色',
-  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '新增时间',
+  `role` varchar(100) DEFAULT 'administered' COMMENT '角色',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Add时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -531,7 +531,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'abo','abo','管理员','2022-07-31 23:36:58');
+INSERT INTO `users` VALUES (1,'abo','abo','administered','2022-07-31 23:36:58');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

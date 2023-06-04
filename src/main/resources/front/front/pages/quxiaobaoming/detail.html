@@ -1,11 +1,11 @@
 
-<!-- 首页 -->
+<!-- Home -->
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>首页</title>
+	<title>Home</title>
 	<link rel="stylesheet" href="../../layui/css/layui.css">
 	<!-- 样式 -->
 	<link rel="stylesheet" href="../../css/style.css" />
@@ -79,7 +79,7 @@ color: #999 !important;
 		<div class="data-detail" style="padding:0">
 			<div class="data-detail-breadcrumb" :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.3)","margin":"20px auto","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","borderRadius":"10px","borderWidth":"10px 0 0","borderStyle":"solid","height":"54px"}'>
 				<span class="layui-breadcrumb">
-					<a class="first" :style='{"padding":"8px 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 5px","borderColor":"rgba(255,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 0)","color":"#999","borderRadius":"0","borderWidth":"0","fontSize":"16px","borderStyle":"solid"}' href="../home/home.html">首页</a>
+					<a class="first" :style='{"padding":"8px 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 5px","borderColor":"rgba(255,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 0)","color":"#999","borderRadius":"0","borderWidth":"0","fontSize":"16px","borderStyle":"solid"}' href="../home/home.html">Home</a>
 					<a><cite :style='{"padding":"8px 15px","boxShadow":"0 0 0px rgba(255,0,0,.3)","margin":"0 15px","borderColor":"rgba(255,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 0)","color":"rgba(255, 255, 255, 1)","borderRadius":"4px","borderWidth":"0","fontSize":"16px","borderStyle":"solid"}'>{{title}}</cite></a>
 				</span>
 				
@@ -132,7 +132,7 @@ color: #999 !important;
 						</span>
 					</div>
 					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="detail-item">
-						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>开始时间：</span>
+						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>start time：</span>
 						<span  style="word-break: break-all" :style='{"padding":"5px 20px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(214, 203, 203, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"0","textAlign":"left","borderWidth":"1px","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
 							{{detail.kaishishijian}}
 						</span>
@@ -174,25 +174,25 @@ color: #999 !important;
 						</span>
 					</div>
 					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="detail-item">
-						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>居民姓名：</span>
+						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>Name：</span>
 						<span  style="word-break: break-all" :style='{"padding":"5px 20px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(214, 203, 203, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"0","textAlign":"left","borderWidth":"1px","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
 							{{detail.juminxingming}}
 						</span>
 					</div>
 					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="detail-item">
-						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>居民手机：</span>
+						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>Mobile：</span>
 						<span  style="word-break: break-all" :style='{"padding":"5px 20px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(214, 203, 203, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"0","textAlign":"left","borderWidth":"1px","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
 							{{detail.juminshouji}}
 						</span>
 					</div>
 					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="detail-item">
-						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>取消原因：</span>
+						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>Reason for cancel：</span>
 						<span  style="word-break: break-all" :style='{"padding":"5px 20px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(214, 203, 203, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"0","textAlign":"left","borderWidth":"1px","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
 							{{detail.quxiaoyuanyin}}
 						</span>
 					</div>
 					<div :style='{"padding":"6px 15px","boxShadow":"0 0 0px rgba(255,0,0,0)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}' class="detail-item">
-						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>取消时间：</span>
+						<span :style='{"padding":"0 12px 0 0","minwidth":"110px","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'>cancel time：</span>
 						<span  style="word-break: break-all" :style='{"padding":"5px 20px","boxShadow":"0 0 0px rgba(255,0,0,.3)","borderColor":"rgba(214, 203, 203, 1)","backgroundColor":"#fff","color":"rgba(0, 0, 0, 1)","borderRadius":"0","textAlign":"left","borderWidth":"1px","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="desc">
 							{{detail.quxiaoshijian}}
 						</span>

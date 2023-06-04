@@ -7,7 +7,7 @@
 					<div>{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
 				</el-menu-item>
 				<el-menu-item @click="onLogout" index="2">
-					<div>退出登录</div>
+					<div>LogOut</div>
 				</el-menu-item>
 			</div>
 		</el-menu>

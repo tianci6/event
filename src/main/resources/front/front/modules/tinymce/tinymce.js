@@ -1,4 +1,4 @@
-//  菜单显示异常修改tinymce/skins/ui/oxide/skin.min.css:96 .tox-silver-sink的z-index值
+//  菜单显示异常Changetinymce/skins/ui/oxide/skin.min.css:96 .tox-silver-sink的z-index值
 //  http://tinymce.ax-z.cn/   中文文档
 
 layui.define(['jquery'],function (exports) {
@@ -12,12 +12,12 @@ layui.define(['jquery'],function (exports) {
 
     var response = setter.response || {}//兼容layuiadmin
 
-    //  ----------------  以上代码无需修改  ----------------
+    //  ----------------  以上代码无需Change  ----------------
 
     var settings = {
         base_url: modPath
-        , images_upload_url: '/rest/upload'//图片上传接口，可在option传入，也可在这里修改，option的值优先
-        , language: 'zh_CN'//语言，可在option传入，也可在这里修改，option的值优先
+        , images_upload_url: '/rest/upload'//图片上传接口，可在option传入，也可在这里Change，option的值优先
+        , language: 'zh_CN'//语言，可在option传入，也可在这里Change，option的值优先
         , response: {//后台返回数据格式设置
             statusName: response.statusName || 'code'//返回状态字段
             , msgName: response.msgName || 'msg'//返回消息字段
@@ -26,7 +26,7 @@ layui.define(['jquery'],function (exports) {
                 ok: 0//数据正常
             }
         }
-        , success: function (res, succFun, failFun) {//图片上传完成回调 根据自己需要修改
+        , success: function (res, succFun, failFun) {//图片上传完成回调 根据自己需要Change
             if (res[this.response.statusName] == this.response.statusCode.ok) {
                 succFun(res[this.response.dataName]);
             } else {
@@ -35,7 +35,7 @@ layui.define(['jquery'],function (exports) {
         }
     };
 
-    //  ----------------  以下代码无需修改  ----------------
+    //  ----------------  以下代码无需Change  ----------------
 
     var t = {};
 

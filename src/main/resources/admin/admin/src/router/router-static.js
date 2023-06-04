@@ -29,17 +29,17 @@ import center from '@/views/center'
 //2.配置路由   注意：name
 const routes = [{
     path: '/index',
-    name: '首页',
+    name: 'Home',
     component: Index,
     children: [{
       // 这里不设置值，是把main作为默认页面
       path: '/',
-      name: '首页',
+      name: 'Home',
       component: Home,
       meta: {icon:'', title:'center'}
     }, {
       path: '/updatePassword',
-      name: '修改密码',
+      name: 'ChangePassword',
       component: UpdatePassword,
       meta: {icon:'', title:'updatePassword'}
     }, {
@@ -49,73 +49,73 @@ const routes = [{
       meta: {icon:'', title:'pay'}
     }, {
       path: '/center',
-      name: '个人信息',
+      name: 'information',
       component: center,
       meta: {icon:'', title:'center'}
     }
       ,{
 	path: '/quxiaobaoming',
-        name: '取消报名',
+        name: 'CancelRegister',
         component: quxiaobaoming
       }
       ,{
 	path: '/jumin',
-        name: '居民',
+        name: 'Resident',
         component: jumin
       }
       ,{
 	path: '/forum',
-        name: '社区论坛',
+        name: 'Forum',
         component: forum
       }
       ,{
 	path: '/toupiaotongji',
-        name: '投票统计',
+        name: 'Voting Statistics',
         component: toupiaotongji
       }
       ,{
 	path: '/huodongbaoming',
-        name: '活动报名',
+        name: 'Event Register',
         component: huodongbaoming
       }
       ,{
 	path: '/shequgonggao',
-        name: '社区公告',
+        name: 'Announcement',
         component: shequgonggao
       }
       ,{
 	path: '/discussshequhuodong',
-        name: '社区活动评论',
+        name: 'discuss',
         component: discussshequhuodong
       }
       ,{
 	path: '/shequhuodong',
-        name: '社区活动',
+        name: 'Enent',
         component: shequhuodong
       }
       ,{
 	path: '/toupiaoxinxi',
-        name: '投票信息',
+        name: 'voting information',
         component: toupiaoxinxi
       }
       ,{
 	path: '/huodongpingjia',
-        name: '活动评价',
+        name: 'evaluation',
         component: huodongpingjia
       }
       ,{
 	path: '/config',
-        name: '轮播图管理',
+        name: 'system',
         component: config
       }
       ,{
 	path: '/discussshequchangdi',
-        name: '社区场地评论',
+        name: 'community venue reviews',
         component: discussshequchangdi
       }
       ,{
 	path: '/shequchangdi',
-        name: '社区场地',
+        name: 'community venue',
         component: shequchangdi
       }
     ]
@@ -134,7 +134,7 @@ const routes = [{
   },
   {
     path: '/',
-    name: '首页',
+    name: 'Home',
     redirect: '/index'
   }, /*默认跳转路由*/
   {

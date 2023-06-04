@@ -43,12 +43,12 @@
 			},
 			centerChange(index) {
 				this.itemMenu = [{
-					"buttons": ["新增", "查看", "修改", "删除"],
-					"menu": "修改密码",
+					"buttons": ["Add", "查看", "Change", "Delete"],
+					"menu": "ChangePassword",
 					"tableName": "updatePassword"
 				}, {
-					"buttons": ["新增", "查看", "修改", "删除"],
-					"menu": "个人信息",
+					"buttons": ["Add", "查看", "Change", "Delete"],
+					"menu": "information",
 					"tableName": "center"
 				}];
 				this.title = ""

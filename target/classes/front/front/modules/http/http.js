@@ -8,7 +8,7 @@ layui.define(['jquery', 'layer'], function(exports) { //提示：模块也可以
         domain : "http://localhost:8080/eventi/",
 		baseurl: baseurl,
 		/**
-		 * 获取传递参数值(修改支持中文)
+		 * 获取传递参数值(Change支持中文)
 		 */
 		getParam: function(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

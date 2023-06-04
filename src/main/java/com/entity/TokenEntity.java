@@ -48,7 +48,7 @@ public class TokenEntity implements Serializable {
 	private Date expiratedtime;
 	
 	/**
-	 * 新增时间
+	 * Add时间
 	 */
 	private Date addtime;
 
