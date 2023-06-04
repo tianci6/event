@@ -202,7 +202,7 @@
             + '<input class="form-control input-sm" style="margin-top:5px;" id="idAMapPositionPickerAddress"/>'
             + '</div>' //End of modal-Body
             + '<div class="modal-footer">'
-            + '<button id="idAMapPositionPickerSelect" type="button" class="btn btn-primary btn-sm">确定</button><button id="idAMapPositionPickerCancelBtn" type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>'
+            + '<button id="idAMapPositionPickerSelect" type="button" class="btn btn-primary btn-sm">确定</button><button id="idAMapPositionPickerCancelBtn" type="button" class="btn btn-default btn-sm" data-dismiss="modal">cancel</button>'
             + '</div>' //End of Modal-footer
             + '</div>' //End of Modal-content
             + '</div>' // End of Modal-dialog

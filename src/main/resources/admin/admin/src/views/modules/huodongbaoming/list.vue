@@ -208,9 +208,9 @@
                 <el-button v-if="isAuth('huodongbaoming','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}</el-button>
                 <el-button v-if="isAuth('huodongbaoming','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
                 <el-button v-if="isAuth('huodongbaoming','查看') && contents.tableBtnIcon == 0" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}</el-button>
-                <el-button v-if="isAuth('huodongbaoming','取消') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="quxiaobaomingCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已取消')">{{ contents.tableBtnFont == 1?'取消':'' }}</el-button>
-                <el-button v-if="isAuth('huodongbaoming','取消') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="quxiaobaomingCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已取消')">{{ contents.tableBtnFont == 1?'取消':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
-                <el-button v-if="isAuth('huodongbaoming','取消') && contents.tableBtnIcon == 0" type="success" size="mini" @click="quxiaobaomingCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已取消')">{{ contents.tableBtnFont == 1?'取消':'' }}</el-button>
+                <el-button v-if="isAuth('huodongbaoming','cancel') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="quxiaobaomingCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已取消')">{{ contents.tableBtnFont == 1?'cancel':'' }}</el-button>
+                <el-button v-if="isAuth('huodongbaoming','cancel') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="quxiaobaomingCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已取消')">{{ contents.tableBtnFont == 1?'cancel':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
+                <el-button v-if="isAuth('huodongbaoming','cancel') && contents.tableBtnIcon == 0" type="success" size="mini" @click="quxiaobaomingCrossAddOrUpdateHandler(scope.row,'cross','','[1]','已cancel')">{{ contents.tableBtnFont == 1?'cancel':'' }}</el-button>
                 <el-button v-if="isAuth('huodongbaoming','eventEvaluation') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="huodongpingjiaCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'eventEvaluation':'' }}</el-button>
                 <el-button v-if="isAuth('huodongbaoming','eventEvaluation') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="huodongpingjiaCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'eventEvaluation':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
                 <el-button v-if="isAuth('huodongbaoming','eventEvaluation') && contents.tableBtnIcon == 0" type="success" size="mini" @click="huodongpingjiaCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'eventEvaluation':'' }}</el-button>
@@ -623,7 +623,7 @@ export default {
           });
       this.$confirm(`确定进行[${id ? "Delete" : "批量Delete"}]操作?`, "提示", {
         confirmButtonText: "确定",
-        cancelButtonText: "取消",
+        cancelButtonText: "cancel",
         type: "warning"
       }).then(() => {
         this.$http({
