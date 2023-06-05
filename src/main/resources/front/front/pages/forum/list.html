@@ -4,8 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>Community Forum
-		</title>
+		<title>社区论坛</title>
 		<link rel="stylesheet" href="../../layui/css/layui.css">
 		<!-- 样式 -->
 		<link rel="stylesheet" href="../../css/style.css" />
@@ -82,7 +81,7 @@
 
 			<!-- 标题 -->
 			<div class="index-title" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(255, 255, 255, 1)","borderRadius":"10px","borderWidth":"20px 0 0","fontSize":"20px","borderStyle":"solid","height":"auto"}'>
-			  <span>FORUM / INFORMATION</span><span>Community Forum</span>
+			  <span>FORUM / INFORMATION</span><span>社区论坛</span>
 			</div>
 			<!-- 标题 -->
 
@@ -92,17 +91,17 @@
 					<button :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"#409EFF","backgroundColor":"rgba(203, 148, 92, 1)","color":"#fff","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"40px"}'  type="button" class="layui-btn layui-btn-lg btn-theme">
 						<i v-if="true" class="layui-icon">&#xe654;</i> 搜索
 					</button> -->
-					<input type="text" :style='{"boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"#ccc","backgroundColor":"rgba(233, 233, 233, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"8px","textAlign":"center","borderWidth":"0","width":"140px","fontSize":"16px","borderStyle":"solid","height":"44px"}' name="title" id="title" placeholder="title" autocomplete="off" class="layui-input">
+					<input type="text" :style='{"boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"#ccc","backgroundColor":"rgba(233, 233, 233, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"8px","textAlign":"center","borderWidth":"0","width":"140px","fontSize":"16px","borderStyle":"solid","height":"44px"}' name="title" id="title" placeholder="标题" autocomplete="off" class="layui-input">
 					<button :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"#409EFF","backgroundColor":"rgba(203, 148, 92, 1)","color":"#fff","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"40px"}' id="btn-search" type="button" class="layui-btn layui-btn-normal">
-						<i class="layui-icon layui-icon-search"></i>Search
+						<i class="layui-icon layui-icon-search"></i>搜索
 					</button>
 					<button :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(0,0,0,0)","margin":"0 0 0 10px","borderColor":"#409EFF","backgroundColor":"rgba(203, 148, 92, 1)","color":"#fff","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"40px"}'  @click="jump('../forum/add.html')" type="button" class="layui-btn layui-btn-lg btn-theme">
-						<i v-if="true" class="layui-icon">&#xe654;</i> Post
+						<i v-if="true" class="layui-icon">&#xe654;</i> 发布帖子
 					</button>
 				</div>
 				<div class="forum-list">
 					<div v-for="(item,index) in dataList" v-bind:key="index" href="javascript:void(0);" @click="jump('../forum/detail.html?id='+item.id);" class="forum-item">
-						<h2 class="h2">{{item.title}}（poster：{{item.username}}）</h2>
+						<h2 class="h2">{{item.title}}（发布人：{{item.username}}）</h2>
 						<div class="create-time">
 							{{item.addtime}}
 						</div>

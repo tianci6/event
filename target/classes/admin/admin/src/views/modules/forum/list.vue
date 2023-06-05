@@ -4,10 +4,10 @@
     <div v-if="showFlag">
       <el-form :inline="true" :model="searchForm" class="form-content">
         <el-row v-show="!forumChild" :gutter="20" class="slt" :style="{justifyContent:contents.searchBoxPosition=='1'?'flex-start':contents.searchBoxPosition=='2'?'center':'flex-end'}">
-                <el-form-item :label="contents.inputTitle == 1 ? '帖子标题' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.title" placeholder="帖子标题" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.title" placeholder="帖子标题" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.title" placeholder="帖子标题" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'Title' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.title" placeholder="Title" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.title" placeholder="Title" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.title" placeholder="Title" clearable></el-input>
                 </el-form-item>
           <el-form-item>
             <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
@@ -90,7 +90,7 @@
                     v-if="!forumChild"
                     prop="title"
                    :header-align="contents.tableAlign"
-		    label="帖子标题">
+		    label="Title">
 		     <template slot-scope="scope">
                        {{scope.row.title}}
                      </template>
@@ -106,7 +106,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="username"
                    :header-align="contents.tableAlign"
-		    label="用户名">
+		    label="Username">
 		     <template slot-scope="scope">
                        {{scope.row.username}}
                      </template>
@@ -115,7 +115,7 @@
                     v-if="!forumChild"
                     prop="isdone"
                    :header-align="contents.tableAlign"
-		    label="状态">
+		    label="State">
 		     <template slot-scope="scope">
                        {{scope.row.isdone}}
                      </template>
@@ -132,9 +132,9 @@
                 <el-button v-if="!forumChild &&  isAuth('forum','Change') && contents.tableBtnIcon == 0" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}</el-button>
 
 
-                <el-button v-if="!forumChild && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="search(scope.row.id,'child')">{{ contents.tableBtnFont == 1?'查看评论':'' }}</el-button>
-                <el-button v-if="!forumChild && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="search(scope.row.id,'child')">{{ contents.tableBtnFont == 1?'查看评论':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
-                <el-button v-if="!forumChild && contents.tableBtnIcon == 0" type="success" size="mini" @click="search(scope.row.id,'child')">{{ contents.tableBtnFont == 1?'查看评论':'' }}</el-button>
+                <el-button v-if="!forumChild && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="search(scope.row.id,'child')">{{ contents.tableBtnFont == 1?'View comment':'' }}</el-button>
+                <el-button v-if="!forumChild && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="search(scope.row.id,'child')">{{ contents.tableBtnFont == 1?'View comment':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
+                <el-button v-if="!forumChild && contents.tableBtnIcon == 0" type="success" size="mini" @click="search(scope.row.id,'child')">{{ contents.tableBtnFont == 1?'View comment':'' }}</el-button>
 
 
                 <el-button v-if="isAuth('forum','Delete') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="danger" icon="el-icon-delete" size="mini" @click="deleteHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Delete':'' }}</el-button>
@@ -472,7 +472,7 @@ export default {
           });
       this.$confirm(`确定进行[${id ? "Delete" : "批量Delete"}]操作?`, "提示", {
         confirmButtonText: "确定",
-        cancelButtonText: "取消",
+        cancelButtonText: "cancel",
         type: "warning"
       }).then(() => {
         this.$http({

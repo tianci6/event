@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>Community Forum</title>
+		<title>社区论坛</title>
 		<link rel="stylesheet" href="../../layui/css/layui.css">
 		<!-- 样式 -->
 		<link rel="stylesheet" href="../../css/style.css" />
@@ -70,7 +70,7 @@
 			
 			<!-- 标题 -->
 			<div class="index-title" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(255, 255, 255, 1)","borderRadius":"10px","borderWidth":"20px 0 0","fontSize":"20px","borderStyle":"solid","height":"auto"}'>
-			  <span>FORUM / INFORMATION</span><span>My post</span>
+			  <span>FORUM / INFORMATION</span><span>我的发布</span>
 			</div>
 			<!-- 标题 -->
 
@@ -78,9 +78,9 @@
 				<table class="layui-table" lay-skin="nob">
 					<thead>
 						<tr>
-							<th>title</th>
-							<th>time</th>
-							<th>set</th>
+							<th>标题</th>
+							<th>发布时间</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -89,10 +89,10 @@
 							<td style="text-align:left">{{item.addtime}}</td>
 							<td style="text-align:left">
 								<button @click="jump('../forum/update.html?id='+item.id);" type="button" class="layui-btn layui-btn-radius btn-warm">
-									change
+									修改
 								</button>
 								<button @click="deleteClick(item.id)" type="button" class="layui-btn layui-btn-radius btn-theme">
-									delete
+									删除
 								</button>
 							</td>
 						</tr>
@@ -141,11 +141,11 @@
 						jump(url)
 					},
 					deleteClick(id) {
-						layui.layer.confirm('delete？', {
-							btn: ['delete', 'exit'] //按钮
+						layui.layer.confirm('是否确认删除？', {
+							btn: ['删除', '取消'] //按钮
 						}, function() {
 							layui.http.requestJson(`forum/delete`, 'post', [id], function(res) {
-								layer.msg('successfully delete', {
+								layer.msg('删除成功', {
 									time: 2000,
 									icon: 6
 								}, function(res) {

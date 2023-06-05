@@ -23,32 +23,32 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="发布时间" prop="fabushijian">
+        <el-form-item class="date" v-if="type!='info'" label="ReleaseTime" prop="fabushijian">
             <el-date-picker
                 format="yyyy 年 MM 月 dd 日"
                 value-format="yyyy-MM-dd"
                 v-model="ruleForm.fabushijian" 
                 type="date"
                 :readonly="ro.fabushijian"
-                placeholder="发布时间">
+                placeholder="ReleaseTime">
             </el-date-picker> 
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.fabushijian" label="发布时间" prop="fabushijian">
+          <el-form-item class="input" v-if="ruleForm.fabushijian" label="ReleaseTime" prop="fabushijian">
               <el-input v-model="ruleForm.fabushijian" 
-                placeholder="发布时间" readonly></el-input>
+                placeholder="ReleaseTime" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="发布人" prop="faburen">
+        <el-form-item class="input" v-if="type!='info'"  label="Publisher" prop="faburen">
           <el-input v-model="ruleForm.faburen" 
-              placeholder="发布人" clearable  :readonly="ro.faburen"></el-input>
+              placeholder="Publisher" clearable  :readonly="ro.faburen"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="发布人" prop="faburen">
+          <el-form-item class="input" label="Publisher" prop="faburen">
               <el-input v-model="ruleForm.faburen" 
-                placeholder="发布人" readonly></el-input>
+                placeholder="Publisher" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>

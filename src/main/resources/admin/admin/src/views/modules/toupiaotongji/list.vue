@@ -62,17 +62,17 @@
               type="warning"
               icon="el-icon-s-data"
               @click="chartDialog()"
-            >{{ contents.btnAdAllFont == 1?'统计报表':'' }}</el-button>
+            >{{ contents.btnAdAllFont == 1?'Statistical report':'' }}</el-button>
             <el-button
               v-if="isAuth('toupiaotongji','报表') && contents.btnAdAllIcon == 1 && contents.btnAdAllIconPosition == 2"
               type="warning"
               @click="chartDialog()"
-            >{{ contents.btnAdAllFont == 1?'统计报表':'' }}<i class="el-icon-s-data el-icon--right" /></el-button>
+            >{{ contents.btnAdAllFont == 1?'Statistical report':'' }}<i class="el-icon-s-data el-icon--right" /></el-button>
             <el-button
               v-if="isAuth('toupiaotongji','报表') && contents.btnAdAllIcon == 0"
               type="warning"
               @click="chartDialog()"
-            >{{ contents.btnAdAllFont == 1?'统计报表':'' }}</el-button>
+            >{{ contents.btnAdAllFont == 1?'Statistical report':'' }}</el-button>
 
           </el-form-item>
         </el-row>
@@ -114,7 +114,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="beizhu"
                    :header-align="contents.tableAlign"
-		    label="备注">
+		    label="Remark">
 		     <template slot-scope="scope">
                        {{scope.row.beizhu}}
                      </template>
@@ -122,7 +122,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="dengjishijian"
                    :header-align="contents.tableAlign"
-		    label="登记时间">
+		    label="Check-in time">
 		     <template slot-scope="scope">
                        {{scope.row.dengjishijian}}
                      </template>
@@ -187,7 +187,7 @@
 
 
     <el-dialog
-      title="统计报表"
+      title="Statistical report"
       :visible.sync="chartVisiable"
       width="800">
         <div id="toupiaoxuanxiangChart" style="width:100%;height:600px;"></div>
@@ -441,7 +441,7 @@ export default {
                 var option = {};
                 option = {
                     title: {
-                        text: '投票统计',
+                        text: 'Statistical report',
                         left: 'center'
                     },
                     tooltip: {

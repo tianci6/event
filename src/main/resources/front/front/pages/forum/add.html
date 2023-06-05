@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>Community forums</title>
+		<title>社区论坛</title>
 		<link rel="stylesheet" href="../../layui/css/layui.css">
 		<!-- 样式 -->
 		<link rel="stylesheet" href="../../css/style.css" />
@@ -110,29 +110,29 @@
 				<p class="line"> 社区论坛 </p>
 			</div> -->
 			<div class="index-title" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px auto","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(255, 255, 255, 1)","borderRadius":"10px","borderWidth":"20px 0 0","fontSize":"20px","borderStyle":"solid","height":"auto"}'>
-			  <span>FORUM / INFORMATION</span><span>Community forums</span>
+			  <span>FORUM / INFORMATION</span><span>社区论坛</span>
 			</div>
 			<!-- 标题 -->
 
 			<div class="forum-container" :style='{"padding":"20px","boxShadow":"0px 0px 0px rgba(255,0,0,.8)","margin":"0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
 				<form class="layui-form login-form">
 					<div class="layui-form-item layui-form-text" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
-						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">title：</label>
+						<label :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">标题：</label>
 						<div class="layui-input-block input">
 							<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item layui-form-text" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
-						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">类型：</label>
+						<label :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">类型：</label>
 						<div class="layui-input-block" style="text-align: left;">
-							<input type="radio" name="isdone" value="open" title="open" checked>
-							<input type="radio" name="isdone" value="close" title="private">
+							<input type="radio" name="isdone" value="开放" title="公开" checked>
+							<input type="radio" name="isdone" value="关闭" title="私人">
 						</div>
 					</div>
 					<div class="layui-form-item layui-form-text" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
-						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">内容：</label>
+						<label :style='{"width":"94px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">内容：</label>
 						<div class="layui-input-block" style="text-align: left;">
-							<textarea name="content" id="content">Please enter content</textarea>
+							<textarea name="content" id="content">请输入内容</textarea>
 						</div>
 					</div>
 					
@@ -259,7 +259,7 @@
 						data.userid = localStorage.getItem('userid');
 						data.parentid = 0;
 						http.requestJson('forum/add', 'post', data, function(res) {
-							layer.msg('Successfully published', {
+							layer.msg('发表成功', {
 								time: 2000,
 								icon: 6
 							}, function() {

@@ -11,14 +11,14 @@
 
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="用户名" prop="username">
+        <el-form-item class="input" v-if="type!='info'"  label="Username" prop="username">
           <el-input v-model="ruleForm.username" 
-              placeholder="用户名" clearable  :readonly="ro.username"></el-input>
+              placeholder="Username" clearable  :readonly="ro.username"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="用户名" prop="username">
+          <el-form-item class="input" label="Username" prop="username">
               <el-input v-model="ruleForm.username" 
-                placeholder="用户名" readonly></el-input>
+                placeholder="Username" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>

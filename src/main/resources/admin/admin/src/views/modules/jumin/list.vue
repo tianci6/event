@@ -119,7 +119,7 @@
                       <div v-if="scope.row.juminzhaopian">
                         <img :src="$base.url+scope.row.juminzhaopian.split(',')[0]" width="100" height="100">
                       </div>
-                      <div v-else>无图片</div>
+                      <div v-else>no photo</div>
                     </template>
                   </el-table-column>
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 

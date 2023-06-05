@@ -10,19 +10,19 @@
     >
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="帖子标题" prop="title">
+        <el-form-item class="input" v-if="type!='info'"  label="Title" prop="title">
           <el-input v-model="ruleForm.title" 
-              placeholder="帖子标题" clearable  :readonly="ro.title"></el-input>
+              placeholder="Title" clearable  :readonly="ro.title"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="帖子标题" prop="title">
+          <el-form-item class="input" label="Title" prop="title">
               <el-input v-model="ruleForm.title" 
-                placeholder="帖子标题" readonly></el-input>
+                placeholder="Title" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="select" v-if="type!='info'"  label="状态" prop="isdone">
+        <el-form-item class="select" v-if="type!='info'"  label="State" prop="isdone">
           <el-select :disabled="ro.isdone" v-model="ruleForm.isdone" placeholder="请选择状态">
             <el-option
                 v-for="(item,index) in isdoneOptions"
@@ -33,9 +33,9 @@
           </el-select>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="状态" prop="isdone">
+          <el-form-item class="input" label="State" prop="isdone">
 	      <el-input v-model="ruleForm.isdone"
-                placeholder="状态" readonly></el-input>
+                placeholder="State" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -59,7 +59,7 @@
           </el-row>
       <el-form-item class="btn">
         <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
-        <el-button v-if="type!='info'" class="btn-close" @click="back()">取消</el-button>
+        <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
         <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
     </el-form>

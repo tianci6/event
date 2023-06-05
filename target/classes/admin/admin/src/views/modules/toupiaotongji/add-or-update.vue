@@ -41,31 +41,31 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="备注" prop="beizhu">
+        <el-form-item class="input" v-if="type!='info'"  label="Remark" prop="beizhu">
           <el-input v-model="ruleForm.beizhu" 
-              placeholder="备注" clearable  :readonly="ro.beizhu"></el-input>
+              placeholder="Remark" clearable  :readonly="ro.beizhu"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="备注" prop="beizhu">
+          <el-form-item class="input" label="Remark" prop="beizhu">
               <el-input v-model="ruleForm.beizhu" 
-                placeholder="备注" readonly></el-input>
+                placeholder="Remark" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="登记时间" prop="dengjishijian">
+        <el-form-item class="date" v-if="type!='info'" label="Check-in time" prop="dengjishijian">
             <el-date-picker
                 value-format="yyyy-MM-dd HH:mm:ss"
                 v-model="ruleForm.dengjishijian" 
                 type="datetime"
                 :readonly="ro.dengjishijian"
-                placeholder="登记时间">
+                placeholder="Check-in time">
             </el-date-picker>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.dengjishijian" label="登记时间" prop="dengjishijian">
+          <el-form-item class="input" v-if="ruleForm.dengjishijian" label="Check-in time" prop="dengjishijian">
               <el-input v-model="ruleForm.dengjishijian" 
-                placeholder="登记时间" readonly></el-input>
+                placeholder="Check-in time" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -96,7 +96,7 @@
       </el-row>
       <el-form-item class="btn">
         <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
-        <el-button v-if="type!='info'" class="btn-close" @click="back()">取消</el-button>
+        <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
         <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
       </el-form-item>
     </el-form>
@@ -293,7 +293,7 @@ export default {
           this.$message.error(data.msg);
         }
       });
-            this.toupiaoxuanxiangOptions = "赞成,不赞成".split(',')
+            this.toupiaoxuanxiangOptions = "Approve,Disapprove".split(',')
     },
     // 多级联动参数
     info(id) {

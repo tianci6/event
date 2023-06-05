@@ -4,10 +4,10 @@
     <div v-if="showFlag">
       <el-form :inline="true" :model="searchForm" class="form-content">
         <el-row v-show="!forumChild" :gutter="20" class="slt" :style="{justifyContent:contents.searchBoxPosition=='1'?'flex-start':contents.searchBoxPosition=='2'?'center':'flex-end'}">
-                <el-form-item :label="contents.inputTitle == 1 ? '帖子标题' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.title" placeholder="帖子标题" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.title" placeholder="帖子标题" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.title" placeholder="帖子标题" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'Title' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.title" placeholder="Title" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.title" placeholder="Title" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.title" placeholder="Title" clearable></el-input>
                 </el-form-item>
           <el-form-item>
             <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
@@ -90,7 +90,7 @@
                     v-if="!forumChild"
                     prop="title"
                    :header-align="contents.tableAlign"
-		    label="帖子标题">
+		    label="Title">
 		     <template slot-scope="scope">
                        {{scope.row.title}}
                      </template>
@@ -106,7 +106,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="username"
                    :header-align="contents.tableAlign"
-		    label="用户名">
+		    label="Username">
 		     <template slot-scope="scope">
                        {{scope.row.username}}
                      </template>
@@ -115,7 +115,7 @@
                     v-if="!forumChild"
                     prop="isdone"
                    :header-align="contents.tableAlign"
-		    label="状态">
+		    label="State">
 		     <template slot-scope="scope">
                        {{scope.row.isdone}}
                      </template>

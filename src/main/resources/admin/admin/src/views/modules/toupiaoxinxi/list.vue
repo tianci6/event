@@ -111,7 +111,7 @@
                       <div v-if="scope.row.fengmian">
                         <img :src="$base.url+scope.row.fengmian.split(',')[0]" width="100" height="100">
                       </div>
-                      <div v-else>无图片</div>
+                      <div v-else>no photo</div>
                     </template>
                   </el-table-column>
             <el-table-column width="300" :align="contents.tableAlign" 
@@ -121,9 +121,9 @@
                 <el-button v-if="isAuth('toupiaoxinxi','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}</el-button>
                 <el-button v-if="isAuth('toupiaoxinxi','查看') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
                 <el-button v-if="isAuth('toupiaoxinxi','查看') && contents.tableBtnIcon == 0" type="success" size="mini" @click="addOrUpdateHandler(scope.row.id,'info')">{{ contents.tableBtnFont == 1?'Details':'' }}</el-button>
-                <el-button v-if="isAuth('toupiaoxinxi','投票') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="toupiaotongjiCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'投票':'' }}</el-button>
-                <el-button v-if="isAuth('toupiaoxinxi','投票') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="toupiaotongjiCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'投票':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
-                <el-button v-if="isAuth('toupiaoxinxi','投票') && contents.tableBtnIcon == 0" type="success" size="mini" @click="toupiaotongjiCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'投票':'' }}</el-button>
+                <el-button v-if="isAuth('toupiaoxinxi','Vote') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="success" icon="el-icon-tickets" size="mini" @click="toupiaotongjiCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'Vote':'' }}</el-button>
+                <el-button v-if="isAuth('toupiaoxinxi','Vote') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="success" size="mini" @click="toupiaotongjiCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'Vote':'' }}<i class="el-icon-tickets el-icon--right" /></el-button>
+                <el-button v-if="isAuth('toupiaoxinxi','Vote') && contents.tableBtnIcon == 0" type="success" size="mini" @click="toupiaotongjiCrossAddOrUpdateHandler(scope.row,'cross','','','')">{{ contents.tableBtnFont == 1?'Vote':'' }}</el-button>
                 <el-button v-if=" isAuth('toupiaoxinxi','Change') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 1" type="primary" icon="el-icon-edit" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}</el-button>
                 <el-button v-if=" isAuth('toupiaoxinxi','Change') && contents.tableBtnIcon == 1 && contents.tableBtnIconPosition == 2" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}<i class="el-icon-edit el-icon--right" /></el-button>
                 <el-button v-if=" isAuth('toupiaoxinxi','Change') && contents.tableBtnIcon == 0" type="primary" size="mini" @click="addOrUpdateHandler(scope.row.id)">{{ contents.tableBtnFont == 1?'Change':'' }}</el-button>

@@ -119,7 +119,7 @@
                       <div v-if="scope.row.juminzhaopian">
                         <img :src="$base.url+scope.row.juminzhaopian.split(',')[0]" width="100" height="100">
                       </div>
-                      <div v-else>无图片</div>
+                      <div v-else>no photo</div>
                     </template>
                   </el-table-column>
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
@@ -494,7 +494,7 @@ export default {
           });
       this.$confirm(`确定进行[${id ? "Delete" : "批量Delete"}]操作?`, "提示", {
         confirmButtonText: "确定",
-        cancelButtonText: "取消",
+        cancelButtonText: "cancel",
         type: "warning"
       }).then(() => {
         this.$http({

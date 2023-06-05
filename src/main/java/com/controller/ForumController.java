@@ -60,7 +60,7 @@ public class ForumController {
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,ForumEntity forum,
 		HttpServletRequest request){
-    	if(!request.getSession().getAttribute("role").toString().equals("administered")) {
+    	if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
     		forum.setUserid((Long)request.getSession().getAttribute("userId"));
     	}
         EntityWrapper<ForumEntity> ew = new EntityWrapper<ForumEntity>();
@@ -76,7 +76,7 @@ public class ForumController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params,ForumEntity forum, 
 		HttpServletRequest request){
-    	if(!request.getSession().getAttribute("role").toString().equals("administered")) {
+    	if(!request.getSession().getAttribute("role").toString().equals("管理员")) {
     		forum.setUserid((Long)request.getSession().getAttribute("userId"));
     	}
         EntityWrapper<ForumEntity> ew = new EntityWrapper<ForumEntity>();

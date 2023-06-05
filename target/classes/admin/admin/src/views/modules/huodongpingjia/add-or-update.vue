@@ -125,17 +125,17 @@
       </el-row>
           <el-row>
             <el-col :span="24">
-              <el-form-item class="textarea" v-if="type!='info'" label="活动评价" prop="huodongpingjia">
+              <el-form-item class="textarea" v-if="type!='info'" label="eventEvaluation" prop="huodongpingjia">
                 <el-input
                   style="min-width: 200px; max-width: 600px;"
                   type="textarea"
                   :rows="8"
-                  placeholder="活动评价"
+                  placeholder="eventEvaluation"
                   v-model="ruleForm.huodongpingjia" >
                 </el-input>
               </el-form-item>
               <div v-else>
-                <el-form-item v-if="ruleForm.huodongpingjia" label="活动评价" prop="huodongpingjia">
+                <el-form-item v-if="ruleForm.huodongpingjia" label="eventEvaluation" prop="huodongpingjia">
                     <span>{{ruleForm.huodongpingjia}}</span>
                 </el-form-item>
               </div>
@@ -143,7 +143,7 @@
           </el-row>
       <el-form-item class="btn">
         <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
-        <el-button v-if="type!='info'" class="btn-close" @click="back()">取消</el-button>
+        <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
         <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
       </el-form-item>
     </el-form>

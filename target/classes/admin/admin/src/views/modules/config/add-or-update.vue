@@ -22,7 +22,7 @@
         </div>
       </el-col>
       <el-col :span="24">  
-        <el-form-item class="upload" v-if="type!='info' && !ro.value" label="值" prop="value">
+        <el-form-item class="upload" v-if="type!='info' && !ro.value" label="value" prop="value">
           <file-upload
           tip="点击上传值"
           action="file/upload"
@@ -33,7 +33,7 @@
           ></file-upload>
         </el-form-item>
         <div v-else>
-          <el-form-item v-if="ruleForm.value" label="值" prop="value">
+          <el-form-item v-if="ruleForm.value" label="value" prop="value">
             <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.value.split(',')" :src="$base.url+item" width="100" height="100">
           </el-form-item>
         </div>
@@ -41,7 +41,7 @@
       </el-row>
       <el-form-item class="btn">
         <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
-        <el-button v-if="type!='info'" class="btn-close" @click="back()">取消</el-button>
+        <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
         <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
       </el-form-item>
     </el-form>

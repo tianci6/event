@@ -4,10 +4,10 @@
     <div v-if="showFlag">
       <el-form :inline="true" :model="searchForm" class="form-content">
         <el-row  :gutter="20" class="slt" :style="{justifyContent:contents.searchBoxPosition=='1'?'flex-start':contents.searchBoxPosition=='2'?'center':'flex-end'}">
-                <el-form-item :label="contents.inputTitle == 1 ? '用户名' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.username" placeholder="用户名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.username" placeholder="用户名" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.username" placeholder="用户名" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'Username' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.username" placeholder="Username" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.username" placeholder="Username" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.username" placeholder="Username" clearable></el-input>
                 </el-form-item>
           <el-form-item>
             <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
@@ -82,7 +82,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="username"
                    :header-align="contents.tableAlign"
-		    label="用户名">
+		    label="Username">
 		     <template slot-scope="scope">
                        {{scope.row.username}}
                      </template>

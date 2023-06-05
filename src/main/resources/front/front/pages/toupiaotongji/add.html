@@ -134,13 +134,13 @@
                         </div>
                     </div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">备注：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Remark：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.beizhu" type="text" :readonly="ro.beizhu" name="beizhu" id="beizhu" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">登记时间：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Check-in time：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' type="text" name="dengjishijian"  id="dengjishijian" autocomplete="off" class="layui-input">
 						</div>
@@ -213,7 +213,7 @@
                         juminhao: '',
                         juminxingming: '',
                     },
-					toupiaoxuanxiang: '赞成,不赞成'.split(','),
+					toupiaoxuanxiang: 'Approve,Disapprove'.split(','),
 					centerMenu: centerMenu
 				},
 				updated: function() {

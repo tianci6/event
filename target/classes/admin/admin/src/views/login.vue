@@ -5,7 +5,7 @@
       <div :class="2 == 1 ? 'left' : 2 == 2 ? 'left center' : 'left right'">
         <el-form class="login-form" label-position="left" :label-width="1 == 3 || 1 == 2 ? '30px': '0px'">
           <div class="title-container"><h3 class="title"> Login</h3></div>
-            <el-form-item :style='{"padding":"0","boxShadow":"0 06px rgba(0,0,0,0)","margin":"0 auto 12px","borderColor":"rgba(36, 36, 36, 0.95)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"70%","borderStyle":"solid","height":"auto"}' :label="1 == 3 ? '用户名' : ''" :class="'style'+1">
+            <el-form-item :style='{"padding":"0","boxShadow":"0 06px rgba(0,0,0,0)","margin":"0 auto 12px","borderColor":"rgba(36, 36, 36, 0.95)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"70%","borderStyle":"solid","height":"auto"}' :label="1 == 3 ? 'Username' : ''" :class="'style'+1">
             <span v-if="1 != 3" class="svg-container" style="
 			color:#333;
 			line-height:30px;
@@ -49,7 +49,7 @@
           </el-form-item>
           <el-button type="primary" @click="login()" class="loginInBt">{{'1' == '1' ? 'Log in' : 'login'}}</el-button>
           <el-form-item class="setting">
-            <!-- <div style="color:${template2.back.login.loginInSettingFontColor}" class="reset">Change密码</div> -->
+            <!-- <div style="color:${template2.back.login.loginInSettingFontColor}" class="reset">修改密码</div> -->
           </el-form-item>
         </el-form>
       </div>
@@ -101,7 +101,7 @@ export default {
 	let menus = menu.list();
 	this.menus = menus;
     for (let i = 0; i < this.menus.length; i++) {
-      if (this.menus[i].hasBackLogin=='yes') {
+      if (this.menus[i].hasBackLogin=='是') {
             this.roles.push(this.menus[i])
       }
     }

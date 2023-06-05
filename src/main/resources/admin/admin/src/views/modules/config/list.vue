@@ -35,7 +35,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="name"
                    :header-align="contents.tableAlign"
-		    label="名称">
+		    label="Name">
 		     <template slot-scope="scope">
                        {{scope.row.name}}
                      </template>
@@ -43,12 +43,12 @@
                   <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="value"
                    :header-align="contents.tableAlign"
                     width="200"
-                    label="值">
+                    label="value">
                     <template slot-scope="scope">
                       <div v-if="scope.row.value">
                         <img :src="$base.url+scope.row.value.split(',')[0]" width="100" height="100">
                       </div>
-                      <div v-else>无图片</div>
+                      <div v-else>no photo</div>
                     </template>
                   </el-table-column>
             <el-table-column width="300" :align="contents.tableAlign" 

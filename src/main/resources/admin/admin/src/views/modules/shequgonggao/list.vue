@@ -90,7 +90,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="fabushijian"
                    :header-align="contents.tableAlign"
-		    label="发布时间">
+		    label="ReleaseTime">
 		     <template slot-scope="scope">
                        {{scope.row.fabushijian}}
                      </template>
@@ -98,7 +98,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="faburen"
                    :header-align="contents.tableAlign"
-		    label="发布人">
+		    label="Publisher">
 		     <template slot-scope="scope">
                        {{scope.row.faburen}}
                      </template>
@@ -111,7 +111,7 @@
                       <div v-if="scope.row.tupian">
                         <img :src="$base.url+scope.row.tupian.split(',')[0]" width="100" height="100">
                       </div>
-                      <div v-else>无图片</div>
+                      <div v-else>no photo</div>
                     </template>
                   </el-table-column>
             <el-table-column width="300" :align="contents.tableAlign" 

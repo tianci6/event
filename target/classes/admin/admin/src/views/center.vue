@@ -73,7 +73,7 @@
       </el-form-item>
       <el-col :span="24">
       <el-form-item>
-        <el-button type="primary" @click="onUpdateHandler">change</el-button>
+        <el-button type="primary" @click="onUpdateHandler">Change</el-button>
       </el-form-item>
       </el-col>
       </el-row>
