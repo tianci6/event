@@ -608,3 +608,45 @@ VALUES ('Jane Smith', 'jane@example.com', '9876543210', 'Urgent assistance neede
 INSERT INTO help_messages (sender_name, sender_email, sender_phone, message, latitude, longitude, timestamp)
 VALUES ('Samuel Lee', 'sam@example.com', '5555555555', 'Emergency situation, please send help immediately.', 35.6895, 139.6917, NOW());
 
+-- 商品表
+CREATE TABLE b_material
+(
+    `id`          bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+    `create_by`   varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci        NOT NULL COMMENT '创建人',
+    `update_time` datetime(0) NOT NULL COMMENT '最后更新时间',
+    `update_by`   varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci        NOT NULL COMMENT '最近更新人',
+    `state`       char(1) CHARACTER SET utf8 COLLATE utf8_general_ci            NOT NULL COMMENT '状态：1-有效；0-无效',
+    `user_id`     bigint(20) NOT NULL COMMENT '发布人用户ID',
+    `type`        varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci   NOT NULL COMMENT '商品类型：A-活动；B-商店；C-二手商品；',
+    `name`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称',
+    `email`       varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮件',
+    `content`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '介绍',
+    `describe`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
+    `address`     varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '地址',
+    `img_url`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图片信息',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品表' ROW_FORMAT = Dynamic;
+
+-- 商品评价表
+CREATE TABLE b_material_evaluate
+(
+    `id`          bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+    `create_by`   varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci        NOT NULL COMMENT '创建人',
+    `update_time` datetime(0) NOT NULL COMMENT '最后更新时间',
+    `update_by`   varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci        NOT NULL COMMENT '最近更新人',
+    `state`       char(1) CHARACTER SET utf8 COLLATE utf8_general_ci            NOT NULL COMMENT '状态：1-有效；0-无效',
+    `user_id`     bigint(20) NOT NULL COMMENT '评价用户ID',
+    `material_id` bigint(20) NOT NULL COMMENT '商品ID',
+    `content`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '评价内容',
+    `score`       decimal(10, 2)                                                NOT NULL DEFAULT 0.00 COMMENT '评分',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品评价表' ROW_FORMAT = Dynamic;
+
+-- 用户商品收藏关联表
+CREATE TABLE b_user_material
+(
+    `user_id`     bigint(20) NOT NULL COMMENT '用户ID',
+    `material_id` bigint(20) NOT NULL COMMENT '商品ID'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户商品收藏关联表' ROW_FORMAT = Dynamic;
