@@ -1,2 +1,0 @@
-cnpm run build
-
