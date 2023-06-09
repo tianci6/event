@@ -16,6 +16,7 @@ import echarts from 'echarts'
 import 'echarts/theme/macarons.js'
 // ajax
 import http from '@/utils/http.js'
+import axios from "./assets/api/axios";
 // 基础配置
 import base from '@/utils/base'
 // 工具类

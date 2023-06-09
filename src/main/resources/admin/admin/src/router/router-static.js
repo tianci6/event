@@ -11,136 +11,179 @@ import UpdatePassword from '@/views/update-password'
 import pay from '@/views/pay'
 import register from '@/views/register'
 import center from '@/views/center'
-    import quxiaobaoming from '@/views/modules/quxiaobaoming/list'
-    import jumin from '@/views/modules/jumin/list'
-    import forum from '@/views/modules/forum/list'
-    import toupiaotongji from '@/views/modules/toupiaotongji/list'
-    import huodongbaoming from '@/views/modules/huodongbaoming/list'
-    import shequgonggao from '@/views/modules/shequgonggao/list'
-    import discussshequhuodong from '@/views/modules/discussshequhuodong/list'
-    import shequhuodong from '@/views/modules/shequhuodong/list'
-    import toupiaoxinxi from '@/views/modules/toupiaoxinxi/list'
-    import huodongpingjia from '@/views/modules/huodongpingjia/list'
-    import config from '@/views/modules/config/list'
-    import discussshequchangdi from '@/views/modules/discussshequchangdi/list'
-    import shequchangdi from '@/views/modules/shequchangdi/list'
+import quxiaobaoming from '@/views/modules/quxiaobaoming/list'
+import jumin from '@/views/modules/jumin/list'
+import forum from '@/views/modules/forum/list'
+import toupiaotongji from '@/views/modules/toupiaotongji/list'
+import huodongbaoming from '@/views/modules/huodongbaoming/list'
+import shequgonggao from '@/views/modules/shequgonggao/list'
+import discussshequhuodong from '@/views/modules/discussshequhuodong/list'
+import shequhuodong from '@/views/modules/shequhuodong/list'
+import toupiaoxinxi from '@/views/modules/toupiaoxinxi/list'
+import huodongpingjia from '@/views/modules/huodongpingjia/list'
+import config from '@/views/modules/config/list'
+import discussshequchangdi from '@/views/modules/discussshequchangdi/list'
+import shequchangdi from '@/views/modules/shequchangdi/list'
+import login from '@/views/login/index'
+import home from '@/views/market/home'
+import index from '@/views/market/index'
+import marketking from '@/views/market/marketking/index'
+import detali from '@/views/market/marketking/detali'
+import Uplode from '@/views/market/marketking/Uplode'
 
 
 //2.配置路由   注意：name
 const routes = [{
-    path: '/index',
-    name: 'Home',
-    component: Index,
-    children: [{
-      // 这里不设置值，是把main作为默认页面
-      path: '/',
-      name: 'Home',
-      component: Home,
-      meta: {icon:'', title:'center'}
-    }, {
-      path: '/updatePassword',
-      name: 'ChangePassword',
-      component: UpdatePassword,
-      meta: {icon:'', title:'updatePassword'}
-    }, {
-      path: '/pay',
-      name: '支付',
-      component: pay,
-      meta: {icon:'', title:'pay'}
-    }, {
-      path: '/center',
-      name: 'information',
-      component: center,
-      meta: {icon:'', title:'center'}
-    }
-      ,{
-	path: '/quxiaobaoming',
-        name: 'CancelRegister',
-        component: quxiaobaoming
-      }
-      ,{
-	path: '/jumin',
-        name: 'Resident',
-        component: jumin
-      }
-      ,{
-	path: '/forum',
-        name: 'Forum',
-        component: forum
-      }
-      ,{
-	path: '/toupiaotongji',
-        name: 'Voting Statistics',
-        component: toupiaotongji
-      }
-      ,{
-	path: '/huodongbaoming',
-        name: 'Event Register',
-        component: huodongbaoming
-      }
-      ,{
-	path: '/shequgonggao',
-        name: 'Announcement',
-        component: shequgonggao
-      }
-      ,{
-	path: '/discussshequhuodong',
-        name: 'discuss',
-        component: discussshequhuodong
-      }
-      ,{
-	path: '/shequhuodong',
-        name: 'Enent',
-        component: shequhuodong
-      }
-      ,{
-	path: '/toupiaoxinxi',
-        name: 'voting information',
-        component: toupiaoxinxi
-      }
-      ,{
-	path: '/huodongpingjia',
-        name: 'evaluation',
-        component: huodongpingjia
-      }
-      ,{
-	path: '/config',
-        name: 'system',
-        component: config
-      }
-      ,{
-	path: '/discussshequchangdi',
-        name: 'community venue reviews',
-        component: discussshequchangdi
-      }
-      ,{
-	path: '/shequchangdi',
-        name: 'community venue',
-        component: shequchangdi
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-    meta: {icon:'', title:'login'}
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: register,
-    meta: {icon:'', title:'register'}
-  },
-  {
+  path: '/index',
+  name: 'Home',
+  component: Index,
+  children: [{
+    // 这里不设置值，是把main作为默认页面
     path: '/',
     name: 'Home',
-    redirect: '/index'
-  }, /*默认跳转路由*/
+    component: Home,
+    meta: { icon: '', title: 'center' }
+  }, {
+    path: '/updatePassword',
+    name: 'ChangePassword',
+    component: UpdatePassword,
+    meta: { icon: '', title: 'updatePassword' }
+  },
   {
-    path: '*',
-    component: NotFound
+    path: '/event/login',
+    name: 'login',
+    component: login,
+
+  },
+  {
+    path: '/event/home',
+    name: 'home',
+    component: home,
+    children: [
+      {
+        path: '/',
+        name: 'index',
+        component: index,
+      },
+
+      {
+        path: '/event/marketking',
+        name: 'marketking',
+        component: marketking,
+      },
+      {
+        path: '/event/Uplode',
+        name: 'Uplode',
+        component: Uplode,
+      },
+      {
+        path: '/event/marketking/detali',
+        name: 'detali',
+        component: detali,
+      }
+    ]
+
+
+  },
+  {
+    path: '/pay',
+    name: '支付',
+    component: pay,
+    meta: { icon: '', title: 'pay' }
+  }, {
+    path: '/center',
+    name: 'information',
+    component: center,
+    meta: { icon: '', title: 'center' }
   }
+    , {
+    path: '/quxiaobaoming',
+    name: 'CancelRegister',
+    component: quxiaobaoming
+  }
+    , {
+    path: '/jumin',
+    name: 'Resident',
+    component: jumin
+  }
+    , {
+    path: '/forum',
+    name: 'Forum',
+    component: forum
+  }
+    , {
+    path: '/toupiaotongji',
+    name: 'Voting Statistics',
+    component: toupiaotongji
+  }
+    , {
+    path: '/huodongbaoming',
+    name: 'Event Register',
+    component: huodongbaoming
+  }
+    , {
+    path: '/shequgonggao',
+    name: 'Announcement',
+    component: shequgonggao
+  }
+    , {
+    path: '/discussshequhuodong',
+    name: 'discuss',
+    component: discussshequhuodong
+  }
+    , {
+    path: '/shequhuodong',
+    name: 'Enent',
+    component: shequhuodong
+  }
+    , {
+    path: '/toupiaoxinxi',
+    name: 'voting information',
+    component: toupiaoxinxi
+  }
+    , {
+    path: '/huodongpingjia',
+    name: 'evaluation',
+    component: huodongpingjia
+  }
+    , {
+    path: '/config',
+    name: 'system',
+    component: config
+  }
+    , {
+    path: '/discussshequchangdi',
+    name: 'community venue reviews',
+    component: discussshequchangdi
+  }
+    , {
+    path: '/shequchangdi',
+    name: 'community venue',
+    component: shequchangdi
+  }
+  ]
+},
+{
+  path: '/login',
+  name: 'login',
+  component: Login,
+  meta: { icon: '', title: 'login' }
+},
+{
+  path: '/register',
+  name: 'register',
+  component: register,
+  meta: { icon: '', title: 'register' }
+},
+{
+  path: '/',
+  name: 'Home',
+  redirect: '/index'
+}, /*默认跳转路由*/
+{
+  path: '*',
+  component: NotFound
+}
 ]
 //3.实例化VueRouter  注意：名字
 const router = new VueRouter({
