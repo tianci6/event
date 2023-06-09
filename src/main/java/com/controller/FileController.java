@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,8 +46,8 @@ public class FileController{
 	/**
 	 * 上传文件
 	 */
-	@RequestMapping("/upload")
-	public R upload(@RequestParam("file") MultipartFile file,String type) throws Exception {
+	@PostMapping("/upload")
+	public R upload(MultipartFile file,String type) throws Exception {
 		if (file.isEmpty()) {
 			throw new EIException("上传文件不能为空");
 		}
@@ -82,7 +83,7 @@ public class FileController{
 		}
 		return R.ok().put("file", fileName);
 	}
-	
+
 	/**
 	 * 下载文件
 	 */
@@ -104,8 +105,8 @@ public class FileController{
 					getResponse().sendError(403);
 				}*/
 				HttpHeaders headers = new HttpHeaders();
-			    headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);    
-			    headers.setContentDispositionFormData("attachment", fileName);    
+			    headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			    headers.setContentDispositionFormData("attachment", fileName);
 			    return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.CREATED);
 			}
 		} catch (IOException e) {
@@ -113,5 +114,5 @@ public class FileController{
 		}
 		return new ResponseEntity<byte[]>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+
 }

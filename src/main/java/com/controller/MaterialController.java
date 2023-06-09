@@ -1,5 +1,6 @@
 package com.controller;
 
+import cn.hutool.core.date.DateUtil;
 import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.entity.MaterialEntity;
@@ -117,8 +118,17 @@ public class MaterialController {
     /**
      * 前端保存
      */
+    @IgnoreAuth
     @RequestMapping("/add")
     public R add(@RequestBody MaterialEntity materialEntity, HttpServletRequest request) {
+        Long userId = (Long) request.getSession().getAttribute("userId");
+        String username = (String) request.getSession().getAttribute("username");
+        materialEntity.setUserId(userId);
+        materialEntity.setState("1");
+        materialEntity.setCreateBy(username);
+        materialEntity.setCreateTime(DateUtil.date());
+        materialEntity.setUpdateBy(username);
+        materialEntity.setUpdateTime(DateUtil.date());
         materialService.insert(materialEntity);
         return R.ok();
     }

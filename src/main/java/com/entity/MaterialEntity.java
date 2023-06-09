@@ -17,6 +17,7 @@
 package com.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -31,6 +32,7 @@ import java.util.Date;
  * @date 2023-06-07
  */
 @Data
+@TableName("b_material")
 public class MaterialEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
