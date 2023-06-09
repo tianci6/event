@@ -51,7 +51,6 @@ public class TokenServiceImpl extends ServiceImpl<TokenDao, TokenEntity> impleme
 	    	return pageUtil;
 	}
 
-
 	@Override
 	public String generateToken(Long userid,String username, String tableName, String role) {
 		TokenEntity tokenEntity = this.selectOne(new EntityWrapper<TokenEntity>().eq("userid", userid).eq("role", role));
