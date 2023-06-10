@@ -114,6 +114,7 @@ export default {
           login(params).then(res => {
             console.log(res);
             if (res.data.code == '0') {
+              sessionStorage.setItem("token", res.data.token)
               this.$message.success("登录成功");
               this.$router.push("/event/home")
             } else {

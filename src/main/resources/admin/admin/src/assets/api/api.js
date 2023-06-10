@@ -13,3 +13,19 @@ export const register = (params) => {
         data: params
     });
 };
+export const upload = (params) => {
+    return request({
+        url: `/eventi/file/upload`,
+        method: "post",
+        data: params
+    });
+};
+export const add = (params) => {
+    return request({
+        url: `/eventi/material/add`,
+        method: "post",
+        data: params
+    });
+};
+
+

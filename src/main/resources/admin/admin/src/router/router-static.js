@@ -25,19 +25,18 @@ import config from '@/views/modules/config/list'
 import discussshequchangdi from '@/views/modules/discussshequchangdi/list'
 import shequchangdi from '@/views/modules/shequchangdi/list'
 import login from '@/views/login/index'
-import home from '@/views/market/home'
+import homes from '@/views/market/home'
 import index from '@/views/market/index'
 import marketking from '@/views/market/marketking/index'
 import detali from '@/views/market/marketking/detali'
 import Uplode from '@/views/market/marketking/Uplode'
+import Individual from '@/views/market/Individual/index'
 
-
-//2.配置路由   注意：name
+//2.配置路由 注意：name
 const routes = [{
   path: '/index',
   name: 'Home',
   component: Index,
-  
   children: [{
     // 这里不设置值，是把main作为默认页面
     path: '/',
@@ -58,8 +57,8 @@ const routes = [{
   },
   {
     path: '/event/home',
-    name: 'home',
-    component: home,
+    name: 'homes',
+    component: homes,
     children: [
       {
         path: '/',
@@ -81,9 +80,13 @@ const routes = [{
         path: '/event/marketking/detali',
         name: 'detali',
         component: detali,
+      },
+      {
+        path: '/event/Individual',
+        name: 'Individual',
+        component: Individual,
       }
     ]
-
 
   },
   {
@@ -186,7 +189,7 @@ const routes = [{
   component: NotFound
 }
 ]
-//3.实例化VueRouter  注意：名字
+//3.实例化VueRouter 注意：名字
 const router = new VueRouter({
   mode: 'hash',
   /*hash模式改为history*/
@@ -194,3 +197,4 @@ const router = new VueRouter({
 })
 
 export default router;
+

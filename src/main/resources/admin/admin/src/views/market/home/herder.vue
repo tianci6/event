@@ -26,7 +26,12 @@ export default {
         {
           name: "Uplode",
           path: "/event/Uplode"
+        },
+        {
+          name: "Individual center",
+          path: "/event/Individual"
         }
+
       ]
     }
   },

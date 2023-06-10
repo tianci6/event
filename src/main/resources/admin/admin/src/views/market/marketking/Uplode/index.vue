@@ -1,46 +1,103 @@
 <template>
   <div class="uploader">
     <div class="form">
-      <el-form label-position="top" ref="form" :model="form" label-width="80px">
-        <el-form-item label="Your Name">
+      <el-form ref="forms" :rules="rules" label-position="top" :model="form" label-width="80px">
+        <el-form-item prop="name" label="商品名称">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="Your Email">
-          <el-input v-model="form.name"></el-input>
+        <el-form-item prop="email" label="邮件">
+          <el-input v-model="form.email"></el-input>
         </el-form-item>
-        <el-form-item label="Post Title">
-          <el-input v-model="form.name"></el-input>
+        <el-form-item prop="content" label="商品介绍">
+          <el-input v-model="form.content"></el-input>
         </el-form-item>
-        <el-form-item label="Time">
-          <el-input v-model="form.name"></el-input>
+        <el-form-item prop="describe" label="商品描述">
+          <el-input v-model="form.describe"></el-input>
         </el-form-item>
-        <el-form-item label="Our community\'s name is">
-          <el-input v-model="form.name"></el-input>
+        <el-form-item prop="address" label="地址">
+          <el-input v-model="form.address"></el-input>
         </el-form-item>
-        <el-form-item label="Post Category">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="Post Content">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="Upload an Image">
-          <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
+
+        <el-form-item prop="imgUrl" label="商品图片">
+          <el-upload :headers="headers" class="upload-demo" drag action="/eventi/file/upload" multiple>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
           </el-upload>
         </el-form-item>
-        <p class="sub">Submit Post</p>
+        <p @click="subclikc" class="sub">提交</p>
       </el-form>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  upload,
+  add
+} from "@/assets/api/api.js";
+
 export default {
   data () {
     return {
-      form: {}
+      headers: {
+
+      },
+      form: {
+        name: "",
+        type: "C",
+        email: "",
+        content: "",
+        describe: "",
+        address: "",
+        imgUrl: ""
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入商品名称', trigger: 'blur' },
+        ],
+        email: [
+          { required: true, message: '请输入邮件', trigger: 'blur' },
+        ],
+        content: [
+          { required: true, message: '请输入商品介绍', trigger: 'blur' },
+        ],
+        describe: [
+          { required: true, message: '请输入商品描述', trigger: 'blur' },
+        ],
+        address: [
+          { required: true, message: '请输入地址', trigger: 'blur' },
+        ],
+        imgUrl: [
+          { required: true, message: '请输入商品图片', trigger: 'blur' },
+        ],
+      }
+    }
+  },
+  methods: {
+    subclikc () {
+      this.$refs.forms.validate((valid) => {
+        if (valid) {
+          let params = {
+            username: this.form.name,
+            password: this.form.password
+          };
+          add(params).then(res => {
+            console.log(res);
+            if (res.data.code == '0') {
+              this.$message.success("登录成功");
+              this.$router.push("/event/home")
+            } else {
+              this.$message.error(res.data.msg);
+            }
+          }).catch((erro) => {
+            this.$message.error(erro.msg);
+          });
+        } else {
+
+          return false;
+        }
+      });
     }
   }
 }
@@ -64,6 +121,7 @@ export default {
   width: 100%;
 }
 .sub {
+  text-align: center;
   width: 100px;
 
   background-color: #d5a97a;
