@@ -24,5 +24,13 @@ public interface MaterialDao extends BaseMapper<MaterialEntity> {
 
     MaterialEntity selectView(@Param("ew") Wrapper<MaterialEntity> wrapper);
 
+    /**
+     * 查询用户商品
+     * @method selectByUserId
+     * @param userId:
+     * @return java.util.List<com.entity.MaterialEntity>
+     * @date 2023/6/12 11:06
+     **/
+    List<MaterialEntity> selectByUserId(Long userId);
 
 }

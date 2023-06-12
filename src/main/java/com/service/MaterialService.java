@@ -27,6 +27,14 @@ public interface MaterialService extends IService<MaterialEntity> {
 
     PageUtils queryPage(Map<String, Object> params, Wrapper<MaterialEntity> wrapper);
 
+    /**
+     * 查询用户商品
+     * @method selectByUserId
+     * @param userId:
+     * @return java.util.List<com.entity.MaterialEntity>
+     * @date 2023/6/12 11:05
+     **/
+    List<MaterialEntity> selectByUserId(Long userId);
 
 }
 

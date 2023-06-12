@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.UserMaterialDao">
+
+    <resultMap type="com.entity.UserMaterialEntity" id="materialMap">
+        <result column="user_id" property="userId" />
+        <result column="material_id" property="materialId" />
+    </resultMap>
+
+    <select id="selectListVO" resultType="com.entity.UserMaterialEntity">
+        SELECT *
+        FROM b_user_material
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectVO" resultType="com.entity.UserMaterialEntity">
+        SELECT *
+        FROM b_user_material
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectListView" resultType="com.entity.UserMaterialEntity">
+        SELECT *
+        FROM b_user_material
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectView" resultType="com.entity.UserMaterialEntity">
+        SELECT *
+        FROM b_user_material
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+
+    <!--查询我的收藏-->
+    <select id="selectMyCollect" resultType="com.entity.MaterialEntity">
+        select m.* from b_material m
+        left join b_user_material um on (m.id = um.material_id)
+        where um.user_id = #{userId}
+    </select>
+
+
+    <!--根据用户ID + 商品ID查询-->
+    <select id="selectByUserIdAndMaterialId" resultMap="materialMap">
+        select *
+        from b_user_material
+        where user_id = #{userId} and material_id = #{materialId}
+    </select>
+</mapper>

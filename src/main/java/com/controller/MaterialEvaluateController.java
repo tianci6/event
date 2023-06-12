@@ -3,7 +3,8 @@ package com.controller;
 import cn.hutool.core.date.DateUtil;
 import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.entity.MaterialEntity;
+import com.entity.MaterialEvaluateEntity;
+import com.service.MaterialEvaluateService;
 import com.service.MaterialService;
 import com.utils.MPUtil;
 import com.utils.PageUtils;
@@ -18,20 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
- * 商品
+ * 商品评价
  *
  * @author
  * @date 2023/6/7 13:19
  **/
 @RestController
-@RequestMapping("/material")
-public class MaterialController {
+@RequestMapping("/materialEvaluate")
+public class MaterialEvaluateController {
     @Autowired
-    private MaterialService materialService;
+    private MaterialEvaluateService materialEvaluateService;
 
 
     /**
@@ -39,21 +39,21 @@ public class MaterialController {
      */
     @IgnoreAuth
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params, MaterialEntity materialEntity,
+    public R page(@RequestParam Map<String, Object> params, MaterialEvaluateEntity materialEntity,
                   HttpServletRequest request) {
         /*String tableName = request.getSession().getAttribute("tableName").toString();
         if (tableName.equals("jumin")) {
             materialEntity.setJuminhao((String) request.getSession().getAttribute("username"));
         }*/
-        EntityWrapper<MaterialEntity> ew = new EntityWrapper<MaterialEntity>();
+        EntityWrapper<MaterialEvaluateEntity> ew = new EntityWrapper<MaterialEvaluateEntity>();
 
-        PageUtils page = materialService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, materialEntity), params), params));
+        PageUtils page = materialEvaluateService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, materialEntity), params), params));
 
         return R.ok().put("data", page);
     }
 
     /**
-     * 市场商品查询
+     * 前端查询
      * @method list
      * @param params:
      * @param materialEntity:
@@ -63,11 +63,11 @@ public class MaterialController {
      **/
     @IgnoreAuth
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params, MaterialEntity materialEntity,
+    public R list(@RequestParam Map<String, Object> params, MaterialEvaluateEntity materialEntity,
                   HttpServletRequest request) {
-        EntityWrapper<MaterialEntity> ew = new EntityWrapper<MaterialEntity>();
+        EntityWrapper<MaterialEvaluateEntity> ew = new EntityWrapper<MaterialEvaluateEntity>();
 
-        PageUtils page = materialService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, materialEntity), params), params));
+        PageUtils page = materialEvaluateService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, materialEntity), params), params));
         return R.ok().put("data", page);
     }
 
@@ -75,22 +75,22 @@ public class MaterialController {
      * 列表
      */
     @RequestMapping("/lists")
-    public R list(MaterialEntity materialEntity) {
-        EntityWrapper<MaterialEntity> ew = new EntityWrapper<MaterialEntity>();
+    public R list(MaterialEvaluateEntity materialEntity) {
+        EntityWrapper<MaterialEvaluateEntity> ew = new EntityWrapper<MaterialEvaluateEntity>();
         // TODO
         ew.allEq(MPUtil.allEQMapPre(materialEntity, "huodongbaoming"));
-        return R.ok().put("data", materialService.selectListView(ew));
+        return R.ok().put("data", materialEvaluateService.selectListView(ew));
     }
 
     /**
      * 查询
      */
     @RequestMapping("/query")
-    public R query(MaterialEntity materialEntity) {
-        EntityWrapper<MaterialEntity> ew = new EntityWrapper<MaterialEntity>();
+    public R query(MaterialEvaluateEntity materialEntity) {
+        EntityWrapper<MaterialEvaluateEntity> ew = new EntityWrapper<MaterialEvaluateEntity>();
         // TODO
         ew.allEq(MPUtil.allEQMapPre(materialEntity, "huodongbaoming"));
-        MaterialEntity data = materialService.selectView(ew);
+        MaterialEvaluateEntity data = materialEvaluateService.selectView(ew);
         return R.ok("查询活动报名成功").put("data", data);
     }
 
@@ -99,7 +99,7 @@ public class MaterialController {
      */
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
-        MaterialEntity materialEntity = materialService.selectById(id);
+        MaterialEvaluateEntity materialEntity = materialEvaluateService.selectById(id);
         return R.ok().put("data", materialEntity);
     }
 
@@ -109,7 +109,7 @@ public class MaterialController {
     @IgnoreAuth
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id) {
-        MaterialEntity materialEntity = materialService.selectById(id);
+        MaterialEvaluateEntity materialEntity = materialEvaluateService.selectById(id);
         return R.ok().put("data", materialEntity);
     }
 
@@ -118,8 +118,8 @@ public class MaterialController {
      * 后端保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody MaterialEntity materialEntity, HttpServletRequest request) {
-        materialService.insert(materialEntity);
+    public R save(@RequestBody MaterialEvaluateEntity materialEntity, HttpServletRequest request) {
+        materialEvaluateService.insert(materialEntity);
         return R.ok();
     }
 
@@ -128,7 +128,7 @@ public class MaterialController {
      */
     @IgnoreAuth
     @RequestMapping("/add")
-    public R add(@RequestBody MaterialEntity materialEntity, HttpServletRequest request) {
+    public R add(@RequestBody MaterialEvaluateEntity materialEntity, HttpServletRequest request) {
         Long userId = (Long) request.getSession().getAttribute("userId");
         String username = (String) request.getSession().getAttribute("username");
         materialEntity.setUserId(userId);
@@ -137,7 +137,7 @@ public class MaterialController {
         materialEntity.setCreateTime(DateUtil.date());
         materialEntity.setUpdateBy(username);
         materialEntity.setUpdateTime(DateUtil.date());
-        materialService.insert(materialEntity);
+        materialEvaluateService.insert(materialEntity);
         return R.ok();
     }
 
@@ -146,9 +146,9 @@ public class MaterialController {
      */
     @RequestMapping("/update")
     @Transactional
-    public R update(@RequestBody MaterialEntity materialEntity, HttpServletRequest request) {
+    public R update(@RequestBody MaterialEvaluateEntity materialEntity, HttpServletRequest request) {
         // 全部更新
-        materialService.updateById(materialEntity);
+        materialEvaluateService.updateById(materialEntity);
         return R.ok();
     }
 
@@ -158,23 +158,8 @@ public class MaterialController {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids) {
-        materialService.deleteBatchIds(Arrays.asList(ids));
+        materialEvaluateService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
-    }
-
-    /**
-     * 我的发布
-     * @method list
-     * @param request:
-     * @return com.utils.R
-     * @date 2023/6/10 21:53
-     **/
-    @RequestMapping("/selectMyMaterial")
-    public R selectMyMaterial(HttpServletRequest request) {
-        Long userId = (Long) request.getSession().getAttribute("userId");
-        List<MaterialEntity> list = materialService.selectByUserId(userId);
-
-        return R.ok().put("data", list);
     }
 
 

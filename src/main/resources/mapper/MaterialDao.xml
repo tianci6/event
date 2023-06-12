@@ -22,23 +22,23 @@
 
     <select id="selectListVO" resultType="com.entity.MaterialEntity">
         SELECT *
-        FROM huodongbaoming huodongbaoming
+        FROM b_material
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>
     </select>
 
     <select id="selectVO" resultType="com.entity.MaterialEntity">
-        SELECT huodongbaoming.*
-        FROM huodongbaoming huodongbaoming
+        SELECT *
+        FROM b_material
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>
     </select>
 
     <select id="selectListView" resultType="com.entity.MaterialEntity">
-        SELECT huodongbaoming.*
-        FROM huodongbaoming huodongbaoming
+        SELECT *
+        FROM b_material
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>
@@ -46,9 +46,16 @@
 
     <select id="selectView" resultType="com.entity.MaterialEntity">
         SELECT *
-        FROM huodongbaoming huodongbaoming
+        FROM b_material
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>
+    </select>
+
+    <!--查询用户商品-->
+    <select id="selectByUserId" resultType="com.entity.MaterialEntity">
+        SELECT *
+        FROM b_material
+        where user_id = #{userId}
     </select>
 </mapper>

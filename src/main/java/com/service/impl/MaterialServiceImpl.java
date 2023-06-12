@@ -58,5 +58,17 @@ public class MaterialServiceImpl extends ServiceImpl<MaterialDao, MaterialEntity
         return baseMapper.selectView(wrapper);
     }
 
+    /**
+     * 查询用户商品
+     * @method selectByUserId
+     * @param userId:
+     * @return java.util.List<com.entity.MaterialEntity>
+     * @date 2023/6/12 11:05
+     **/
+    @Override
+    public List<MaterialEntity> selectByUserId(Long userId){
+        return baseMapper.selectByUserId(userId);
+    }
+
 
 }
