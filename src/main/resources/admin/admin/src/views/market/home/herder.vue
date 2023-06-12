@@ -4,7 +4,7 @@
       <p>Community Support System</p>
     </div>
     <div class="headers">
-      <p @click="gotorouter(item,index)" :class="indexs ==index ?'active':''" :key="index" v-for="(item,index) in list">{{item.name}}</p>
+      <p @click="gotorouter(item,index)" :class="status ==item.path ?'active':''" :key="index" v-for="(item,index) in list">{{item.name}}</p>
     </div>
   </div>
 </template>
@@ -14,6 +14,7 @@ export default {
   data () {
     return {
       indexs: 0,
+      status: "/event/home",
       list: [
         {
           name: "Home",
@@ -37,8 +38,19 @@ export default {
   },
   methods: {
     gotorouter (item, index) {
-      this.indexs = index
+      this.status = item.path
       this.$router.push(item.path)
+    }
+  },
+  created () {
+    this.status = this.$route.path
+    console.log(this.$route.path);
+  },
+  watch: {
+    $route (to) {
+      console.log(to);
+      // setTimeout(() => {
+      this.status = to.path
     }
   }
 }

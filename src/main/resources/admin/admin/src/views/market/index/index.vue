@@ -10,9 +10,15 @@
     <div>
       <h2 class="title">Local Bussiness Marketing Category</h2>
       <div class="conter">
-        <div class="conter-box"></div>
-        <div class="conter-box conter-boxs"></div>
-        <div class="conter-box conter-boxss"></div>
+        <div @click="gotomarkte('C')" class="conter-box">
+          <p>Bussiness</p>
+        </div>
+        <div @click="gotomarkte('A')" class="conter-box conter-boxs">
+          <p>prodouct</p>
+        </div>
+        <div @click="gotomarkte('B')" class="conter-box conter-boxss">
+          <p>promotio</p>
+        </div>
       </div>
     </div>
   </div>
@@ -20,7 +26,14 @@
 
 <script>
 export default {
-
+  methods: {
+    gotomarkte (value) {
+      this.$router.push({
+        path: "/event/marketking",
+        query: value
+      })
+    }
+  }
 }
 </script>
 
@@ -89,6 +102,11 @@ export default {
       margin-right: 20px;
       flex: 1;
       height: 230px;
+      text-align: center;
+      line-height: 230px;
+      font-size: 30px;
+      // line-height: inherit;
+      color: #d5a97a;
       // background-color: pink;
       background-image: url(https://www.inproeast.com/wp-content/uploads/2023/04/国王大道.png);
       background-size: auto;

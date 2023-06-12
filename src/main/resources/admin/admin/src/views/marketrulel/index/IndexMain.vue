@@ -4,7 +4,7 @@
 						boxShadow: 0 0 6px rgba(0,0,0,0);
                 height:calc(100% - ${template2.back.menulist.menulistHeight});
         		">
-    <bread-crumbs :title="title" class="bread-crumbs"></bread-crumbs>
+    <bread-crumbs class="bread-crumbs"></bread-crumbs>
     <router-view class="router-view" style="height:auto;background: transparent;"></router-view>
   </el-main>
 </template>
@@ -14,65 +14,16 @@ import menu from "@/utils/menu";
 export default {
   data () {
     return {
-      menuList: [],
-      role: "",
-      currentIndex: -2,
-      itemMenu: [],
-      title: '',
+
     };
   },
   mounted () {
-    let menus = menu.list();
-    this.menuList = menus;
-    this.role = this.$storage.get("role");
+
   },
   created () {
-    this.init();
-  },
-  methods: {
-    init () {
-      this.$nextTick(() => {
-        // let h = document.getElementsByClassName('el-aside')[0].clientHeight
-        // document.getElementsByClassName('el-main')[0].style.minHeight = "calc(100vh - 80px - " + h+'px)'
-      })
-    },
-    menuHandler (menu) {
-      this.$router.push({
-        name: menu.tableName
-      });
-      this.title = menu.menu;
-    },
-    titleChange (index, menus) {
-      this.currentIndex = index
-      this.itemMenu = menus;
-      console.log(menus);
-    },
-    homeChange (index) {
-      this.itemMenu = [];
-      this.title = ""
-      this.currentIndex = index
-      this.$router.push({
-        name: 'home'
-      });
-    },
-    centerChange (index) {
-      this.itemMenu = [{
-        "buttons": ["Add", "查看", "Change", "Delete"],
-        "menu": "ChangePassword",
-        "tableName": "updatePassword"
-      }, {
-        "buttons": ["Add", "查看", "Change", "Delete"],
-        "menu": "information",
-        "tableName": "center"
-      }];
-      this.title = ""
-      this.currentIndex = index
-      this.$router.push({
-        name: 'home'
-      });
 
-    }
-  }
+  },
+
 };
 </script>
 <style lang="scss" scoped>

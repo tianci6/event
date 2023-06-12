@@ -1,22 +1,22 @@
 <template>
   <div>
     <div class="seach">
-      <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
+      <el-input @change="seach" placeholder="请输入内容" v-model="input3" class="input-with-select">
       </el-input>
-      <i class="el-icon-search seach"></i>
+      <i @click="seach" class="el-icon-search seach"></i>
     </div>
     <div class="select">
       <div></div>
       <div>
         <el-form ref="form" :model="form" label-width="100px">
           <el-form-item label="排序规则：">
-            <el-select v-model="value" placeholder="请选择">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            <el-select @change="ruleclick" v-model="value" placeholder="请选择">
+              <el-option v-for="item in paixurule" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="分类：">
-            <el-select v-model="value" placeholder="请选择">
+            <el-select @change="ruleclicks" v-model="values" placeholder="请选择">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
@@ -28,13 +28,14 @@
       <el-row :gutter="20">
         <el-col :key="index" v-for="(item,index) in market" :span="6">
           <div class="grid-content">
-            <img @click="gotodetali(item)" :src="item.url" alt="">
+            <img @click="gotodetali(item)" :src="$base.url+item.imgUrl" alt="">
           </div>
           <div class="text-font">
-            <p>{{item.type}}</p>
-            <p class="name">{{item.name}}</p>
-            <el-rate v-model="item.value" disabled show-score text-color="#334155" score-template="{value}">
-            </el-rate>
+
+            <p>{{item.name}}</p>
+            <p class="name">{{item.content}}</p>
+            <!-- <el-rate v-model="item.value" disabled show-score text-color="#334155" score-template="{value}">
+            </el-rate> -->
           </div>
         </el-col>
 
@@ -44,74 +45,133 @@
 </template>
 
 <script>
+import {
+  list
+} from "@/assets/api/api.js";
 export default {
   data () {
     return {
+      url: "https://d.mousenat.cn/eventi/",
       form: {},
       market: [
-        {
-          url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
-          type: "Product",
-          name: "The 25th-anniversary Ultimate Kaiba Set",
-          value: 4
-        },
-        {
-          url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
-          type: "Product",
-          name: "The 25th-anniversary Ultimate Kaiba Set",
-          value: 4
-        },
-        {
-          url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
-          type: "Product",
-          name: "The 25th-anniversary Ultimate Kaiba Set",
-          value: 4
-        },
-        {
-          url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
-          type: "Product",
-          name: "The 25th-anniversary Ultimate Kaiba Set",
-          value: 4
-        },
-        {
-          url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
-          type: "Product",
-          name: "The 25th-anniversary Ultimate Kaiba Set",
-          value: 4
-        },
-        {
-          url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
-          type: "Product",
-          name: "The 25th-anniversary Ultimate Kaiba Set",
-          value: 4
-        },
+        // {
+        //   url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
+        //   type: "Product",
+        //   name: "The 25th-anniversary Ultimate Kaiba Set",
+        //   value: 4
+        // },
+        // {
+        //   url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
+        //   type: "Product",
+        //   name: "The 25th-anniversary Ultimate Kaiba Set",
+        //   value: 4
+        // },
+        // {
+        //   url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
+        //   type: "Product",
+        //   name: "The 25th-anniversary Ultimate Kaiba Set",
+        //   value: 4
+        // },
+        // {
+        //   url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
+        //   type: "Product",
+        //   name: "The 25th-anniversary Ultimate Kaiba Set",
+        //   value: 4
+        // },
+        // {
+        //   url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
+        //   type: "Product",
+        //   name: "The 25th-anniversary Ultimate Kaiba Set",
+        //   value: 4
+        // },
+        // {
+        //   url: "https://www.inproeast.com/wp-content/uploads/2023/04/3-1-200x200.jpg",
+        //   type: "Product",
+        //   name: "The 25th-anniversary Ultimate Kaiba Set",
+        //   value: 4
+        // },
 
       ],
       input3: "",
+      paixurule: [
+        {
+          label: "升序",
+          value: "0"
+        },
+        {
+          label: "降序",
+          value: "1"
+        }
+      ],
       options: [{
-        value: '选项1',
-        label: '黄金糕'
+        value: 'A',
+        label: '活动'
       }, {
-        value: '选项2',
-        label: '双皮奶'
+        value: 'B',
+        label: '商品'
       }, {
-        value: '选项3',
-        label: '蚵仔煎'
-      }, {
-        value: '选项4',
-        label: '龙须面'
-      }, {
-        value: '选项5',
-        label: '北京烤鸭'
-      }],
-      value: ''
+        value: 'C',
+        label: '二手商品'
+      },],
+      value: "0",
+      values: ""
     }
 
   },
+  created () {
+    // console.log(this.$route.query);
+    this.values = ""
+    if (this.$route.query && this.$route.query != "" && JSON.stringify(this.$route.query) != "{}") {
+      this.values = this.$route.query
+    } else {
+      this.values = ""
+    }
+    this.getmarklist()
+  },
   methods: {
-    gotodetali () {
-      console.log(123);
-      this.$router.push('/event/marketking/detali')
+    ruleclick (value) {
+      if (value == "0") {
+        this.market.sort((a, b) => new Date(a.createTime).getTime() - new
+          Date(b.createTime).getTime())
+      } else {
+        this.market.sort((a, b) => new Date(a.createTime).getTime() - new
+          Date(b.createTime).getTime()).reverse()
+
+      }
+    },
+    seach () {
+      this.getmarklist()
+    },
+    getmarklist () {
+      let params = {
+        name: "%" + this.input3 + "%",
+        // type: this.values
+      }
+      if (this.values != "") {
+        params.type = this.values
+      }
+      list(params).then(res => {
+        console.log(res);
+        if (res.data.code == '0') {
+          this.market = res.data.data.list
+          this.market.sort((a, b) => new Date(a.createTime).getTime() - new
+            Date(b.createTime).getTime())
+        } else {
+          this.$message.error(res.data.msg);
+        }
+      }).catch((erro) => {
+        this.$message.error(erro.msg);
+      });
+    },
+    ruleclicks () {
+
+    },
+    gotodetali (item) {
+      //   console.log(123);
+      this.$router.push({
+        path: '/event/marketking/detali',
+        query: item
+      })
     }
   }
 }
@@ -153,7 +213,7 @@ export default {
 .grid-content {
   margin-top: 20px;
   width: 100%;
-  //   height: 400px;
+  height: 400px;
   //   background-color: pink;
   margin-bottom: 20px;
 

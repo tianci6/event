@@ -31,6 +31,8 @@ import marketking from '@/views/market/marketking/index'
 import detali from '@/views/market/marketking/detali'
 import Uplode from '@/views/market/marketking/Uplode'
 import Individual from '@/views/market/Individual/index'
+import homerulel from '@/views/marketrulel/index'
+import homerulelindex from '@/views/marketrulel/homerulelindex'
 
 //2.配置路由 注意：name
 const routes = [{
@@ -51,10 +53,26 @@ const routes = [{
   },
   {
     path: '/event/login',
-    name: 'login',
+    name: '/event/login',
     component: login,
 
   },
+  {
+    path: '/event/homerulel/index',
+    name: 'homerulel',
+    component: homerulel,
+    children: [
+      {
+        path: '/',
+        name: 'index',
+        component: homerulelindex,
+      },
+
+
+    ]
+
+  },
+
   {
     path: '/event/home',
     name: 'homes',

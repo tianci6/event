@@ -19,7 +19,7 @@
         </el-form-item>
 
         <el-form-item prop="imgUrl" label="商品图片">
-          <el-upload :headers="headers" class="upload-demo" drag action="/eventi/file/upload" multiple>
+          <el-upload action="/eventi/file/upload" :on-success="succes" :headers="headers" class="upload-demo" drag>
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -41,7 +41,7 @@ export default {
   data () {
     return {
       headers: {
-
+        Token: sessionStorage.getItem("token")
       },
       form: {
         name: "",
@@ -75,18 +75,20 @@ export default {
     }
   },
   methods: {
+    beforeupload (item) {
+      // action="/eventi/file/upload"
+
+    },
+    succes (file) {
+
+      this.form.imgUrl = "upload/" + file.file
+    },
     subclikc () {
       this.$refs.forms.validate((valid) => {
         if (valid) {
-          let params = {
-            username: this.form.name,
-            password: this.form.password
-          };
-          add(params).then(res => {
-            console.log(res);
+          add(this.form).then(res => {
             if (res.data.code == '0') {
-              this.$message.success("登录成功");
-              this.$router.push("/event/home")
+              this.$router.push("/event/marketking")
             } else {
               this.$message.error(res.data.msg);
             }
