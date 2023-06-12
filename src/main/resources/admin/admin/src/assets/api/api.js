@@ -72,11 +72,20 @@ export const selectMyCollect = (params) => {
 
 export const checkCollect = (params) => {
     return request({
-        url: `/eventi//userMaterial/checkCollect`,
+        url: `/eventi/userMaterial/checkCollect`,
         method: "get",
         params: params
     });
 };
+export const adds = (params) => {
+    return request({
+        url: `/eventi//materialEvaluate/add`,
+        method: "post",
+        data: params
+    });
+};
+
+
 
 
 

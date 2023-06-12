@@ -76,7 +76,8 @@ export default {
   },
   methods: {
     beforeupload (item) {
-      // action="/eventi/file/upload"
+
+
 
     },
     succes (file) {
