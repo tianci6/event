@@ -66,12 +66,12 @@ export default {
     height: 100%;
     margin-right: -17px;
     margin-bottom: -17px;
-    overflow: scroll;
-    overflow-x: hidden !important;
+    // overflow: scroll;
+    // overflow-x: hidden !important;
     padding-top: 80px;
     box-sizing: border-box;
-    padding-left: 20px;
-    padding-right: 20px;
+    // padding-left: 20px;
+    // padding-right: 20px;
     // padding-top: 20px;
     &:focus {
       outline: none;

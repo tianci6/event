@@ -146,6 +146,8 @@ export default {
         // console.log(res);
         if (res.data.code == '0') {
           this.ptableData = res.data.data.list
+          this.ptableData.sort((a, b) => new Date(a.createTime).getTime() - new
+            Date(b.createTime).getTime())
         } else {
           this.$message.error(res.data.msg);
         }
