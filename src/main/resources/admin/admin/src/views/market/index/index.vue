@@ -1,10 +1,18 @@
 <template>
   <div class="markethome">
-    <div class="home-bgc">
-      <p class="font-one">INPROEAST</p>
+    <div>
+      <div class="home-bgc">
+        <el-carousel indicator-position="outside">
+          <el-carousel-item v-for="(item,index) in list" :key="index">
+            <img class="img" :src="$base.url+ item.value" alt="">
+            <!-- <h3>{{  }}</h3> -->
+          </el-carousel-item>
+        </el-carousel>
+        <!-- <p class="font-one">INPROEAST</p>
       <p class="font-twp">Community Support System</p>
       <div>
         <p class="buttom">Learn more</p>
+      </div> -->
       </div>
     </div>
     <div>
@@ -19,14 +27,41 @@
         <div @click="gotomarkte('B')" class="conter-box conter-boxss">
           <p>promotio</p>
         </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  config
+} from "@/assets/api/api.js";
 export default {
+
+  data () {
+    return {
+      list: []
+    }
+  },
+  mounted () {
+    this.getlist()
+  },
   methods: {
+    getlist () {
+
+      let params = {
+      }
+      config(params).then(res => {
+        if (res.data.code == '0') {
+          this.list = res.data.data.list
+        } else {
+          this.$message.error(res.data.msg);
+        }
+      }).catch((erro) => {
+
+      });
+    },
     gotomarkte (value) {
       this.$router.push({
         path: "/event/marketking",
@@ -43,11 +78,11 @@ export default {
     // margin-top: 20px;
     width: 100%;
     height: 400px;
-    background-image: url(https://www.inproeast.com/wp-content/uploads/2023/04/untitled.png);
+    // background-image: url(https://www.inproeast.com/wp-content/uploads/2023/04/untitled.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 30px;
+    // padding: 30px;
     text-align: center;
     .font-one {
       color: #d5a97a;
@@ -123,5 +158,9 @@ export default {
       margin-right: 0px;
     }
   }
+}
+img {
+  width: 100%;
+  height: 100%;
 }
 </style>

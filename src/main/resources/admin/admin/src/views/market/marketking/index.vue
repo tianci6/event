@@ -51,7 +51,7 @@ import {
 export default {
   data () {
     return {
-      url: "https://d.mousenat.cn/eventi/",
+      url: "http://192.168.31.92:8080/",
       form: {},
       market: [
         // {

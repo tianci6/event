@@ -41,6 +41,9 @@ import JsonExcel from 'vue-json-excel'
 import printJS from 'print-js'
 //MD5
 import md5 from 'js-md5';
+import moment from 'moment';
+
+Vue.prototype.$moment = moment;
 
 // 后台地图
 Vue.use(VueAMap)

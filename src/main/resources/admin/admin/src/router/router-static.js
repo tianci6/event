@@ -1,6 +1,7 @@
 import Vue from 'vue';
 //配置路由
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter);
 //1.创建组件
 import Index from '@/views/index'
@@ -33,8 +34,13 @@ import Uplode from '@/views/market/marketking/Uplode'
 import Individual from '@/views/market/Individual/index'
 import homerulel from '@/views/marketrulel/index'
 import homerulelindex from '@/views/marketrulel/homerulelindex'
+import comment from '@/views/marketrulel/comment'
 
 //2.配置路由 注意：name
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch((err) => err);
+};
 const routes = [{
   path: '/index',
   name: 'Home',
@@ -58,7 +64,7 @@ const routes = [{
 
   },
   {
-    path: '/event/homerulel/index',
+    path: '/event/homerulel/',
     name: 'homerulel',
     component: homerulel,
     children: [
@@ -67,7 +73,16 @@ const routes = [{
         name: 'index',
         component: homerulelindex,
       },
-
+      {
+        path: '/event/homerulel/comment',
+        name: 'comment',
+        component: comment,
+      },
+      {
+        path: '/event/homerulel/config',
+        name: 'system',
+        component: config
+      }
 
     ]
 

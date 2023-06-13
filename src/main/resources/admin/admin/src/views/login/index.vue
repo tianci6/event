@@ -112,11 +112,16 @@ export default {
             password: this.form.password
           };
           login(params).then(res => {
-            console.log(res);
+
             if (res.data.code == '0') {
-              sessionStorage.setItem("token", res.data.token)
+              this.$storage.set("Token", res.data.token);
+              // sessionStorage.setItem("token", res.data.token)
               this.$message.success("登录成功");
-              this.$router.push("/event/home")
+              if (this.$route.query.source == "1") {
+                this.$router.push("/event/homerulel")
+              } else {
+                this.$router.push("/event/home")
+              }
             } else {
               this.$message.error(res.data.msg);
             }

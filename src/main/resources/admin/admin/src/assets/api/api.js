@@ -79,11 +79,52 @@ export const checkCollect = (params) => {
 };
 export const adds = (params) => {
     return request({
-        url: `/eventi//materialEvaluate/add`,
+        url: `/eventi/materialEvaluate/add`,
         method: "post",
         data: params
     });
 };
+export const page = (params) => {
+    return request({
+        url: `/eventi/materialEvaluate/page`,
+        method: "get",
+        params: params
+    });
+};
+export const userMaterial = (params) => {
+    return request({
+        url: `/eventi/userMaterial/page`,
+        method: "get",
+        params: params
+    });
+};
+export const ddusers = (params) => {
+    return request({
+        url: `/eventi/users/page`,
+        method: "get",
+        params: params
+    });
+};
+export const deletes = (params) => {
+    return request({
+        url: `/eventi/users/delete`,
+        method: "post",
+        data: params
+    });
+};
+export const config = (params) => {
+    return request({
+        url: `/eventi/config/page`,
+        method: "post",
+        data: params
+    });
+};
+
+
+
+
+
+
 
 
 

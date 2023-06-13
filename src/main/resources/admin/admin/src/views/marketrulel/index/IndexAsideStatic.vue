@@ -1,7 +1,15 @@
 <template>
   <el-aside class="index-aside" width="200px">
     <div class="index-aside-inner menulist">
-      <p>123</p>
+      <div class="menulist-item">
+        <el-menu :mode="2 == 1? 'horizontal':'vertical'" :unique-opened="true" class="el-menu-demo" default-active="0">
+          <el-menu-item index="1" @click="menuHandler('/event/homerulel/')">用户管理</el-menu-item>
+          <el-menu-item index="0" @click="menuHandler('/event/homerulel/config')">轮播图管理</el-menu-item>
+
+          <el-menu-item index="2" @click="menuHandler('/event/homerulel/comment')">商品管理</el-menu-item>
+
+        </el-menu>
+      </div>
     </div>
   </el-aside>
 </template>
@@ -11,9 +19,19 @@ import menu from '@/utils/menu'
 export default {
   data () {
     return {
+      menuList: [
 
+      ]
     }
   },
+  methods: {
+    menuHandler (value) {
+      this.$router.push(value)
+    },
+    gotopingjia () {
+      this.$router.push("/event/homerulel/comment")
+    }
+  }
 
 
 
@@ -43,6 +61,8 @@ export default {
   }
 
   .index-aside-inner {
+    margin-top: 20px;
+    width: 100%;
     height: 100%;
     margin-right: -17px;
     margin-bottom: -17px;
@@ -50,7 +70,9 @@ export default {
     overflow-x: hidden !important;
     padding-top: 80px;
     box-sizing: border-box;
-
+    padding-left: 20px;
+    padding-right: 20px;
+    // padding-top: 20px;
     &:focus {
       outline: none;
     }
@@ -289,5 +311,19 @@ export default {
   background-color: rgba(194, 161, 49, 1) !important;
   box-shadow: 0 0 6px rgba(30, 144, 255, 0);
   text-align: center;
+}
+</style>
+<style lang="scss" scoped>
+/deep/.el-submenu__title {
+  height: 100%;
+  padding: 0 10px;
+  margin: 0 0 10px 0;
+  color: black;
+  font-size: 14px;
+  border-radius: 40px 40px 0 40px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #c2a131 !important;
+  background-color: #eeddc5 !important;
 }
 </style>

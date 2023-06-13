@@ -31,6 +31,10 @@ export default {
         {
           name: "Individual center",
           path: "/event/Individual"
+        },
+        {
+          name: "background",
+          path: "/event/login?source=1"
         }
 
       ]

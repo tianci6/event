@@ -19,8 +19,8 @@
       <div class="title-name" :style="{color:heads.headFontColor,fontSize:heads.headFontSize}">{{this.$project.projectName}}</div>
     </div>
     <div class="right-menu">
-      <div class="user-info" :style="{color:heads.headUserInfoFontColor,fontSize:heads.headUserInfoFontSize}">{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
-      <div v-if="this.$storage.get('role')!='administered'" class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onIndexTap">退出到前台</div>
+      <!-- <div class="user-info" :style="{color:heads.headUserInfoFontColor,fontSize:heads.headUserInfoFontSize}">{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
+      <div v-if="this.$storage.get('role')!='administered'" class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onIndexTap">退出到前台</div> -->
       <div class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onLogout">LogOut</div>
     </div>
   </div>
@@ -47,9 +47,7 @@ export default {
       let storage = this.$storage
       let router = this.$router
       storage.clear()
-      router.replace({
-        name: "login"
-      });
+      router.replace("/event/login?source=1");
     },
     onIndexTap () {
       window.location.href = `${this.$base.indexUrl}`
