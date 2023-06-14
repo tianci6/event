@@ -36,12 +36,12 @@ import {
   upload,
   add
 } from "@/assets/api/api.js";
-
+import storage from '@/utils/storage'
 export default {
   data () {
     return {
       headers: {
-        Token: sessionStorage.getItem("token")
+        Token: storage.get('Token')
       },
       form: {
         name: "",

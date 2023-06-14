@@ -77,6 +77,13 @@
         <el-button @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog title="提示" :visible.sync="deldialogVisible" width="30%" :before-close="handleClose">
+      <span>确定进行[删除]操作?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button @click="save">确 定</el-button>
+      </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -85,11 +92,14 @@
 import {
   list,
   page,
-  userMaterial
+  userMaterial,
+  deletes,
+  materialdel
 } from "@/assets/api/api.js";
 export default {
   data () {
     return {
+      deldialogVisible: false,
       cangtableData: [],
       ptableData: [],
       url: "http://192.168.31.92:8080/",
@@ -110,7 +120,32 @@ export default {
 
   },
   methods: {
-    del () { },
+    save () {
+
+      let params = []
+      // materialId: this.materialId
+      params.push(this.materialId)
+
+      materialdel(params).then(res => {
+        // console.log(res);
+        if (res.data.code == '0') {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          });
+          this.deldialogVisible = false
+          this.getlist()
+        } else {
+          this.$message.error(res.data.msg);
+        }
+      }).catch((erro) => {
+        this.$message.error(erro.msg);
+      });
+    },
+    del (item, value) {
+      this.materialId = item.id
+      this.deldialogVisible = true
+    },
     dalogshow (item, value) {
       if (value) {
         this.title = "评论记录"

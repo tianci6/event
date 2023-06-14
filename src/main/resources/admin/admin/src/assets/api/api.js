@@ -112,6 +112,14 @@ export const deletes = (params) => {
         data: params
     });
 };
+export const materialdel = (params) => {
+    return request({
+        url: `/eventi/material/delete
+        `,
+        method: "post",
+        data: params
+    });
+};
 export const config = (params) => {
     return request({
         url: `/eventi/config/page`,
@@ -119,6 +127,9 @@ export const config = (params) => {
         data: params
     });
 };
+
+
+
 
 
 
