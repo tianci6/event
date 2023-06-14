@@ -6,6 +6,7 @@
     <resultMap type="com.entity.UserMaterialEntity" id="materialMap">
         <result column="user_id" property="userId" />
         <result column="material_id" property="materialId" />
+        <result column="username" property="username" />
     </resultMap>
 
     <select id="selectListVO" resultType="com.entity.UserMaterialEntity">
@@ -24,9 +25,10 @@
         </where>
     </select>
 
-    <select id="selectListView" resultType="com.entity.UserMaterialEntity">
-        SELECT *
-        FROM b_user_material
+    <select id="selectListView" resultMap="materialMap">
+        SELECT m.*, u.username
+        FROM b_user_material m
+        left join users u on (m.user_id = u.id)
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>

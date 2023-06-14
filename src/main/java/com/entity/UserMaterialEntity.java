@@ -44,5 +44,8 @@ public class UserMaterialEntity implements Serializable {
     private Long materialId;
 
 
+    private String username;
+
+
     public UserMaterialEntity() {}
 }

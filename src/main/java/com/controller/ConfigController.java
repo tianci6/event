@@ -28,20 +28,21 @@ import com.utils.ValidatorUtils;
 @RequestMapping("config")
 @RestController
 public class ConfigController{
-	
+
 	@Autowired
 	private ConfigService configService;
 
 	/**
      * 列表
      */
+    @IgnoreAuth
     @RequestMapping("/page")
     public R page(@RequestParam Map<String, Object> params,ConfigEntity config){
         EntityWrapper<ConfigEntity> ew = new EntityWrapper<ConfigEntity>();
     	PageUtils page = configService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, config), params), params));
         return R.ok().put("data", page);
     }
-    
+
 	/**
      * 列表
      */
@@ -61,7 +62,7 @@ public class ConfigController{
         ConfigEntity config = configService.selectById(id);
         return R.ok().put("data", config);
     }
-    
+
     /**
      * 详情
      */
@@ -71,7 +72,7 @@ public class ConfigController{
         ConfigEntity config = configService.selectById(id);
         return R.ok().put("data", config);
     }
-    
+
     /**
      * 根据name获取信息
      */
@@ -80,7 +81,7 @@ public class ConfigController{
         ConfigEntity config = configService.selectOne(new EntityWrapper<ConfigEntity>().eq("name", "faceFile"));
         return R.ok().put("data", config);
     }
-    
+
     /**
      * 保存
      */

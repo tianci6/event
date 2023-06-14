@@ -1,141 +1,150 @@
 <template>
   <div class="login">
-    <div class="login-bgc">
-
-    </div>
+    <div class="login-bgc"></div>
     <div class="login-form">
       <p class="title">公共场所不建议自动登录，以防账号丢失</p>
-      <el-form v-if="loginshow" :rules="rules" ref="ruleForm" :model="form" label-width="0px">
-        <div style="padding-left:40px;padding-right:40px;padding-top:20px">
+      <el-form
+        v-if="loginshow"
+        :rules="rules"
+        ref="ruleForm"
+        :model="form"
+        label-width="0px"
+      >
+        <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
             <el-input placeholder="请输入账号" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" placeholder="请输入密码" v-model="form.password"></el-input>
+            <el-input
+              type="password"
+              placeholder="请输入密码"
+              v-model="form.password"
+            ></el-input>
           </el-form-item>
           <p @click="loginsave" class="button">登录</p>
           <p @click="reset" class="zhuce">注册resident</p>
         </div>
-
       </el-form>
-      <el-form v-else :rules="rules" ref="ruleForms" :model="form" label-width="0px">
-        <div style="padding-left:40px;padding-right:40px;padding-top:20px">
+      <el-form
+        v-else
+        :rules="rules"
+        ref="ruleForms"
+        :model="form"
+        label-width="0px"
+      >
+        <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
             <el-input placeholder="请输入账号" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" placeholder="请输入密码" v-model="form.password"></el-input>
+            <el-input
+              type="password"
+              placeholder="请输入密码"
+              v-model="form.password"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="passwords">
-            <el-input placeholder="请输入再次确认密码" v-model="form.passwords"></el-input>
+            <el-input
+              type="password"
+              placeholder="请输入再次确认密码"
+              v-model="form.passwords"
+            ></el-input>
           </el-form-item>
           <p @click="zhuce" class="button">注册</p>
           <p @click="logins" class="zhuce">已有账号登录</p>
         </div>
-
       </el-form>
-
     </div>
   </div>
 </template>
 
 <script>
-import {
-  login,
-  register
-} from "@/assets/api/api.js";
+import { login, register } from "@/assets/api/api.js";
 export default {
-  data () {
+  data() {
     return {
       form: {
         name: "",
         password: "",
-        passwords: ""
+        passwords: "",
       },
       loginshow: true,
       rules: {
-        name: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-
-        ],
+        name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         passwords: [
-          { required: true, message: '请输入再次确认密码', trigger: 'blur' },
-
+          { required: true, message: "请输入再次确认密码", trigger: "blur" },
         ],
-
-      }
-
-    }
+      },
+    };
   },
   methods: {
-    logins () {
-      this.loginshow = true
+    logins() {
+      this.loginshow = true;
       this.$refs.ruleForms.resetFields();
     },
-    reset () {
-      this.loginshow = false
+    reset() {
+      this.loginshow = false;
       this.$refs.ruleForm.resetFields();
     },
-    zhuce () {
+    zhuce() {
       this.$refs.ruleForms.validate((valid) => {
         if (valid) {
           let params = {
             username: this.form.name,
-            password: this.form.password
+            password: this.form.password,
           };
-          register(params).then(res => {
-            // console.log(res);
-            if (res.data.code == '0') {
-              this.loginshow = true
-              this.$refs.ruleForm.resetFields();
-            } else {
-              this.$message.error(res.data.msg);
-            }
-          }).catch((erro) => {
-            this.$message.error(erro.msg);
-          });
+          register(params)
+            .then((res) => {
+              if (res.data.code == 0) {
+                this.loginshow = true;
+                this.$refs.ruleForms.resetFields();
+                this.$message.success("注册成功");
+              } else {
+                this.$message.error(res.data.msg);
+              }
+            })
+            .catch((erro) => {
+              this.$message.error(erro.msg);
+            });
         } else {
-          console.log('error submit!!');
+          console.log("error submit!!");
           return false;
         }
       });
     },
-    loginsave () {
+    loginsave() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           let params = {
             username: this.form.name,
-            password: this.form.password
+            password: this.form.password,
           };
-          login(params).then(res => {
-
-            if (res.data.code == '0') {
-              this.$storage.set("Token", res.data.token);
-              // sessionStorage.setItem("token", res.data.token)
-              this.$message.success("登录成功");
-              if (this.$route.query.source == "1") {
-                this.$router.push("/event/homerulel")
+          login(params)
+            .then((res) => {
+              if (res.data.code == "0") {
+                this.$storage.set("Token", res.data.token);
+                // sessionStorage.setItem("token", res.data.token)
+                this.$message.success("登录成功");
+                if (this.$route.query.source == "1") {
+                  this.$router.push("/event/homerulel");
+                } else {
+                  this.$router.push("/event/home");
+                }
               } else {
-                this.$router.push("/event/home")
+                this.$message.error(res.data.msg);
               }
-            } else {
-              this.$message.error(res.data.msg);
-            }
-          }).catch((erro) => {
-            this.$message.error(erro.msg);
-          });
+            })
+            .catch((erro) => {
+              this.$message.error(erro.msg);
+            });
         } else {
-
           return false;
         }
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
