@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>注册</title>
+		<title>register</title>
 		<!-- bootstrap样式，地图插件使用 -->
 		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../layui/css/layui.css">
@@ -137,29 +137,29 @@
 						</div>
 					</div>
                     <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">图片：</label>
+						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">photo：</label>
 						<div class="layui-input-block">
 							<div v-if="detail.tupian" style="display:inline-block;margin-right:10px;">
 								<img id="tupianImg" style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;" :src="baseurl+detail.tupian.split(',')[0]">
 								<input type="hidden" :value="detail.tupian" id="tupian" name="tupian" />
 							</div>
 							<button v-if="!ro.tupian" :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="button" class="layui-btn btn-theme" id="tupianUpload">
-								<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>上传图片
+								<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>upload photo
 							</button>
 						</div>
 					</div>
 
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">内容：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">content：</label>
 						<div class="layui-input-block">
-							<textarea name="neirong" id="neirong">请输入内容</textarea>
+							<textarea name="neirong" id="neirong">input content</textarea>
 						</div>
 					</div>
 
 					<div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item">
 						<div class="layui-input-block" style="text-align: right;">
-							<button  :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit" lay-submit lay-filter="*">提交</button>
-							<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button  :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit" lay-submit lay-filter="*">submit</button>
+							<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="reset" class="layui-btn layui-btn-primary">reset</button>
 						</div>
 					</div>
 				</form>
@@ -461,7 +461,7 @@
 
 						// 提交数据
 						http.requestJson('shequgonggao' + '/add', 'post', data, function(res) {
-							layer.msg('提交成功', {
+							layer.msg('submit successful', {
 								time: 2000,
 								icon: 6
 							}, function() {
@@ -474,7 +474,7 @@
                 // 跨表计算
 				// 提交数据
 				http.requestJson('shequgonggao' + '/add', 'post', data, function(res) {
-					layer.msg('提交成功', {
+					layer.msg('submit successful', {
 						time: 2000,
 						icon: 6
 					}, function() {

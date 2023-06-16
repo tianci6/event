@@ -29,16 +29,16 @@ var swiper = {
  * 个人中心菜单
  */
 var centerMenu = [{
-	name: '个人中心',
+	name: 'individual center',
 	url: '../' + localStorage.getItem('userTable') + '/center.html'
 }, 
 {
-	name: '我的发布',
+	name: 'my post',
 	url: '../forum/list-my.html'
 },
 
 {
-        name: '我的收藏',
+        name: 'my collection',
         url: '../storeup/list.html'
 }
 ]

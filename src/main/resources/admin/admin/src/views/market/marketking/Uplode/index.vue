@@ -25,7 +25,7 @@
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
           </el-upload>
         </el-form-item>
-        <p @click="subclikc" class="sub">提交</p>
+        <p @click="subclikc" class="sub">submit</p>
       </el-form>
     </div>
   </div>

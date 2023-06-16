@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>个人中心</title>
+		<title>individual center</title>
 		<link rel="stylesheet" href="../../layui/css/layui.css">
 		<!-- 样式 -->
 		<link rel="stylesheet" href="../../css/style.css" />
@@ -213,15 +213,15 @@
 						<!-- 主键 -->
 						<input type="hidden" name="id" id="id" />
                         <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
-							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">居民号</label>
+							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">ID</label>
 							<div class="layui-input-block input">
-								<input type="text" readonly="readonly" name="juminhao" id="juminhao" placeholder="居民号" autocomplete="off" class="layui-input">
+								<input type="text" readonly="readonly" name="juminhao" id="juminhao" placeholder="ID" autocomplete="off" class="layui-input">
 							</div>
 						</div>
                         <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
-							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">密码</label>
+							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">password</label>
 							<div class="layui-input-block input">
-								<input type="password" name="mima" id="mima" placeholder="密码" autocomplete="off" class="layui-input">
+								<input type="password" name="mima" id="mima" placeholder="password" autocomplete="off" class="layui-input">
 							</div>
 						</div>
                         <div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
@@ -234,7 +234,7 @@
 							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Gender</label>
 							<div class="layui-input-block select">
 								<select name="xingbie" id="xingbie" >
-									<option value="">请选择</option>
+									<option value="">please choose</option>
 									<option v-for="(item,index) in xingbie" v-bind:key="index" :value="item">{{item}}</option>
 								</select>
 							</div>
@@ -253,10 +253,10 @@
 							</div>
 						</div>
 						<div class="layui-form-item"  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
-							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' style="opacity: 0;" class="layui-form-label">图片</label>
+							<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' style="opacity: 0;" class="layui-form-label">photo</label>
 							<div class="layui-input-block">
 								<button :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="button" class="layui-btn btn-theme" id="juminzhaopianUpload">
-									<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>上传图片
+									<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>upload photo
 								</button>
 							</div>
 						</div>
@@ -287,7 +287,7 @@
 
 						<div class="layui-form-item">
 							<div class="layui-input-block" style="display: flex;flex-wrap:wrap;">
-								<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"10px auto 0","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit btn-theme" lay-submit lay-filter="*">更新信息</button>
+								<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"10px auto 0","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit btn-theme" lay-submit lay-filter="*">update</button>
                 <button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"10px auto","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"8px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' @click="logout" class="layui-btn btn-submit">LogOut</button>
 							</div>
 						</div>
@@ -449,7 +449,7 @@
 					}
 				});
 
-				vue.xingbie = '男,女'.split(',')
+				vue.xingbie = 'male,female'.split(',')
 				// 上传图片
 				var juminzhaopianUpload = upload.render({
 					//绑定元素

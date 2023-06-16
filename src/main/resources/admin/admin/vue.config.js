@@ -13,8 +13,8 @@ function publicPath () {
 }
 // vue.config.js
 module.exports = {
-    // publicPath:"././",
-    publicPath: publicPath(),
+    publicPath:"././",
+    //publicPath: publicPath(),
     // 国际化配置 使用其它语言，默认情况下中文语言包依旧是被引入的
     configureWebpack: {
         // plugins: [
@@ -34,11 +34,11 @@ module.exports = {
         https: false, // 是否开启https模式
         proxy: { // 请求代理服务器
             '/': { //带上api前缀的
-                target: 'https://d.mousenat.cn', //代理目标地址
+                target: 'http://localhost:8080/eventi/', //代理目标地址
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: { // 在发出请求后将/api替换为''空值，这样不影响接口请求
-                    '^/': ''
+                    '^/eventi': ''
                 }
             }
         }

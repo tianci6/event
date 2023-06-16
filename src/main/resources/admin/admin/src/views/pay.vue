@@ -46,7 +46,7 @@
     </div>
     <div class="buton-content">
       <el-button @click="submitTap" type="primary">确认支付</el-button>
-      <el-button @click="back()">返回</el-button>
+      <el-button @click="back()">return</el-button>
     </div>
   </div>
 </template>

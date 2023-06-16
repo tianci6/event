@@ -5617,7 +5617,7 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "objects"
   },
   ballot_box: {
-    keywords: [ "election", "vote" ],
+    keywords: [ "election", "Vote" ],
     "char": "\ud83d\uddf3",
     fitzpatrick_scale: false,
     category: "objects"
@@ -6505,7 +6505,7 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "symbols"
   },
   white_check_mark: {
-    keywords: [ "green-square", "ok", "agree", "vote", "election", "answer", "tick" ],
+    keywords: [ "green-square", "ok", "agree", "Vote", "election", "answer", "tick" ],
     "char": "\u2705",
     fitzpatrick_scale: false,
     category: "symbols"
@@ -7123,7 +7123,7 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "symbols"
   },
   ballot_box_with_check: {
-    keywords: [ "ok", "agree", "confirm", "black-square", "vote", "election", "yes", "tick" ],
+    keywords: [ "ok", "agree", "confirm", "black-square", "Vote", "election", "yes", "tick" ],
     "char": "\u2611\ufe0f",
     fitzpatrick_scale: false,
     category: "symbols"

@@ -154,7 +154,7 @@
       </el-row>
           <el-row>
             <el-col :span="24">
-              <el-form-item v-if="type!='info'"  label="活动内容" prop="huodongneirong">
+              <el-form-item v-if="type!='info'"  label="content" prop="huodongneirong">
                 <editor 
                     style="min-width: 200px; max-width: 600px;"
                     v-model="ruleForm.huodongneirong" 
@@ -163,16 +163,16 @@
                 </editor>
               </el-form-item>
               <div v-else>
-                <el-form-item v-if="ruleForm.huodongneirong" label="活动内容" prop="huodongneirong">
+                <el-form-item v-if="ruleForm.huodongneirong" label="content" prop="huodongneirong">
                     <span v-html="ruleForm.huodongneirong"></span>
                 </el-form-item>
               </div>
             </el-col>
           </el-row>
       <el-form-item class="btn">
-        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
+        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">submit</el-button>
         <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
-        <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
+        <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
     </el-form>
     
@@ -460,7 +460,7 @@ export default {
     },
 
 
-    // 提交
+    // submit
     onSubmit() {
 
 

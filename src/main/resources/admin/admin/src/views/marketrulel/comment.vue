@@ -43,11 +43,11 @@
       <el-table-column fixed="right" prop="address" label="操作" width="180">
         <template slot-scope="scope">
           <el-button @click="dalogshow(scope.row,true)" type="success" icon="el-icon-tickets" size="mini">
-            评论记录</el-button>
+            Comment record</el-button>
           <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
-            收藏记录</el-button>
+            Collection record</el-button>
           <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
-            删除</el-button>
+            deleted</el-button>
         </template>
       </el-table-column>
 
@@ -57,12 +57,12 @@
       </el-pagination>
     </div>
     <el-dialog :title="title" :visible.sync="dialogVisible" width="60%" :before-close="handleClose">
-      <el-table v-if="title=='评论记录'" :data="ptableData" style="width: 100%">
-        <el-table-column prop="username" label="评论用户" width="180">
+      <el-table v-if="title=='Comment record'" :data="ptableData" style="width: 100%">
+        <el-table-column prop="username" label="comment user" width="180">
         </el-table-column>
-        <el-table-column :show-overflow-tooltip="true" prop="content" label="评论内容">
+        <el-table-column :show-overflow-tooltip="true" prop="content" label="comment">
         </el-table-column>
-        <el-table-column prop="createTime" label="评论时间">
+        <el-table-column prop="createTime" label="comment time">
         </el-table-column>
 
       </el-table>
@@ -109,7 +109,7 @@ export default {
       total: 0,
       page: 1,
       limit: 10,
-      title: "评论记录",
+      title: "Comment record",
       dialogVisible: false,
       materialId: ""
     }
@@ -148,10 +148,10 @@ export default {
     },
     dalogshow (item, value) {
       if (value) {
-        this.title = "评论记录"
+        this.title = "Comment record"
         this.getplist()
       } else {
-        this.title = "收藏记录"
+        this.title = "Collection record"
         this.materialId = item.id
         this.getcanglist()
       }

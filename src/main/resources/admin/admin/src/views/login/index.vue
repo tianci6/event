@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-bgc"></div>
     <div class="login-form">
-      <p class="title">公共场所不建议自动登录，以防账号丢失</p>
+      <p class="title">Please protect your privacy</p>
       <el-form
         v-if="loginshow"
         :rules="rules"
@@ -12,17 +12,17 @@
       >
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
-            <el-input placeholder="请输入账号" v-model="form.name"></el-input>
+            <el-input placeholder="input username" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input
               type="password"
-              placeholder="请输入密码"
+              placeholder="input password"
               v-model="form.password"
             ></el-input>
           </el-form-item>
           <p @click="loginsave" class="button">登录</p>
-          <p @click="reset" class="zhuce">注册resident</p>
+          <p @click="reset" class="zhuce">registerresident</p>
         </div>
       </el-form>
       <el-form
@@ -34,12 +34,12 @@
       >
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
-            <el-input placeholder="请输入账号" v-model="form.name"></el-input>
+            <el-input placeholder="input username" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input
               type="password"
-              placeholder="请输入密码"
+              placeholder="input password"
               v-model="form.password"
             ></el-input>
           </el-form-item>
@@ -50,7 +50,7 @@
               v-model="form.passwords"
             ></el-input>
           </el-form-item>
-          <p @click="zhuce" class="button">注册</p>
+          <p @click="zhuce" class="button">register</p>
           <p @click="logins" class="zhuce">已有账号登录</p>
         </div>
       </el-form>
@@ -71,7 +71,7 @@ export default {
       loginshow: true,
       rules: {
         name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        password: [{ required: true, message: "input password", trigger: "blur" }],
         passwords: [
           { required: true, message: "请输入再次确认密码", trigger: "blur" },
         ],

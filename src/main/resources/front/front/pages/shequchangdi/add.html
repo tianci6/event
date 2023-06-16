@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>注册</title>
+		<title>register</title>
 		<!-- bootstrap样式，地图插件使用 -->
 		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../layui/css/layui.css">
@@ -119,65 +119,65 @@
 				<form class="layui-form layui-form-pane add" lay-filter="myForm">
 					
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">场地名称：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">Name：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.changdimingcheng" type="text" :readonly="ro.changdimingcheng" name="changdimingcheng" id="changdimingcheng" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">场地设施：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">facility：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.changdisheshi" type="text" :readonly="ro.changdisheshi" name="changdisheshi" id="changdisheshi" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">场地图片：</label>
+						<label :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">photo：</label>
 						<div class="layui-input-block">
 							<div v-if="detail.changditupian" style="display:inline-block;margin-right:10px;">
 								<img id="changditupianImg" style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;" :src="baseurl+detail.changditupian.split(',')[0]">
 								<input type="hidden" :value="detail.changditupian" id="changditupian" name="changditupian" />
 							</div>
 							<button v-if="!ro.changditupian" :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="button" class="layui-btn btn-theme" id="changditupianUpload">
-								<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>上传场地图片
+								<i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}' class="layui-icon">&#xe67c;</i>upload photo
 							</button>
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">场地区域：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">area：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.changdiquyu" type="text" :readonly="ro.changdiquyu" name="changdiquyu" id="changdiquyu" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">场地安排：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">arrange：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.changdianpai" type="text" :readonly="ro.changdianpai" name="changdianpai" id="changdianpai" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">联系电话：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">contact：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.lianxidianhua" type="text" :readonly="ro.lianxidianhua" name="lianxidianhua" id="lianxidianhua" autocomplete="off" class="layui-input">
 						</div>
 					</div>
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">使用时间：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">use time：</label>
 						<div class="layui-input-block">
 							<input :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}' v-model="detail.shiyongshijian" type="text" :readonly="ro.shiyongshijian" name="shiyongshijian" id="shiyongshijian" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 
                     <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
-						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">场地详情：</label>
+						<label  :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}' class="layui-form-label">detail：</label>
 						<div class="layui-input-block">
-							<textarea name="changdixiangqing" id="changdixiangqing">请输入场地详情</textarea>
+							<textarea name="changdixiangqing" id="changdixiangqing">please input detail</textarea>
 						</div>
 					</div>
 
 					<div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item">
 						<div class="layui-input-block" style="text-align: right;">
-							<button  :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit" lay-submit lay-filter="*">提交</button>
-							<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button  :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' class="layui-btn btn-submit" lay-submit lay-filter="*">submit</button>
+							<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="reset" class="layui-btn layui-btn-primary">reset</button>
 						</div>
 					</div>
 				</form>
@@ -550,7 +550,7 @@
 
 						// 提交数据
 						http.requestJson('shequchangdi' + '/add', 'post', data, function(res) {
-							layer.msg('提交成功', {
+							layer.msg('submit successful', {
 								time: 2000,
 								icon: 6
 							}, function() {
@@ -563,7 +563,7 @@
                 // 跨表计算
 				// 提交数据
 				http.requestJson('shequchangdi' + '/add', 'post', data, function(res) {
-					layer.msg('提交成功', {
+					layer.msg('submit successful', {
 						time: 2000,
 						icon: 6
 					}, function() {

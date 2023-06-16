@@ -11,33 +11,33 @@
 
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="场地名称" prop="changdimingcheng">
+        <el-form-item class="input" v-if="type!='info'"  label="Name" prop="changdimingcheng">
           <el-input v-model="ruleForm.changdimingcheng" 
-              placeholder="场地名称" clearable  :readonly="ro.changdimingcheng"></el-input>
+              placeholder="Name" clearable  :readonly="ro.changdimingcheng"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="场地名称" prop="changdimingcheng">
+          <el-form-item class="input" label="Name" prop="changdimingcheng">
               <el-input v-model="ruleForm.changdimingcheng" 
-                placeholder="场地名称" readonly></el-input>
+                placeholder="Name" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="场地设施" prop="changdisheshi">
+        <el-form-item class="input" v-if="type!='info'"  label="facility" prop="changdisheshi">
           <el-input v-model="ruleForm.changdisheshi" 
-              placeholder="场地设施" clearable  :readonly="ro.changdisheshi"></el-input>
+              placeholder="facility" clearable  :readonly="ro.changdisheshi"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="场地设施" prop="changdisheshi">
+          <el-form-item class="input" label="facility" prop="changdisheshi">
               <el-input v-model="ruleForm.changdisheshi" 
-                placeholder="场地设施" readonly></el-input>
+                placeholder="facility" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="24">  
-        <el-form-item class="upload" v-if="type!='info' && !ro.changditupian" label="场地图片" prop="changditupian">
+        <el-form-item class="upload" v-if="type!='info' && !ro.changditupian" label="photo" prop="changditupian">
           <file-upload
-          tip="点击上传场地图片"
+          tip="upload photo"
           action="file/upload"
           :limit="3"
           :multiple="true"
@@ -46,32 +46,32 @@
           ></file-upload>
         </el-form-item>
         <div v-else>
-          <el-form-item v-if="ruleForm.changditupian" label="场地图片" prop="changditupian">
+          <el-form-item v-if="ruleForm.changditupian" label="photo" prop="changditupian">
             <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.changditupian.split(',')" :src="$base.url+item" width="100" height="100">
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="场地区域" prop="changdiquyu">
+        <el-form-item class="input" v-if="type!='info'"  label="area" prop="changdiquyu">
           <el-input v-model="ruleForm.changdiquyu" 
-              placeholder="场地区域" clearable  :readonly="ro.changdiquyu"></el-input>
+              placeholder="area" clearable  :readonly="ro.changdiquyu"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="场地区域" prop="changdiquyu">
+          <el-form-item class="input" label="area" prop="changdiquyu">
               <el-input v-model="ruleForm.changdiquyu" 
-                placeholder="场地区域" readonly></el-input>
+                placeholder="area" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="场地安排" prop="changdianpai">
+        <el-form-item class="input" v-if="type!='info'"  label="arrange" prop="changdianpai">
           <el-input v-model="ruleForm.changdianpai" 
-              placeholder="场地安排" clearable  :readonly="ro.changdianpai"></el-input>
+              placeholder="arrange" clearable  :readonly="ro.changdianpai"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="场地安排" prop="changdianpai">
+          <el-form-item class="input" label="arrange" prop="changdianpai">
               <el-input v-model="ruleForm.changdianpai" 
-                placeholder="场地安排" readonly></el-input>
+                placeholder="arrange" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -88,21 +88,21 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="使用时间" prop="shiyongshijian">
+        <el-form-item class="input" v-if="type!='info'"  label="usetime" prop="shiyongshijian">
           <el-input v-model="ruleForm.shiyongshijian" 
-              placeholder="使用时间" clearable  :readonly="ro.shiyongshijian"></el-input>
+              placeholder="usetime" clearable  :readonly="ro.shiyongshijian"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="使用时间" prop="shiyongshijian">
+          <el-form-item class="input" label="usetime" prop="shiyongshijian">
               <el-input v-model="ruleForm.shiyongshijian" 
-                placeholder="使用时间" readonly></el-input>
+                placeholder="usetime" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       </el-row>
           <el-row>
             <el-col :span="24">
-              <el-form-item v-if="type!='info'"  label="场地详情" prop="changdixiangqing">
+              <el-form-item v-if="type!='info'"  label="detail" prop="changdixiangqing">
                 <editor 
                     style="min-width: 200px; max-width: 600px;"
                     v-model="ruleForm.changdixiangqing" 
@@ -111,16 +111,16 @@
                 </editor>
               </el-form-item>
               <div v-else>
-                <el-form-item v-if="ruleForm.changdixiangqing" label="场地详情" prop="changdixiangqing">
+                <el-form-item v-if="ruleForm.changdixiangqing" label="detail" prop="changdixiangqing">
                     <span v-html="ruleForm.changdixiangqing"></span>
                 </el-form-item>
               </div>
             </el-col>
           </el-row>
       <el-form-item class="btn">
-        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
+        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">submit</el-button>
         <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
-        <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
+        <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
     </el-form>
     
@@ -363,7 +363,7 @@ export default {
     },
 
 
-    // 提交
+    // submit
     onSubmit() {
 
 

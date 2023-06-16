@@ -106,7 +106,7 @@
                   <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="tupian"
                    :header-align="contents.tableAlign"
                     width="200"
-                    label="图片">
+                    label="photo">
                     <template slot-scope="scope">
                       <div v-if="scope.row.tupian">
                         <img :src="$base.url+scope.row.tupian.split(',')[0]" width="100" height="100">

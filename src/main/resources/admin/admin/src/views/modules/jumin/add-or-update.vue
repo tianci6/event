@@ -22,14 +22,14 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="密码" prop="mima">
+        <el-form-item class="input" v-if="type!='info'"  label="password" prop="mima">
           <el-input v-model="ruleForm.mima" 
-              placeholder="密码" clearable  :readonly="ro.mima"></el-input>
+              placeholder="password" clearable  :readonly="ro.mima"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="密码" prop="mima">
+          <el-form-item class="input" label="password" prop="mima">
               <el-input v-model="ruleForm.mima" 
-                placeholder="密码" readonly></el-input>
+                placeholder="password" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -47,7 +47,7 @@
       </el-col>
       <el-col :span="12">
         <el-form-item class="select" v-if="type!='info'"  label="Gender" prop="xingbie">
-          <el-select :disabled="ro.xingbie" v-model="ruleForm.xingbie" placeholder="请选择性别">
+          <el-select :disabled="ro.xingbie" v-model="ruleForm.xingbie" placeholder="please choose">
             <el-option
                 v-for="(item,index) in xingbieOptions"
                 v-bind:key="index"
@@ -142,9 +142,9 @@
       </el-col>
       </el-row>
       <el-form-item class="btn">
-        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
+        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">submit</el-button>
         <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
-        <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
+        <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
     </el-form>
     
@@ -370,7 +370,7 @@ export default {
           this.$message.error(data.msg);
         }
       });
-            this.xingbieOptions = "男,女".split(',')
+            this.xingbieOptions = "male,female".split(',')
     },
     // 多级联动参数
     info(id) {

@@ -10,7 +10,7 @@
           <div @click="active(item,index)" :key="index" v-for="(item,index) in userlist" :class="indexs==item.name ? 'actives':''">{{item.name}}</div>
         </div>
         <div class="Individual-right">
-          <div v-if="indexs=='个人中心'">
+          <div v-if="indexs=='individual center'">
             <el-form ref="forms" :rules="rules" :model="form" label-width="80px">
               <!-- <div> -->
               <el-form-item prop=" name" label="用户名">
@@ -18,12 +18,12 @@
               </el-form-item>
               <!-- </div> -->
 
-              <p @click="subclikc" class="sub">重置密码</p>
+              <p @click="subclikc" class="sub">reset password</p>
             </el-form>
           </div>
-          <div v-if="indexs=='我的发布'">
+          <div v-if="indexs=='my post'">
             <el-table :data="tableData" style="width: 100%">
-              <el-table-column prop="userId" label="发布人用户ID" width="180">
+              <el-table-column prop="userId" label="publisher ID" width="180">
               </el-table-column>
               <el-table-column prop="type" label="商品类型" width="180">
               </el-table-column>
@@ -43,7 +43,7 @@
             <!-- <el-pagination layout="prev, pager, next" :total="total">
             </el-pagination> -->
           </div>
-          <div v-if="indexs=='我的收藏'">
+          <div v-if="indexs=='my collection'">
             <div class="market-list">
               <el-row :gutter="20">
                 <el-col :key="index" v-for="(item,index) in market" :span="6">
@@ -91,23 +91,23 @@ export default {
           { required: true, message: '请输入用户名', trigger: 'blur' },
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
+          { required: true, message: 'input password', trigger: 'blur' },
         ],
 
       },
-      indexs: "个人中心",
+      indexs: "individual center",
       userlist: [
         {
-          name: "个人中心",
+          name: "individual center",
           value: 0
         },
         {
-          name: "我的发布"
+          name: "my post"
           ,
           value: 1
         },
         {
-          name: "我的收藏"
+          name: "my collection"
           ,
           value: 2
         },
@@ -144,11 +144,11 @@ export default {
     active (item, index) {
       this.indexs = item.name
       //   console.log(this.indexs);
-      if (this.indexs == "我的收藏") {
+      if (this.indexs == "my collection") {
         this.getmarklist()
-      } else if (this.indexs == "我的发布") {
+      } else if (this.indexs == "my post") {
         this.getfabulist()
-      } else if (this.indexs == "个人中心") {
+      } else if (this.indexs == "individual center") {
         this.getuser()
       }
     },

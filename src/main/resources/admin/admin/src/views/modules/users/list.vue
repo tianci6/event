@@ -90,7 +90,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="password"
                    :header-align="contents.tableAlign"
-		    label="密码">
+		    label="password">
 		     <template slot-scope="scope">
                        {{scope.row.password}}
                      </template>

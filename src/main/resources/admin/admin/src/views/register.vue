@@ -89,7 +89,7 @@
       </div>
       <!-- <div class="nk-navigation">
         <a href="#">
-          <div @click="login()">注册</div>
+          <div @click="login()">register</div>
         </a>
       </div> -->
     </div>

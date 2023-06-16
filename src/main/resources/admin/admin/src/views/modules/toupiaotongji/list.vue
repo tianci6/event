@@ -192,7 +192,7 @@
       width="800">
         <div id="toupiaoxuanxiangChart" style="width:100%;height:600px;"></div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="chartDialog">返回</el-button>
+        <el-button @click="chartDialog">return</el-button>
       </span>
     </el-dialog>
   </div>

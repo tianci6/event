@@ -23,22 +23,22 @@
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="密码" prop="password">
+        <el-form-item class="input" v-if="type!='info'"  label="password" prop="password">
           <el-input v-model="ruleForm.password" 
-              placeholder="密码" clearable  :readonly="ro.password"></el-input>
+              placeholder="password" clearable  :readonly="ro.password"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="密码" prop="password">
+          <el-form-item class="input" label="password" prop="password">
               <el-input v-model="ruleForm.password" 
-                placeholder="密码" readonly></el-input>
+                placeholder="password" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       </el-row>
       <el-form-item class="btn">
-        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
+        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">submit</el-button>
         <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
-        <el-button v-if="type=='info'" class="btn-close" @click="back()">返回</el-button>
+        <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
     </el-form>
     
@@ -203,7 +203,7 @@ export default {
     },
 
 
-    // 提交
+    // submit
     onSubmit() {
 
 

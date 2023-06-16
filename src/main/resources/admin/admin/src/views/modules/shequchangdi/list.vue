@@ -4,20 +4,20 @@
     <div v-if="showFlag">
       <el-form :inline="true" :model="searchForm" class="form-content">
         <el-row  :gutter="20" class="slt" :style="{justifyContent:contents.searchBoxPosition=='1'?'flex-start':contents.searchBoxPosition=='2'?'center':'flex-end'}">
-                <el-form-item :label="contents.inputTitle == 1 ? '场地名称' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.changdimingcheng" placeholder="场地名称" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.changdimingcheng" placeholder="场地名称" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.changdimingcheng" placeholder="场地名称" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'Name' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.changdimingcheng" placeholder="Name" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.changdimingcheng" placeholder="Name" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.changdimingcheng" placeholder="Name" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '场地设施' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.changdisheshi" placeholder="场地设施" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.changdisheshi" placeholder="场地设施" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.changdisheshi" placeholder="场地设施" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'facility' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.changdisheshi" placeholder="facility" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.changdisheshi" placeholder="facility" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.changdisheshi" placeholder="facility" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '场地区域' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.changdiquyu" placeholder="场地区域" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.changdiquyu" placeholder="场地区域" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.changdiquyu" placeholder="场地区域" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'area' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.changdiquyu" placeholder="area" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.changdiquyu" placeholder="area" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.changdiquyu" placeholder="area" clearable></el-input>
                 </el-form-item>
           <el-form-item>
             <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
@@ -92,7 +92,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="changdimingcheng"
                    :header-align="contents.tableAlign"
-		    label="场地名称">
+		    label="Name">
 		     <template slot-scope="scope">
                        {{scope.row.changdimingcheng}}
                      </template>
@@ -100,7 +100,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="changdisheshi"
                    :header-align="contents.tableAlign"
-		    label="场地设施">
+		    label="facility">
 		     <template slot-scope="scope">
                        {{scope.row.changdisheshi}}
                      </template>
@@ -108,7 +108,7 @@
                   <el-table-column :sortable="contents.tableSortable" :align="contents.tableAlign"  prop="changditupian"
                    :header-align="contents.tableAlign"
                     width="200"
-                    label="场地图片">
+                    label="photo">
                     <template slot-scope="scope">
                       <div v-if="scope.row.changditupian">
                         <img :src="$base.url+scope.row.changditupian.split(',')[0]" width="100" height="100">
@@ -119,7 +119,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="changdiquyu"
                    :header-align="contents.tableAlign"
-		    label="场地区域">
+		    label="area">
 		     <template slot-scope="scope">
                        {{scope.row.changdiquyu}}
                      </template>
@@ -127,7 +127,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="changdianpai"
                    :header-align="contents.tableAlign"
-		    label="场地安排">
+		    label="plan">
 		     <template slot-scope="scope">
                        {{scope.row.changdianpai}}
                      </template>
@@ -143,7 +143,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="shiyongshijian"
                    :header-align="contents.tableAlign"
-		    label="使用时间">
+		    label="usetime">
 		     <template slot-scope="scope">
                        {{scope.row.shiyongshijian}}
                      </template>

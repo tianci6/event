@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>社区论坛</title>
+		<title>forum</title>
 		<link rel="stylesheet" href="../../layui/css/layui.css">
 		<!-- 样式 -->
 		<link rel="stylesheet" href="../../css/style.css" />
@@ -28,30 +28,30 @@
 		<div id="app">
 			<form class="layui-form message-form" :style='{"padding":"20px","boxShadow":"0 0 6px #CB945C","margin":"0 0 20px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
 				<div class="layui-form-item layui-form-text" style="display: flex;align-items: center;margin:0">
-					<label style="width: auto;" :style='{"padding":"0","minWidth":"54px","fontSize":"14px","color":"#333","textAlign":"center"}' class="layui-form-label">评论</label>
+					<label style="width: auto;" :style='{"padding":"0","minWidth":"54px","fontSize":"14px","color":"#333","textAlign":"center"}' class="layui-form-label">comment</label>
 					<div class="layui-input-block" style="margin:0;flex:1;">
-						<textarea :style='{"padding":"10px","boxShadow":"0 0 6px #CB945C","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","borderWidth":"0","fontSize":"14px","borderStyle":"solid","height":"120px"}' name="content" required lay-verify="required" placeholder="请输入评论" class="layui-textarea"></textarea>
+						<textarea :style='{"padding":"10px","boxShadow":"0 0 6px #CB945C","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"#333","borderRadius":"4px","borderWidth":"0","fontSize":"14px","borderStyle":"solid","height":"120px"}' name="content" required lay-verify="required" placeholder="please input comment" class="layui-textarea"></textarea>
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button :style='{"padding":"0 20px","boxShadow":"0 0 6px #CB945C","margin":"10px 5px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(203, 148, 92, 1)","color":"#fff","borderRadius":"44px","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="layui-btn btn-submit" lay-submit lay-filter="*">评论</button>
-						<button :style='{"padding":"0 20px","boxShadow":"0 0 6px #CB945C","margin":"10px 5px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"rgba(203, 148, 92, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' type="reset" class="layui-btn layui-btn-primary">重置</button>
+						<button :style='{"padding":"0 20px","boxShadow":"0 0 6px #CB945C","margin":"10px 5px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(203, 148, 92, 1)","color":"#fff","borderRadius":"44px","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' class="layui-btn btn-submit" lay-submit lay-filter="*">comment</button>
+						<button :style='{"padding":"0 20px","boxShadow":"0 0 6px #CB945C","margin":"10px 5px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","color":"rgba(203, 148, 92, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","lineHeight":"34px","fontSize":"14px","borderStyle":"solid"}' type="reset" class="layui-btn layui-btn-primary">reset</button>
 					</div>
 				</div>
 			</form>
 
 			<!-- <form class="layui-form login-form">
 				<div class="layui-form-item layui-form-text">
-					<label class="layui-form-label">评论：</label>
+					<label class="layui-form-label">comment：</label>
 					<div class="layui-input-block" style="text-align: left;">
 						<textarea name="content" id="content" class="layui-textarea">请输入评论</textarea>
 					</div>
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-input-block" style="text-align: right;margin-right: 30px;">
-						<button class="layui-btn btn-submit" lay-submit lay-filter="*">评论</button>
-						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						<button class="layui-btn btn-submit" lay-submit lay-filter="*">comment</button>
+						<button type="reset" class="layui-btn layui-btn-primary">reset</button>
 					</div>
 				</div>
 			</form> -->

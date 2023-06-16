@@ -10,13 +10,13 @@
       <div>
         <el-form ref="form" :model="form" label-width="100px">
           <el-form-item label="排序规则：">
-            <el-select @change="ruleclick" v-model="value" placeholder="请选择">
+            <el-select @change="ruleclick" v-model="value" placeholder="please choose">
               <el-option v-for="item in paixurule" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="分类：">
-            <el-select @change="ruleclicks" v-model="values" placeholder="请选择">
+            <el-select @change="ruleclicks" v-model="values" placeholder="please choose">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>

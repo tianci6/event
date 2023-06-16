@@ -187,7 +187,7 @@
             + '<button id="idAMapPositionPickerLocation" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;定位</button>'
             + '<button id="idAMapPositionPickerReset" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-repeat"></span>&nbsp;重置</button>'
             + '<button id="idAMapPositionPickerClear" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span>&nbsp;清除</button>'
-            + '<button id="idAMapPositionPickerSearch" type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#idAMapPositionPickerSearchPanel"><span class="glyphicon glyphicon-search"></span>&nbsp;搜索</button>'
+            + '<button id="idAMapPositionPickerSearch" type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#idAMapPositionPickerSearchPanel"><span class="glyphicon glyphicon-search"></span>&nbsp;search</button>'
             + '</div>';
         var searchPanelHtml = '<div id="idAMapPositionPickerSearchPanel" class="collapse"><input class="form-control input-sm" id="idAMapPositionPickerSearchInput"/><ul id="idAMapPositionPickerSearchResult" class="list-group"></ul></div>';
         var mapPanelHtml = '<div id="idAMapPositionPickerFloatContainer" style="position: absolute;z-index: 2;top:5px;right: 5px;">' + toolsHtml + searchPanelHtml + '</div>';

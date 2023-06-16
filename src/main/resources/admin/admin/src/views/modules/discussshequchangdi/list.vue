@@ -9,10 +9,10 @@
                   <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.nickname" placeholder="Username" clearable></el-input>
                   <el-input v-if="contents.inputIcon == 0" v-model="searchForm.nickname" placeholder="Username" clearable></el-input>
                 </el-form-item>
-                <el-form-item :label="contents.inputTitle == 1 ? '评论内容' : ''">
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.content" placeholder="评论内容" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.content" placeholder="评论内容" clearable></el-input>
-                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.content" placeholder="评论内容" clearable></el-input>
+                <el-form-item :label="contents.inputTitle == 1 ? 'comment' : ''">
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 1" prefix-icon="el-icon-search" v-model="searchForm.content" placeholder="comment" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 1 && contents.inputIconPosition == 2" suffix-icon="el-icon-search" v-model="searchForm.content" placeholder="comment" clearable></el-input>
+                  <el-input v-if="contents.inputIcon == 0" v-model="searchForm.content" placeholder="comment" clearable></el-input>
                 </el-form-item>
           <el-form-item>
             <el-button v-if="contents.searchBtnIcon == 1 && contents.searchBtnIconPosition == 1" icon="el-icon-search" type="success" @click="search()">{{ contents.searchBtnFont == 1?'Search':'' }}</el-button>
@@ -94,7 +94,7 @@
                 <el-table-column  :sortable="contents.tableSortable" :align="contents.tableAlign" 
                     prop="content"
                    :header-align="contents.tableAlign"
-		    label="评论内容">
+		    label="comment">
 		     <template slot-scope="scope">
                        {{scope.row.content}}
                      </template>

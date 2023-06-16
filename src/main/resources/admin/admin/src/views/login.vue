@@ -30,7 +30,7 @@
           </el-form-item>
           <el-form-item
             :style='{"padding":"0","boxShadow":"0 0 6px rgba(0,0,0,0)","margin":"0 auto 12px","borderColor":"rgba(36, 36, 36, 0.95)","backgroundColor":"rgba(0,0,0,0)","borderRadius":"0","borderWidth":"0","width":"70%","borderStyle":"solid","height":"auto"}'
-            :label="1 == 3 ? '密码' : ''" :class="'style'+1">
+            :label="1 == 3 ? 'password' : ''" :class="'style'+1">
             <span v-if="1 != 3" class="svg-container" style="color:#333;
 			line-height:30px;
 			font-size:14px;

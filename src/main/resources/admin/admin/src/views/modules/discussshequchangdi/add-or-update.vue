@@ -12,17 +12,17 @@
       </el-row>
           <el-row>
             <el-col :span="24">
-              <el-form-item class="textarea" v-if="type!='info'" label="评论内容" prop="content">
+              <el-form-item class="textarea" v-if="type!='info'" label="comment" prop="content">
                 <el-input
                   style="min-width: 200px; max-width: 600px;"
                   type="textarea"
                   :rows="8"
-                  placeholder="评论内容"
+                  placeholder="comment"
                   v-model="ruleForm.content" readonly>
                 </el-input>
               </el-form-item>
               <div v-else>
-                <el-form-item v-if="ruleForm.content" label="评论内容" prop="content">
+                <el-form-item v-if="ruleForm.content" label="comment" prop="content">
                     <span>{{ruleForm.content}}</span>
                 </el-form-item>
               </div>
@@ -47,7 +47,7 @@
             </el-col>
           </el-row>
       <el-form-item class="btn">
-        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
+        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">submit</el-button>
         <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
         <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
       </el-form-item>
