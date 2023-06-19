@@ -12,9 +12,29 @@
       </el-form>
     </div>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="username" label="用户名">
+      <el-table-column prop="juminhao" label="用户名">
       </el-table-column>
-      <el-table-column prop="role" label="角色">
+      <el-table-column prop="juminshouji" label="手机号">
+      </el-table-column>
+      <el-table-column prop="juminxingming" label="姓名">
+      </el-table-column>
+      <el-table-column prop="nianling" label="年龄">
+      </el-table-column>
+      <el-table-column prop="juzhudizhi" label="地址">
+      </el-table-column>
+      <el-table-column prop="menpaihao" label="门牌号">
+      </el-table-column>
+      <el-table-column prop="danyuanhao" label="单元号">
+      </el-table-column>
+      <el-table-column prop="xingbie" label="性别">
+      </el-table-column>
+      <el-table-column label="图片" width="180">
+        <template slot-scope="scope">
+          <!-- <div v-if="scope.row.value"> -->
+          <img :src="$base.url+scope.row.juminzhaopian" width="100" height="100">
+          <!-- </div> -->
+          <!-- <div v-else>no photo</div> -->
+        </template>
       </el-table-column>
       <el-table-column prop="addtime" label="创建时间">
         <template slot-scope="scope">
@@ -81,7 +101,7 @@ export default {
     },
     dalogshow (item, value) {
       let params = {
-        username: item.username
+        username: item.juminhao
       }
       resetPass(params).then(res => {
         if (res.data.code == '0') {

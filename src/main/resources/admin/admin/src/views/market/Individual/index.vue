@@ -11,14 +11,50 @@
         </div>
         <div class="Individual-right">
           <div v-if="indexs=='个人中心'">
-            <el-form ref="forms" :rules="rules" :model="form" label-width="80px">
-              <!-- <div> -->
-              <el-form-item prop=" name" label="用户名">
-                <el-input :disabled="true" v-model="form.name"></el-input>
+            <el-form ref="forms" :rules="rules" :model="form" label-width="120px">
+              <el-form-item label="居民号" prop="juminhao">
+                <el-input placeholder="请输入居民号" v-model="form.juminhao"></el-input>
               </el-form-item>
-              <!-- </div> -->
+              <el-form-item label="密码" prop="mima">
+                <el-input type="password" placeholder="请输入密码" v-model="form.mima"></el-input>
+              </el-form-item>
 
-              <p @click="subclikc" class="sub">重置密码</p>
+              <el-form-item label="Name" prop="juminxingming">
+                <el-input placeholder="请输入Name" v-model="form.juminxingming"></el-input>
+              </el-form-item>
+              <el-form-item label="Age" prop="nianling">
+                <el-input placeholder="请输入Age" v-model="form.nianling"></el-input>
+              </el-form-item>
+              <el-form-item label="Gender">
+                <el-select v-model="form.xingbie" placeholder="请选择性别">
+                  <el-option label="男" value="男"></el-option>
+                  <el-option label="女" value="女"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item prop="nianling">
+                <el-upload class="avatar-uploader" action="/eventi/file/upload" :on-success="succes" :headers="headers" :show-file-list="false">
+                  <img v-if="form.juminzhaopian !=null &&form.juminzhaopian !=''" :src="form.juminzhaopian" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
+
+              <el-form-item label="居民手机" prop="juminshouji">
+                <el-input placeholder="请输入居民手机" v-model="form.juminshouji"></el-input>
+              </el-form-item>
+              <el-form-item label="Address" prop="juzhudizhi">
+                <el-input placeholder="请输入Address" v-model="form.juzhudizhi"></el-input>
+              </el-form-item>
+              <el-form-item label="HouseNumber" prop="menpaihao">
+                <el-input placeholder="请输入HouseNumber" v-model="form.menpaihao"></el-input>
+              </el-form-item>
+              <el-form-item label="UnitNumber" prop="danyuanhao">
+                <el-input placeholder="请输入UnitNumber" v-model="form.danyuanhao"></el-input>
+              </el-form-item>
+
+              <div class="foot">
+                <p @click="subclikc" class="sub">更新信息</p>
+                <p @click="subclikcs" class="sub subs">Log out</p>
+              </div>
             </el-form>
           </div>
           <div v-if="indexs=='我的发布'">
@@ -73,26 +109,46 @@
 import {
   selectMyCollect,
   session,
-  resetPass,
+  updates,
   selectMyMaterial
 } from "@/assets/api/api.js";
+import storage from '@/utils/storage'
 export default {
   data () {
     return {
       url: "https://d.mousenat.cn/eventi/",
       market: [],
       tableData: [],
+      headers: {
+        Token: storage.get('Token')
+      },
       form: {
-        name: "",
-        password: ""
+        xingbie: "男",
+        juminhao: "",
+        juminzhaopian: "",
+        mima: "",
+        mima2: "",
+        juminxingming: "",
+        nianling: "",
+        juminshouji: "",
+        juzhudizhi: "",
+        menpaihao: "",
+        danyuanhao: "",
+
       },
       rules: {
-        name: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
+        name: [{ required: true, message: "请输入name", trigger: "blur" }],
+        password: [{ required: true, message: "请输入password", trigger: "blur" }],
+        juminxingming: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        mima: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        mima2: [
+          { required: true, message: "请输入再次确认密码", trigger: "blur" },
         ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-        ],
+        nianling: [{ required: true, message: "请输入Age", trigger: "blur" }],
+        juminshouji: [{ required: true, message: "请输入居民手机", trigger: "blur" }],
+        juzhudizhi: [{ required: true, message: "请输入Address", trigger: "blur" }],
+        menpaihao: [{ required: true, message: "请输入HouseNumber", trigger: "blur" }],
+        danyuanhao: [{ required: true, message: "请输入UnitNumber", trigger: "blur" }],
 
       },
       indexs: "个人中心",
@@ -121,6 +177,14 @@ export default {
     this.getuser()
   },
   methods: {
+    subclikcs () {
+      this.$storage.remove("Token");
+      this.$router.replace({ name: "/event/login" });
+    },
+    succes (file) {
+      console.log(file);
+      this.form.juminzhaopian = "upload/" + file.file
+    },
     gotodetali (item) {
       //   console.log(123);
       this.$router.push({
@@ -133,7 +197,8 @@ export default {
       }
       session(params).then(res => {
         if (res.data.code == '0') {
-          this.form.name = res.data.data.username
+          this.form = res.data.data
+          this.form.xingbie = "男"
         } else {
           this.$message.error(res.data.msg);
         }
@@ -200,15 +265,14 @@ export default {
     },
     subclikc () {
 
-      let params = {
-        username: this.form.name
-      }
-      resetPass(params).then(res => {
+      let params = this.form
+      updates(params).then(res => {
         if (res.data.code == '0') {
           this.$message({
-            message: '重置成功',
+            message: '更新成功',
             type: 'success'
           });
+          this.getuser()
         } else {
           this.$message.error(res.data.msg);
         }
@@ -291,8 +355,8 @@ export default {
   padding: 10px;
 }
 .sub {
-  margin: 0px auto;
-  text-align: center;
+  // margin: 0px auto;
+  // text-align: center;
   width: 100px;
 
   background-color: #d5a97a;
@@ -320,5 +384,45 @@ export default {
 }
 .market-list {
   padding: 10px;
+}
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 120px;
+}
+.subs {
+  background-color: #ccc;
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+.avatar-uploader {
+  width: 178px;
+  height: 178px;
+  border: 1px dashed #ccc;
+}
+.el-select {
+  width: 100%;
 }
 </style>

@@ -3,53 +3,49 @@
     <div class="login-bgc"></div>
     <div class="login-form">
       <p class="title">公共场所不建议自动登录，以防账号丢失</p>
-      <el-form
-        v-if="loginshow"
-        :rules="rules"
-        ref="ruleForm"
-        :model="form"
-        label-width="0px"
-      >
+      <el-form v-if="loginshow" :rules="rules" ref="ruleForm" :model="form" label-width="0px">
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
             <el-input placeholder="请输入账号" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="请输入密码"
-              v-model="form.password"
-            ></el-input>
+            <el-input type="password" placeholder="请输入密码" v-model="form.password"></el-input>
           </el-form-item>
           <p @click="loginsave" class="button">登录</p>
           <p @click="reset" class="zhuce">注册resident</p>
         </div>
       </el-form>
-      <el-form
-        v-else
-        :rules="rules"
-        ref="ruleForms"
-        :model="form"
-        label-width="0px"
-      >
+      <el-form v-else :rules="rules" ref="ruleForms" :model="form" label-width="0px">
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
-          <el-form-item prop="name">
-            <el-input placeholder="请输入账号" v-model="form.name"></el-input>
+          <el-form-item prop="juminhao">
+            <el-input placeholder="请输入居民号" v-model="form.juminhao"></el-input>
           </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="请输入密码"
-              v-model="form.password"
-            ></el-input>
+          <el-form-item prop="mima">
+            <el-input type="password" placeholder="请输入密码" v-model="form.mima"></el-input>
           </el-form-item>
-          <el-form-item prop="passwords">
-            <el-input
-              type="password"
-              placeholder="请输入再次确认密码"
-              v-model="form.passwords"
-            ></el-input>
+          <el-form-item prop="mima2">
+            <el-input type="password" placeholder="请输入再次确认密码" v-model="form.mima2"></el-input>
           </el-form-item>
+          <el-form-item prop="juminxingming">
+            <el-input placeholder="请输入Name" v-model="form.juminxingming"></el-input>
+          </el-form-item>
+          <el-form-item prop="nianling">
+            <el-input placeholder="请输入Age" v-model="form.nianling"></el-input>
+          </el-form-item>
+          <el-form-item prop="juminshouji">
+            <el-input placeholder="请输入居民手机" v-model="form.juminshouji"></el-input>
+          </el-form-item>
+
+          <el-form-item prop="juzhudizhi">
+            <el-input placeholder="请输入Address" v-model="form.juzhudizhi"></el-input>
+          </el-form-item>
+          <el-form-item prop="menpaihao">
+            <el-input placeholder="请输入HouseNumber" v-model="form.menpaihao"></el-input>
+          </el-form-item>
+          <el-form-item prop="danyuanhao">
+            <el-input placeholder="请输入UnitNumber" v-model="form.danyuanhao"></el-input>
+          </el-form-item>
+
           <p @click="zhuce" class="button">注册</p>
           <p @click="logins" class="zhuce">已有账号登录</p>
         </div>
@@ -59,42 +55,53 @@
 </template>
 
 <script>
-import { login, register } from "@/assets/api/api.js";
+import { login, register, registers } from "@/assets/api/api.js";
 export default {
-  data() {
+  data () {
     return {
       form: {
-        name: "",
-        password: "",
-        passwords: "",
+        juminhao: "",
+        mima: "",
+        mima2: "",
+        juminxingming: "",
+        nianling: "",
+        juminshouji: "",
+        juzhudizhi: "",
+        menpaihao: "",
+        danyuanhao: "",
+
       },
       loginshow: true,
       rules: {
-        name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-        passwords: [
+        name: [{ required: true, message: "请输入name", trigger: "blur" }],
+        password: [{ required: true, message: "请输入password", trigger: "blur" }],
+        juminxingming: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        mima: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        mima2: [
           { required: true, message: "请输入再次确认密码", trigger: "blur" },
         ],
+        nianling: [{ required: true, message: "请输入Age", trigger: "blur" }],
+        juminshouji: [{ required: true, message: "请输入居民手机", trigger: "blur" }],
+        juzhudizhi: [{ required: true, message: "请输入Address", trigger: "blur" }],
+        menpaihao: [{ required: true, message: "请输入HouseNumber", trigger: "blur" }],
+        danyuanhao: [{ required: true, message: "请输入UnitNumber", trigger: "blur" }],
       },
     };
   },
   methods: {
-    logins() {
+    logins () {
       this.loginshow = true;
       this.$refs.ruleForms.resetFields();
     },
-    reset() {
+    reset () {
       this.loginshow = false;
       this.$refs.ruleForm.resetFields();
     },
-    zhuce() {
+    zhuce () {
       this.$refs.ruleForms.validate((valid) => {
         if (valid) {
-          let params = {
-            username: this.form.name,
-            password: this.form.password,
-          };
-          register(params)
+          let params = this.form;
+          registers(params)
             .then((res) => {
               if (res.data.code == 0) {
                 this.loginshow = true;
@@ -113,7 +120,7 @@ export default {
         }
       });
     },
-    loginsave() {
+    loginsave () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           let params = {

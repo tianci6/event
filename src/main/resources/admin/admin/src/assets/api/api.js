@@ -1,7 +1,7 @@
 import request from "./axios";
 export const login = (params) => {
     return request({
-        url: `/eventi/users/login`,
+        url: `/eventi/jumin/login`,
         method: "post",
         params: params
     });
@@ -36,14 +36,14 @@ export const add = (params) => {
 };
 export const session = (params) => {
     return request({
-        url: `/eventi/users/session`,
+        url: `/eventi/jumin/session`,
         method: "get",
         params: params
     });
 };
 export const resetPass = (params) => {
     return request({
-        url: `/eventi/users/resetPass`,
+        url: `/eventi/jumin/resetPass`,
         method: "get",
         params: params
     });
@@ -100,22 +100,21 @@ export const userMaterial = (params) => {
 };
 export const ddusers = (params) => {
     return request({
-        url: `/eventi/users/page`,
+        url: `/eventi/jumin/page`,
         method: "get",
         params: params
     });
 };
 export const deletes = (params) => {
     return request({
-        url: `/eventi/users/delete`,
+        url: `/eventi/jumin/delete`,
         method: "post",
         data: params
     });
 };
 export const materialdel = (params) => {
     return request({
-        url: `/eventi/material/delete
-        `,
+        url: `/eventi/material/delete`,
         method: "post",
         data: params
     });
@@ -134,6 +133,22 @@ export const materialEvaluate = (params) => {
         data: params
     });
 };
+export const registers = (params) => {
+    return request({
+        url: `/eventi/jumin/register`,
+        method: "post",
+        data: params
+    });
+};
+export const updates = (params) => {
+    return request({
+        url: `/eventi/jumin/update`,
+        method: "post",
+        data: params
+    });
+};
+
+
 
 
 

@@ -44,10 +44,10 @@
         <template slot-scope="scope">
           <el-button @click="dalogshow(scope.row,true)" type="success" icon="el-icon-tickets" size="mini">
             评论记录</el-button>
-          <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
-            收藏记录</el-button>
-          <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
-            删除</el-button>
+          <!-- <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
+            收藏记录</el-button> -->
+          <!-- <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
+            删除</el-button> -->
         </template>
       </el-table-column>
 
