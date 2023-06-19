@@ -42,8 +42,8 @@
       </el-table-column>
       <el-table-column fixed="right" prop="address" label="操作" width="180">
         <template slot-scope="scope">
-          <!-- <el-button @click="dalogshow(scope.row,true)" type="success" icon="el-icon-tickets" size="mini">
-            评论记录</el-button> -->
+          <el-button @click="dalogshow(scope.row,true)" type="success" icon="el-icon-tickets" size="mini">
+            评论记录</el-button>
           <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
             收藏记录</el-button>
           <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
@@ -64,14 +64,18 @@
         </el-table-column>
         <el-table-column prop="createTime" label="评论时间">
         </el-table-column>
-
+        <el-table-column prop="address" label="操作" width="180">
+          <template slot-scope="scope">
+            <el-button @click="dels(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
+              删除</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <el-table v-else :data="cangtableData" style="width: 100%">
         <el-table-column prop="username" label="收藏人" width="180">
         </el-table-column>
 
       </el-table>
-
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button @click="dialogVisible = false">确 定</el-button>
@@ -84,6 +88,13 @@
         <el-button @click="save">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog title="提示" :visible.sync="disdialogVisible" width="30%" :before-close="handleClose">
+      <span>确定进行[删除]操作?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="disdialogVisible = false">取 消</el-button>
+        <el-button @click="saves">确 定</el-button>
+      </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -94,11 +105,13 @@ import {
   page,
   userMaterial,
   deletes,
-  materialdel
+  materialdel,
+  materialEvaluate
 } from "@/assets/api/api.js";
 export default {
   data () {
     return {
+      disdialogVisible: false,
       deldialogVisible: false,
       cangtableData: [],
       ptableData: [],
@@ -120,9 +133,12 @@ export default {
 
   },
   methods: {
+
     handleClose () { },
+
     save () {
       let params = []
+      // materialId: this.materialId
       params.push(this.materialId)
       materialdel(params).then(res => {
         // console.log(res);
@@ -140,9 +156,33 @@ export default {
         this.$message.error(erro.msg);
       });
     },
+    saves () {
+      let params = []
+      // materialId: this.materialId
+      params.push(this.materialId)
+      materialEvaluate(params).then(res => {
+        // console.log(res);
+        if (res.data.code == '0') {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          });
+          this.disdialogVisible = false
+          this.getplist()
+        } else {
+          this.$message.error(res.data.msg);
+        }
+      }).catch((erro) => {
+        this.$message.error(erro.msg);
+      });
+    },
     del (item, value) {
       this.materialId = item.id
       this.deldialogVisible = true
+    },
+    dels (item, value) {
+      this.materialId = item.id
+      this.disdialogVisible = true
     },
     dalogshow (item, value) {
       if (value) {

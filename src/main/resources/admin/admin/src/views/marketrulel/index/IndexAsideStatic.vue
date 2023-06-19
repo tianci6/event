@@ -7,7 +7,8 @@
           <el-menu-item index="0" @click="menuHandler('/event/homerulel/config')">轮播图管理</el-menu-item>
 
           <el-menu-item index="2" @click="menuHandler('/event/homerulel/comment')">商品管理</el-menu-item>
-
+          <el-menu-item index="2" @click="menuHandler('/event/homerulel/upload')">上传商品</el-menu-item>
+          <el-menu-item index="2" @click="menuHandler('/event/homerulel/discuss')">评论管理</el-menu-item>
         </el-menu>
       </div>
     </div>

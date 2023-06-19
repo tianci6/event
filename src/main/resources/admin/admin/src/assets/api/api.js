@@ -127,6 +127,14 @@ export const config = (params) => {
         data: params
     });
 };
+export const materialEvaluate = (params) => {
+    return request({
+        url: `/eventi/materialEvaluate/delete`,
+        method: "post",
+        data: params
+    });
+};
+
 
 
 
