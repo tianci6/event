@@ -148,7 +148,13 @@ export const updates = (params) => {
     });
 };
 
-
+export const logins = (params) => {
+    return request({
+        url: `/eventi/users/login`,
+        method: "post",
+        params: params
+    });
+};
 
 
 
