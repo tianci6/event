@@ -114,6 +114,8 @@ export default {
         juzhudizhi: "",
         menpaihao: "",
         danyuanhao: "",
+        name: "",
+        password: "",
       },
       loginshow: true,
       rules: {
