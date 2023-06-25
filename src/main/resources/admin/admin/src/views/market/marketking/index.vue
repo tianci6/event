@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="seach">
-      <el-input @change="seach" placeholder="请输入内容" v-model="input3" class="input-with-select">
+      <el-input
+        @change="seach"
+        placeholder="Search You Want"
+        v-model="input3"
+        class="input-with-select"
+      >
       </el-input>
       <i @click="seach" class="el-icon-search seach"></i>
     </div>
@@ -9,15 +14,29 @@
       <div></div>
       <div>
         <el-form ref="form" :model="form" label-width="100px">
-          <el-form-item label="排序规则：">
-            <el-select @change="ruleclick" v-model="value" placeholder="请选择">
-              <el-option v-for="item in paixurule" :key="item.value" :label="item.label" :value="item.value">
+          <el-form-item label="Sort：">
+            <el-select @change="ruleclick" v-model="value" placeholder="Sort">
+              <el-option
+                v-for="item in paixurule"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="分类：">
-            <el-select @change="ruleclicks" v-model="values" placeholder="请选择">
-              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          <el-form-item label="Category：">
+            <el-select
+              @change="ruleclicks"
+              v-model="values"
+              placeholder="Category"
+            >
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-form-item>
@@ -26,30 +45,30 @@
     </div>
     <div class="market-list">
       <el-row :gutter="20">
-        <el-col :key="index" v-for="(item,index) in market" :span="6">
+        <el-col :key="index" v-for="(item, index) in market" :span="6">
           <div class="grid-content">
-            <img @click="gotodetali(item)" :src="$base.url+item.imgUrl" alt="">
+            <img
+              @click="gotodetali(item)"
+              :src="$base.url + item.imgUrl"
+              alt=""
+            />
           </div>
           <div class="text-font">
-
-            <p>{{item.name}}</p>
-            <p class="name">{{item.content}}</p>
+            <p>{{ item.name }}</p>
+            <p class="name">{{ item.content }}</p>
             <!-- <el-rate v-model="item.value" disabled show-score text-color="#334155" score-template="{value}">
             </el-rate> -->
           </div>
         </el-col>
-
       </el-row>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  list
-} from "@/assets/api/api.js";
+import { list } from "@/assets/api/api.js";
 export default {
-  data () {
+  data() {
     return {
       url: "http://192.168.31.92:8080/",
       form: {},
@@ -90,91 +109,106 @@ export default {
         //   name: "The 25th-anniversary Ultimate Kaiba Set",
         //   value: 4
         // },
-
       ],
       input3: "",
       paixurule: [
         {
-          label: "升序",
-          value: "0"
+          label: "Asc",
+          value: "0",
         },
         {
-          label: "降序",
-          value: "1"
-        }
+          label: "Desc",
+          value: "1",
+        },
       ],
-      options: [{
-        value: 'A',
-        label: '活动'
-      }, {
-        value: 'B',
-        label: '商品'
-      }, {
-        value: 'C',
-        label: '二手商品'
-      },],
+      options: [
+        {
+          value: "A",
+          label: "Promotion",
+        },
+        {
+          value: "B",
+          label: "Business",
+        },
+        {
+          value: "C",
+          label: "C2C/Trading",
+        },
+      ],
       value: "0",
-      values: ""
-    }
-
+      values: "",
+    };
   },
-  created () {
+  created() {
     // console.log(this.$route.query);
-    this.values = ""
-    if (this.$route.query && this.$route.query != "" && JSON.stringify(this.$route.query) != "{}") {
-      this.values = this.$route.query
+    this.values = "";
+    if (
+      this.$route.query &&
+      this.$route.query != "" &&
+      JSON.stringify(this.$route.query) != "{}"
+    ) {
+      this.values = this.$route.query;
     } else {
-      this.values = ""
+      this.values = "";
     }
-    this.getmarklist()
+    this.getmarklist();
   },
   methods: {
-    ruleclick (value) {
+    ruleclick(value) {
       if (value == "0") {
-        this.market.sort((a, b) => new Date(a.createTime).getTime() - new
-          Date(b.createTime).getTime())
+        this.market.sort(
+          (a, b) =>
+            new Date(a.createTime).getTime() - new Date(b.createTime).getTime()
+        );
       } else {
-        this.market.sort((a, b) => new Date(a.createTime).getTime() - new
-          Date(b.createTime).getTime()).reverse()
-
+        this.market
+          .sort(
+            (a, b) =>
+              new Date(a.createTime).getTime() -
+              new Date(b.createTime).getTime()
+          )
+          .reverse();
       }
     },
-    seach () {
-      this.getmarklist()
+    seach() {
+      this.getmarklist();
     },
-    getmarklist () {
+    getmarklist() {
       let params = {
         name: "%" + this.input3 + "%",
         // type: this.values
-      }
+      };
       if (this.values != "") {
-        params.type = this.values
+        params.type = this.values;
       }
-      list(params).then(res => {
-        console.log(res);
-        if (res.data.code == '0') {
-          this.market = res.data.data.list
-          this.market.sort((a, b) => new Date(a.createTime).getTime() - new
-            Date(b.createTime).getTime())
-        } else {
-          this.$message.error(res.data.msg);
-        }
-      }).catch((erro) => {
-        this.$message.error(erro.msg);
-      });
+      list(params)
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == "0") {
+            this.market = res.data.data.list;
+            this.market.sort(
+              (a, b) =>
+                new Date(a.createTime).getTime() -
+                new Date(b.createTime).getTime()
+            );
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
     },
-    ruleclicks () {
-
-    },
-    gotodetali (item) {
+    ruleclicks() {},
+    gotodetali(item) {
       //   console.log(123);
       this.$router.push({
-        path: '/event/marketking/detali',
-        query: item
-      })
-    }
-  }
-}
+        path: "/event/marketking/detali",
+        query: item,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

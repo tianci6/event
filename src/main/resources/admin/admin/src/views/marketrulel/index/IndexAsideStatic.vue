@@ -2,13 +2,36 @@
   <el-aside class="index-aside" width="200px">
     <div class="index-aside-inner menulist">
       <div class="menulist-item">
-        <el-menu :mode="2 == 1? 'horizontal':'vertical'" :unique-opened="true" class="el-menu-demo" default-active="0">
-          <el-menu-item index="1" @click="menuHandler('/event/homerulel/')">用户管理</el-menu-item>
-          <el-menu-item index="0" @click="menuHandler('/event/homerulel/config')">轮播图管理</el-menu-item>
+        <el-menu
+          :mode="2 == 1 ? 'horizontal' : 'vertical'"
+          :unique-opened="true"
+          class="el-menu-demo"
+          default-active="0"
+        >
+          <el-menu-item index="1" @click="menuHandler('/event/homerulel/')"
+            >Resident Management</el-menu-item
+          >
+          <el-menu-item
+            index="0"
+            @click="menuHandler('/event/homerulel/config')"
+            >Billboard Management</el-menu-item
+          >
 
-          <el-menu-item index="2" @click="menuHandler('/event/homerulel/comment')">商品管理</el-menu-item>
-          <el-menu-item index="2" @click="menuHandler('/event/homerulel/upload')">上传商品</el-menu-item>
-          <el-menu-item index="2" @click="menuHandler('/event/homerulel/discuss')">评论管理</el-menu-item>
+          <el-menu-item
+            index="2"
+            @click="menuHandler('/event/homerulel/comment')"
+            >Marketing Management</el-menu-item
+          >
+          <el-menu-item
+            index="2"
+            @click="menuHandler('/event/homerulel/upload')"
+            >Upload Post</el-menu-item
+          >
+          <el-menu-item
+            index="2"
+            @click="menuHandler('/event/homerulel/discuss')"
+            >Review Management</el-menu-item
+          >
         </el-menu>
       </div>
     </div>
@@ -16,27 +39,22 @@
 </template>
 
 <script>
-import menu from '@/utils/menu'
+import menu from "@/utils/menu";
 export default {
-  data () {
+  data() {
     return {
-      menuList: [
-
-      ]
-    }
+      menuList: [],
+    };
   },
   methods: {
-    menuHandler (value) {
-      this.$router.push(value)
+    menuHandler(value) {
+      this.$router.push(value);
     },
-    gotopingjia () {
-      this.$router.push("/event/homerulel/comment")
-    }
-  }
-
-
-
-}
+    gotopingjia() {
+      this.$router.push("/event/homerulel/comment");
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .el-container {

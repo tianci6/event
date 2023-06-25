@@ -2,89 +2,111 @@
   <div class="comment">
     <div>
       <el-form :inline="true" class="demo-form-inline">
-        <el-form-item label="发布人">
-          <el-input v-model="name" placeholder="请输入发布人"></el-input>
+        <el-form-item label="Ttitle">
+          <el-input v-model="name" placeholder="Ttitle"></el-input>
         </el-form-item>
-        <el-form-item label="商品类型">
-          <el-select clearable v-model="type" placeholder="请输入商品类型">
-            <el-option label="活动" value="A"></el-option>
-            <el-option label="商品" value="B"></el-option>
-            <el-option label="二手商品" value="C"></el-option>
+        <el-form-item label="Category">
+          <el-select clearable v-model="type" placeholder="Category">
+            <el-option label="Promotion" value="A"></el-option>
+            <el-option label="Business" value="B"></el-option>
+            <el-option label="C2C/Trading" value="C"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">查询</el-button>
+          <el-button type="primary" @click="onSubmit">Search</el-button>
         </el-form-item>
       </el-form>
     </div>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="id" label="发布人用户id" width="180">
+      <el-table-column prop="id" label="ID" width="180"> </el-table-column>
+      <el-table-column prop="name" label="Ttitle"> </el-table-column>
+      <el-table-column prop="type" label="Category" width="180">
       </el-table-column>
-      <el-table-column prop="name" label="发布人">
+      <el-table-column prop="email" label="Email" width="180">
       </el-table-column>
-      <el-table-column prop="type" label="商品类型" width="180">
+      <el-table-column prop="content" label="Intrdouce" width="180">
       </el-table-column>
-      <el-table-column prop="email" label="邮件" width="180">
+      <el-table-column prop="describe" label="Description" width="180">
       </el-table-column>
-      <el-table-column prop="content" label="介绍" width="180">
+      <el-table-column prop="address" label="Address" width="180">
       </el-table-column>
-      <el-table-column prop="describe" label="描述" width="180">
-      </el-table-column>
-      <el-table-column prop="address" label="地址" width="180">
-      </el-table-column>
-      <el-table-column prop="imgUrl" label="图片" width="180">
+      <el-table-column prop="imgUrl" label="Image" width="180">
         <template slot-scope="scope">
           <!-- <div v-if="scope.row.value"> -->
-          <img :src="$base.url+scope.row.imgUrl" width="100" height="100">
+          <img :src="$base.url + scope.row.imgUrl" width="100" height="100" />
           <!-- </div> -->
           <!-- <div v-else>no photo</div> -->
         </template>
       </el-table-column>
-      <el-table-column fixed="right" prop="address" label="操作" width="180">
+      <el-table-column fixed="right" prop="address" label="operate" width="180">
         <template slot-scope="scope">
           <!-- <el-button @click="dalogshow(scope.row,true)" type="success" icon="el-icon-tickets" size="mini">
             评论记录</el-button> -->
-          <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
-            收藏记录</el-button>
-          <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
-            删除</el-button>
+          <el-button
+            @click="dalogshow(scope.row, false)"
+            type="success"
+            icon="el-icon-tickets"
+            size="mini"
+          >
+            Favourite History</el-button
+          >
+          <el-button
+            @click="del(scope.row, false)"
+            type="success"
+            icon="el-icon-tickets"
+            size="mini"
+          >
+            delete</el-button
+          >
         </template>
       </el-table-column>
-
     </el-table>
     <div class="pagination">
-      <el-pagination layout="prev, pager, next" :total="total">
-      </el-pagination>
+      <el-pagination layout="prev, pager, next" :total="total"> </el-pagination>
     </div>
-    <el-dialog :title="title" :visible.sync="dialogVisible" width="60%" :before-close="handleClose">
-      <el-table v-if="title=='评论记录'" :data="ptableData" style="width: 100%">
+    <el-dialog
+      :title="title"
+      :visible.sync="dialogVisible"
+      width="60%"
+      :before-close="handleClose"
+    >
+      <el-table
+        v-if="title == 'Comment Record'"
+        :data="ptableData"
+        style="width: 100%"
+      >
         <el-table-column prop="username" label="评论用户" width="180">
         </el-table-column>
-        <el-table-column :show-overflow-tooltip="true" prop="content" label="评论内容">
+        <el-table-column
+          :show-overflow-tooltip="true"
+          prop="content"
+          label="评论内容"
+        >
         </el-table-column>
-        <el-table-column prop="createTime" label="评论时间">
-        </el-table-column>
-
+        <el-table-column prop="createTime" label="评论时间"> </el-table-column>
       </el-table>
       <el-table v-else :data="cangtableData" style="width: 100%">
-        <el-table-column prop="username" label="收藏人" width="180">
+        <el-table-column prop="username" label="Collect people" width="180">
         </el-table-column>
-
       </el-table>
 
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button @click="dialogVisible = false">确 定</el-button>
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button @click="dialogVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
-    <el-dialog title="提示" :visible.sync="deldialogVisible" width="30%" :before-close="handleClose">
-      <span>确定进行[删除]操作?</span>
+    <el-dialog
+      title="Prompt"
+      :visible.sync="deldialogVisible"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <span>Are you sure to proceed with the [Delete] operation?</span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="deldialogVisible = false">取 消</el-button>
-        <el-button @click="save">确 定</el-button>
+        <el-button @click="deldialogVisible = false">Cancel</el-button>
+        <el-button @click="save">Confirm</el-button>
       </span>
     </el-dialog>
-
   </div>
 </template>
 
@@ -94,10 +116,10 @@ import {
   page,
   userMaterial,
   deletes,
-  materialdel
+  materialdel,
 } from "@/assets/api/api.js";
 export default {
-  data () {
+  data() {
     return {
       deldialogVisible: false,
       cangtableData: [],
@@ -109,125 +131,139 @@ export default {
       total: 0,
       page: 1,
       limit: 10,
-      title: "评论记录",
+      title: "Comment Record",
       dialogVisible: false,
-      materialId: ""
-    }
-
+      materialId: "",
+    };
   },
-  mounted () {
-    this.getlist()
-
+  mounted() {
+    this.getlist();
   },
   methods: {
-    handleClose () { },
-    save () {
-      let params = []
-      params.push(this.materialId)
-      materialdel(params).then(res => {
-        // console.log(res);
-        if (res.data.code == '0') {
-          this.$message({
-            message: '删除成功',
-            type: 'success'
-          });
-          this.deldialogVisible = false
-          this.getlist()
-        } else {
-          this.$message.error(res.data.msg);
-        }
-      }).catch((erro) => {
-        this.$message.error(erro.msg);
-      });
+    handleClose() {},
+    save() {
+      let params = [];
+      params.push(this.materialId);
+      materialdel(params)
+        .then((res) => {
+          // console.log(res);
+          if (res.data.code == "0") {
+            this.$message({
+              message: "删除成功",
+              type: "success",
+            });
+            this.deldialogVisible = false;
+            this.getlist();
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
     },
-    del (item, value) {
-      this.materialId = item.id
-      this.deldialogVisible = true
+    del(item, value) {
+      this.materialId = item.id;
+      this.deldialogVisible = true;
     },
-    dalogshow (item, value) {
+    dalogshow(item, value) {
       if (value) {
-        this.title = "评论记录"
-        this.getplist()
+        this.title = "Comment Record";
+        this.getplist();
       } else {
-        this.title = "收藏记录"
-        this.materialId = item.id
-        this.getcanglist()
+        this.title = "Favorite Records";
+        this.materialId = item.id;
+        this.getcanglist();
       }
-      this.dialogVisible = true
+      this.dialogVisible = true;
     },
-    getcanglist () {
+    getcanglist() {
       let params = {
-        materialId: this.materialId
-      }
-      userMaterial(params).then(res => {
-        // console.log(res);
-        if (res.data.code == '0') {
-          this.cangtableData = res.data.data.list
-        } else {
-          this.$message.error(res.data.msg);
-        }
-      }).catch((erro) => {
-        this.$message.error(erro.msg);
-      });
+        materialId: this.materialId,
+      };
+      userMaterial(params)
+        .then((res) => {
+          // console.log(res);
+          if (res.data.code == "0") {
+            this.cangtableData = res.data.data.list;
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
     },
-    getplist () {
-      let params = {
-      }
-      page(params).then(res => {
-        // console.log(res);
-        if (res.data.code == '0') {
-          this.ptableData = res.data.data.list
-          this.ptableData.sort((a, b) => new Date(a.createTime).getTime() - new
-            Date(b.createTime).getTime()).reverse()
-        } else {
-          this.$message.error(res.data.msg);
-        }
-      }).catch((erro) => {
-        this.$message.error(erro.msg);
-      });
+    getplist() {
+      let params = {};
+      page(params)
+        .then((res) => {
+          // console.log(res);
+          if (res.data.code == "0") {
+            this.ptableData = res.data.data.list;
+            this.ptableData
+              .sort(
+                (a, b) =>
+                  new Date(a.createTime).getTime() -
+                  new Date(b.createTime).getTime()
+              )
+              .reverse();
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
     },
-    onSubmit () {
-      this.page = 1
-      this.getlist()
+    onSubmit() {
+      this.page = 1;
+      this.getlist();
     },
-    getlist () {
+    getlist() {
       let params = {
         name: "%" + this.name + "%",
         page: this.page,
         limit: this.limit,
         // type: this.values
-      }
+      };
       if (this.type != "") {
-        params.type = this.type
+        params.type = this.type;
       }
-      list(params).then(res => {
-        console.log(res);
-        if (res.data.code == '0') {
-          this.tableData = res.data.data.list
-          this.tableData.sort((a, b) => new Date(a.createTime).getTime() - new
-            Date(b.createTime).getTime()).reverse()
+      list(params)
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == "0") {
+            this.tableData = res.data.data.list;
+            this.tableData
+              .sort(
+                (a, b) =>
+                  new Date(a.createTime).getTime() -
+                  new Date(b.createTime).getTime()
+              )
+              .reverse();
 
-          // this.tableData.sort((a, b) => new Date(a.createTime).getTime() - new
-          //   Date(b.createTime).getTime())
-          this.tableData.forEach(item => {
-            if (item.type == "A") {
-              item.type = "活动"
-            } else if (item.type == "B") {
-              item.type = "商品"
-            } else if (item.type == "C") {
-              item.type = "二手商品"
-            }
-          })
-        } else {
-          this.$message.error(res.data.msg);
-        }
-      }).catch((erro) => {
-        this.$message.error(erro.msg);
-      });
-    }
-  }
-
-}
+            // this.tableData.sort((a, b) => new Date(a.createTime).getTime() - new
+            //   Date(b.createTime).getTime())
+            this.tableData.forEach((item) => {
+              if (item.type == "A") {
+                item.type = "Promotion";
+              } else if (item.type == "B") {
+                item.type = "Business";
+              } else if (item.type == "C") {
+                item.type = "C2C/Trading";
+              }
+            });
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

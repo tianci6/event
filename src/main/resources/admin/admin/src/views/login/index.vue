@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login-bgc"></div>
     <div class="login-form">
-      <p class="title">公共场所不建议自动登录，以防账号丢失</p>
+      <p class="title">Community Support System</p>
       <el-form
         v-if="loginshow"
         :rules="rules"
@@ -12,17 +12,20 @@
       >
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
-            <el-input placeholder="请输入账号" v-model="form.name"></el-input>
+            <el-input
+              placeholder="Community Account"
+              v-model="form.name"
+            ></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input
               type="password"
-              placeholder="请输入密码"
+              placeholder="Password"
               v-model="form.password"
             ></el-input>
           </el-form-item>
-          <p @click="loginsave" class="button">登录</p>
-          <p @click="reset" class="zhuce">注册resident</p>
+          <p @click="loginsave" class="button">Login</p>
+          <p @click="reset" class="zhuce">Create Your Community Account</p>
         </div>
       </el-form>
       <el-form
@@ -35,64 +38,61 @@
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="juminhao">
             <el-input
-              placeholder="请输入居民号"
+              placeholder="Community Account Name"
               v-model="form.juminhao"
             ></el-input>
           </el-form-item>
           <el-form-item prop="mima">
             <el-input
               type="password"
-              placeholder="请输入密码"
+              placeholder="Password"
               v-model="form.mima"
             ></el-input>
           </el-form-item>
           <el-form-item prop="mima2">
             <el-input
               type="password"
-              placeholder="请输入再次确认密码"
+              placeholder="Password Again"
               v-model="form.mima2"
             ></el-input>
           </el-form-item>
           <el-form-item prop="juminxingming">
             <el-input
-              placeholder="请输入Name"
+              placeholder="Real Name"
               v-model="form.juminxingming"
             ></el-input>
           </el-form-item>
           <el-form-item prop="nianling">
-            <el-input
-              placeholder="请输入Age"
-              v-model="form.nianling"
-            ></el-input>
+            <el-input placeholder="Age" v-model="form.nianling"></el-input>
           </el-form-item>
           <el-form-item prop="juminshouji">
             <el-input
-              placeholder="请输入居民手机"
+              placeholder="Mobile Number"
               v-model="form.juminshouji"
             ></el-input>
           </el-form-item>
 
           <el-form-item prop="juzhudizhi">
             <el-input
-              placeholder="请输入Address"
+              placeholder="Community Address"
               v-model="form.juzhudizhi"
             ></el-input>
           </el-form-item>
           <el-form-item prop="menpaihao">
             <el-input
-              placeholder="请输入HouseNumber"
+              placeholder="HouseNumber"
               v-model="form.menpaihao"
             ></el-input>
           </el-form-item>
           <el-form-item prop="danyuanhao">
             <el-input
-              placeholder="请输入UnitNumber"
+              placeholder="UnitNumber"
               v-model="form.danyuanhao"
             ></el-input>
           </el-form-item>
 
-          <p @click="zhuce" class="button">注册</p>
-          <p @click="logins" class="zhuce">已有账号登录</p>
+          <p @click="zhuce" class="button">Create Your Community Account</p>
+          <p @click="logins" class="zhuce">Existing Account Login</p>
         </div>
       </el-form>
     </div>
@@ -119,29 +119,71 @@ export default {
       },
       loginshow: true,
       rules: {
-        name: [{ required: true, message: "请输入name", trigger: "blur" }],
+        name: [
+          {
+            required: true,
+            message: "Please Input Your Community Account",
+            trigger: "blur",
+          },
+        ],
         password: [
-          { required: true, message: "请输入password", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your Password",
+            trigger: "blur",
+          },
         ],
         juminxingming: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your Real Name",
+            trigger: "blur",
+          },
         ],
-        mima: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        mima: [
+          {
+            required: true,
+            message: "Please Input Your Password",
+            trigger: "blur",
+          },
+        ],
         mima2: [
-          { required: true, message: "请输入再次确认密码", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your Password Again",
+            trigger: "blur",
+          },
         ],
-        nianling: [{ required: true, message: "请输入Age", trigger: "blur" }],
+        nianling: [
+          { required: true, message: "Please Input Your Age", trigger: "blur" },
+        ],
         juminshouji: [
-          { required: true, message: "请输入居民手机", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your Real Phone",
+            trigger: "blur",
+          },
         ],
         juzhudizhi: [
-          { required: true, message: "请输入Address", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your Real Address",
+            trigger: "blur",
+          },
         ],
         menpaihao: [
-          { required: true, message: "请输入HouseNumber", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your HouseNumber",
+            trigger: "blur",
+          },
         ],
         danyuanhao: [
-          { required: true, message: "请输入UnitNumber", trigger: "blur" },
+          {
+            required: true,
+            message: "Please Input Your UnitNumber",
+            trigger: "blur",
+          },
         ],
       },
     };
@@ -164,7 +206,7 @@ export default {
               if (res.data.code == 0) {
                 this.loginshow = true;
                 this.$refs.ruleForms.resetFields();
-                this.$message.success("注册成功");
+                this.$message.success("Register Successful");
               } else {
                 this.$message.error(res.data.msg);
               }
@@ -221,7 +263,7 @@ export default {
                 if (res.data.code == "0") {
                   this.$storage.set("Token", res.data.token);
                   // sessionStorage.setItem("token", res.data.token)
-                  this.$message.success("登录成功");
+                  this.$message.success("Login Successful");
 
                   this.$router.push("/event/homerulel");
 
@@ -243,7 +285,7 @@ export default {
                 if (res.data.code == "0") {
                   this.$storage.set("Token", res.data.token);
                   // sessionStorage.setItem("token", res.data.token)
-                  this.$message.success("登录成功");
+                  this.$message.success("Login Successful");
                   // this.$router.push("/event/homerulel");
 
                   this.$router.push("/event/home");
@@ -297,6 +339,7 @@ export default {
       line-height: 32px;
       font-size: 18px;
       border-style: solid;
+      text-align: center;
     }
   }
 }
