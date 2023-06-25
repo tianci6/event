@@ -25,7 +25,8 @@ public class ConfigServiceImpl extends ServiceImpl<ConfigDao, ConfigEntity> impl
 	@Override
 	public PageUtils queryPage(Map<String, Object> params, Wrapper<ConfigEntity> wrapper) {
 		Page<ConfigEntity> page = this.selectPage(
-                new Query<ConfigEntity>(params).getPage(),
+                new Query<ConfigEntity>
+						(params).getPage(),
                 wrapper
         );
         return new PageUtils(page);

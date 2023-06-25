@@ -51,7 +51,7 @@
             ></el-input>
           </el-form-item>
           <p @click="zhuce" class="button">register</p>
-          <p @click="logins" class="zhuce">已有账号登录</p>
+          <p @click="logins" class="zhuce">already have account</p>
         </div>
       </el-form>
     </div>
