@@ -40,8 +40,8 @@ import java.io.IOException;
 /**
  * 居民
  * 后端接口
- * @author 
- * @email 
+ * @author
+ * @email
  * @date 2022-08-01 07:36:10
  */
 @RestController
@@ -51,10 +51,10 @@ public class JuminController {
     private JuminService juminService;
 
 
-    
+
 	@Autowired
 	private TokenService tokenService;
-	
+
 	/**
 	 * 登录
 	 */
@@ -63,13 +63,14 @@ public class JuminController {
 	public R login(String username, String password, String captcha, HttpServletRequest request) {
 		JuminEntity user = juminService.selectOne(new EntityWrapper<JuminEntity>().eq("juminhao", username));
 		if(user==null || !user.getMima().equals(password)) {
-			return R.error("账号或密码不正确");
+			// 账号或密码不正确
+			return R.error("Account or Password incorrect");
 		}
-		
+
 		String token = tokenService.generateToken(user.getId(), username,"jumin",  "resident" );
 		return R.ok().put("token", token);
 	}
-	
+
 	/**
      * 注册
      */
@@ -87,7 +88,7 @@ public class JuminController {
         return R.ok();
     }
 
-	
+
 	/**
 	 * 退出
 	 */
@@ -96,7 +97,7 @@ public class JuminController {
 		request.getSession().invalidate();
 		return R.ok("退出成功");
 	}
-	
+
 	/**
      * 获取用户的session用户信息
      */
@@ -106,7 +107,7 @@ public class JuminController {
         JuminEntity user = juminService.selectById(id);
         return R.ok().put("data", user);
     }
-    
+
     /**
      * 密码重置
      */
@@ -135,13 +136,13 @@ public class JuminController {
 
         return R.ok().put("data", page);
     }
-    
+
     /**
      * 前端列表
      */
 	@IgnoreAuth
     @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params,JuminEntity jumin, 
+    public R list(@RequestParam Map<String, Object> params,JuminEntity jumin,
 		HttpServletRequest request){
         EntityWrapper<JuminEntity> ew = new EntityWrapper<JuminEntity>();
 
@@ -155,7 +156,7 @@ public class JuminController {
     @RequestMapping("/lists")
     public R list( JuminEntity jumin){
        	EntityWrapper<JuminEntity> ew = new EntityWrapper<JuminEntity>();
-      	ew.allEq(MPUtil.allEQMapPre( jumin, "jumin")); 
+      	ew.allEq(MPUtil.allEQMapPre( jumin, "jumin"));
         return R.ok().put("data", juminService.selectListView(ew));
     }
 
@@ -165,11 +166,11 @@ public class JuminController {
     @RequestMapping("/query")
     public R query(JuminEntity jumin){
         EntityWrapper< JuminEntity> ew = new EntityWrapper< JuminEntity>();
- 		ew.allEq(MPUtil.allEQMapPre( jumin, "jumin")); 
+ 		ew.allEq(MPUtil.allEQMapPre( jumin, "jumin"));
 		JuminView juminView =  juminService.selectView(ew);
 		return R.ok("查询居民成功").put("data", juminView);
     }
-	
+
     /**
      * 后端详情
      */
@@ -188,7 +189,7 @@ public class JuminController {
         JuminEntity jumin = juminService.selectById(id);
         return R.ok().put("data", jumin);
     }
-    
+
 
 
 
@@ -207,7 +208,7 @@ public class JuminController {
         juminService.insert(jumin);
         return R.ok();
     }
-    
+
     /**
      * 前端保存
      */
@@ -234,7 +235,7 @@ public class JuminController {
         juminService.updateById(jumin);//全部更新
         return R.ok();
     }
-    
+
 
     /**
      * Delete
@@ -244,16 +245,16 @@ public class JuminController {
         juminService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
-    
+
     /**
      * 提醒接口
      */
 	@RequestMapping("/remind/{columnName}/{type}")
-	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request, 
+	public R remindCount(@PathVariable("columnName") String columnName, HttpServletRequest request,
 						 @PathVariable("type") String type,@RequestParam Map<String, Object> map) {
 		map.put("column", columnName);
 		map.put("type", type);
-		
+
 		if(type.equals("2")) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();
@@ -261,7 +262,7 @@ public class JuminController {
 			Date remindEndDate = null;
 			if(map.get("remindstart")!=null) {
 				Integer remindStart = Integer.parseInt(map.get("remindstart").toString());
-				c.setTime(new Date()); 
+				c.setTime(new Date());
 				c.add(Calendar.DAY_OF_MONTH,remindStart);
 				remindStartDate = c.getTime();
 				map.put("remindstart", sdf.format(remindStartDate));
@@ -274,7 +275,7 @@ public class JuminController {
 				map.put("remindend", sdf.format(remindEndDate));
 			}
 		}
-		
+
 		Wrapper<JuminEntity> wrapper = new EntityWrapper<JuminEntity>();
 		if(map.get("remindstart")!=null) {
 			wrapper.ge(columnName, map.get("remindstart"));
@@ -287,7 +288,7 @@ public class JuminController {
 		int count = juminService.selectCount(wrapper);
 		return R.ok().put("count", count);
 	}
-	
+
 
 
 

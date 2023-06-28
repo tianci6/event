@@ -95,6 +95,7 @@ public class MaterialEvaluateEntity implements Serializable {
     private BigDecimal score;
 
     private String username;
+    private String userphone;
 
 
     public MaterialEvaluateEntity() {}
