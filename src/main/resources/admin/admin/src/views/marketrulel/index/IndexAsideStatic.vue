@@ -2,36 +2,14 @@
   <el-aside class="index-aside" width="200px">
     <div class="index-aside-inner menulist">
       <div class="menulist-item">
-        <el-menu
-          :mode="2 == 1 ? 'horizontal' : 'vertical'"
-          :unique-opened="true"
-          class="el-menu-demo"
-          default-active="0"
-        >
-          <el-menu-item index="1" @click="menuHandler('/event/homerulel/')"
-            >Resident Management</el-menu-item
-          >
-          <el-menu-item
-            index="0"
-            @click="menuHandler('/event/homerulel/config')"
-            >Billboard Management</el-menu-item
-          >
+        <el-menu :mode="2 == 1 ? 'horizontal' : 'vertical'" :unique-opened="true" class="el-menu-demo" default-active="0">
+          <!-- <el-menu-item index="1" @click="menuHandler('/event/homerulel/')">Home</el-menu-item> -->
+          <el-menu-item index="1" @click="menuHandler('/event/homerulel/')">Resident Management</el-menu-item>
+          <el-menu-item index="0" @click="menuHandler('/event/homerulel/config')">Billboard Management</el-menu-item>
 
-          <el-menu-item
-            index="2"
-            @click="menuHandler('/event/homerulel/comment')"
-            >Marketing Management</el-menu-item
-          >
-          <el-menu-item
-            index="2"
-            @click="menuHandler('/event/homerulel/upload')"
-            >Upload Post</el-menu-item
-          >
-          <el-menu-item
-            index="2"
-            @click="menuHandler('/event/homerulel/discuss')"
-            >Review Management</el-menu-item
-          >
+          <el-menu-item index="2" @click="menuHandler('/event/homerulel/comment')">Marketing Management</el-menu-item>
+          <el-menu-item index="2" @click="menuHandler('/event/homerulel/upload')">Upload Post</el-menu-item>
+          <el-menu-item index="2" @click="menuHandler('/event/homerulel/discuss')">Review Management</el-menu-item>
         </el-menu>
       </div>
     </div>
@@ -41,16 +19,16 @@
 <script>
 import menu from "@/utils/menu";
 export default {
-  data() {
+  data () {
     return {
       menuList: [],
     };
   },
   methods: {
-    menuHandler(value) {
+    menuHandler (value) {
       this.$router.push(value);
     },
-    gotopingjia() {
+    gotopingjia () {
       this.$router.push("/event/homerulel/comment");
     },
   },
@@ -122,6 +100,7 @@ export default {
     min-height: calc(100vh - 80px);
 
     & > .el-menu-item {
+      white-space: normal;
       width: auto;
       height: auto !important;
       line-height: 30px !important;

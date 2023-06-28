@@ -14,8 +14,11 @@
           <p class="title">Address:
           </p>
           <p class="conter">{{detaliboj.address}}</p>
-          <p v-if="saveshow" @click="subclikc('A')" class="sub">收藏</p>
-          <p v-if="!saveshow" @click="subclikc('B')" class="sub">取消收藏</p>
+          <p class="title">email:
+          </p>
+          <p class="conter">{{detaliboj.email}}</p>
+          <p v-if="saveshow" @click="subclikc('A')" class="sub">Favorite</p>
+          <p v-if="!saveshow" @click="subclikc('B')" class="sub">cancel Favorite</p>
         </div>
       </div>
 
@@ -48,7 +51,19 @@
                   </div>
                 </div>
 
-                <p @click="submit" class="sub">submit</p>
+                <p @click="submit" class="subs">submit</p>
+                <div>
+                  <p class="conter">Review List</p>
+                  <div :key="index" v-for="(item,index) in pinglunlist">
+                    <div class="pinglun">
+                      <img :src="$base.url+item.userPhone" alt="">
+                      <p style="margin-left:15px">{{item.username}}</p>
+                      <el-rate style="margin-left:15px" v-model="item.score"></el-rate>
+                      <p style="margin-left:15px">{{item.createTime}}</p>
+                    </div>
+                    <p style="margin-top:10px;margin-left:80px">{{item.content}}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -64,22 +79,26 @@
 import {
   collectMaterial,
   checkCollect,
-  adds
+  adds,
+  getByMaterial
 } from "@/assets/api/api.js";
+import storage from "@/utils/storage";
 export default {
   data () {
     return {
-      value1: "5",
+      value1: 5,
       textarea: "",
       market: [],
       activeName: "Description",
       url: "https://d.mousenat.cn/eventi/",
       detaliboj: null,
-      saveshow: false
+      saveshow: false,
+      pinglunlist: []
     }
   },
   created () {
     this.detaliboj = this.$route.query
+    console.log(this.detaliboj);
     this.getcheckCollect()
   },
   methods: {
@@ -96,6 +115,7 @@ export default {
           if (res.data.code == '0') {
             this.$message.success("评论成功");
             this.textarea = ""
+            this.getByMaterial()
           } else {
             this.$message.error(res.data.msg);
           }
@@ -113,7 +133,28 @@ export default {
         query: item
       })
     },
-    handleClick (item, index) { },
+    handleClick (item, index) {
+      if (this.activeName == 'Reviews') {
+        this.getByMaterial()
+      }
+    },
+    getByMaterial () {
+      getByMaterial(this.detaliboj.id).then(res => {
+        // console.log(res);
+        if (res.data.code == '0') {
+          // console.log(res);
+          this.pinglunlist = res.data.data
+          this.pinglunlist.forEach(item => {
+            item.score
+          })
+        } else {
+          this.$message.error(res.data.message);
+        }
+      }).catch((erro) => {
+        this.$message.error(erro.msg);
+      });
+    },
+
     getcheckCollect () {
       let params = {
         materialId: this.detaliboj.id,
@@ -190,6 +231,19 @@ export default {
 .sub {
   margin-top: 50px;
   text-align: center;
+  // width: 100px;
+
+  background-color: #d5a97a;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  font-size: 16px;
+  border-radius: 30px;
+}
+.subs {
+  margin-top: 50px;
+  text-align: center;
   width: 100px;
 
   background-color: #d5a97a;
@@ -199,6 +253,9 @@ export default {
   padding-left: 20px;
   font-size: 16px;
   border-radius: 30px;
+}
+.sub:hover {
+  background-color: rgba(223, 195, 153, 1);
 }
 /deep/.el-tabs__item {
   :hover {
@@ -252,5 +309,14 @@ export default {
 }
 /deep/.el-input--medium .el-input__inner {
   height: 80px;
+}
+.pinglun {
+  display: flex;
+  align-items: center;
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+  }
 }
 </style>

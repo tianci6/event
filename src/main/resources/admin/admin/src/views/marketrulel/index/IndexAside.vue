@@ -4,7 +4,7 @@
       <el-menu default-active="1">
         <el-menu-item @click="menuHandler('/')" index="1">
           <!-- <i class="el-icon-s-home"></i> -->
-          Home
+          <!-- Home -->
           <p>123</p>
         </el-menu-item>
 
