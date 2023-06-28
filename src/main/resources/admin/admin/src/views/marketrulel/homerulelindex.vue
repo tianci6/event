@@ -3,11 +3,7 @@
     <div>
       <el-form :inline="true" class="demo-form-inline">
         <el-form-item label="Account">
-          <el-input
-            v-model="name"
-            placeholder="Input Account Name"
-            clearable
-          ></el-input>
+          <el-input v-model="name" placeholder="Input Account Name" clearable></el-input>
         </el-form-item>
 
         <el-form-item>
@@ -21,22 +17,18 @@
       <el-table-column prop="juminxingming" label="Name"> </el-table-column>
       <el-table-column prop="nianling" label="Age"> </el-table-column>
       <el-table-column prop="juzhudizhi" label="Address"> </el-table-column>
-      <el-table-column prop="menpaihao" label="HouseNumber"> </el-table-column>
-      <el-table-column prop="danyuanhao" label="UnitNumber"> </el-table-column>
+      <el-table-column width="130" prop="menpaihao" label="HouseNumber"> </el-table-column>
+      <el-table-column width="130" prop="danyuanhao" label="UnitNumber"> </el-table-column>
       <el-table-column prop="xingbie" label="Sex"> </el-table-column>
       <el-table-column label="Image" width="180">
         <template slot-scope="scope">
           <!-- <div v-if="scope.row.value"> -->
-          <img
-            :src="$base.url + scope.row.juminzhaopian"
-            width="100"
-            height="100"
-          />
+          <img :src="$base.url + scope.row.juminzhaopian" width="100" height="100" />
           <!-- </div> -->
           <!-- <div v-else>no photo</div> -->
         </template>
       </el-table-column>
-      <el-table-column prop="addtime" label="Create-Time">
+      <el-table-column width="130" prop="addtime" label="Create-Time">
         <template slot-scope="scope">
           <p>
             {{ $moment(scope.row.createDate).format("YYYY/MM/DD HH:mm:ss") }}
@@ -46,22 +38,10 @@
 
       <el-table-column fixed="right" prop="address" label="operate" width="180">
         <template slot-scope="scope">
-          <el-button
-            @click="dalogshow(scope.row, false)"
-            type="success"
-            icon="el-icon-tickets"
-            size="mini"
-          >
-            Renew Password</el-button
-          >
-          <el-button
-            @click="del(scope.row, false)"
-            type="success"
-            icon="el-icon-tickets"
-            size="mini"
-          >
-            delete</el-button
-          >
+          <el-button @click="dalogshow(scope.row, false)" type="success" icon="el-icon-tickets" size="mini">
+            Renew Password</el-button>
+          <el-button @click="del(scope.row, false)" type="success" icon="el-icon-tickets" size="mini">
+            delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -74,7 +54,7 @@
 <script>
 import { ddusers, resetPass, deletes } from "@/assets/api/api.js";
 export default {
-  data() {
+  data () {
     return {
       name: "",
       tableData: [],
@@ -83,11 +63,11 @@ export default {
       limit: 10,
     };
   },
-  mounted() {
+  mounted () {
     this.getlist();
   },
   methods: {
-    del(item, value) {
+    del (item, value) {
       let params = [];
       params.push(item.id);
       deletes(params)
@@ -102,9 +82,9 @@ export default {
             this.$message.error(res.data.msg);
           }
         })
-        .catch((erro) => {});
+        .catch((erro) => { });
     },
-    dalogshow(item, value) {
+    dalogshow (item, value) {
       let params = {
         username: item.juminhao,
       };
@@ -120,13 +100,13 @@ export default {
             this.$message.error(res.data.msg);
           }
         })
-        .catch((erro) => {});
+        .catch((erro) => { });
     },
-    onSubmit() {
+    onSubmit () {
       this.page = 1;
       this.getlist();
     },
-    getlist() {
+    getlist () {
       let params = {
         page: this.page,
         limit: 10,

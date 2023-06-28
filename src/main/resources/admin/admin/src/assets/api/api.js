@@ -155,6 +155,15 @@ export const logins = (params) => {
         params: params
     });
 };
+// getByMaterial
+export const getByMaterial = (params) => {
+    return request({
+        url: `/eventi/materialEvaluate/getByMaterial/` + params,
+        method: "get",
+        // params: params
+    });
+};
+
 
 
 

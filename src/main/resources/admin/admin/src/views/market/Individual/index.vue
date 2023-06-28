@@ -7,42 +7,22 @@
       </div>
       <div class="Individual-nav">
         <div class="Individual-left">
-          <div
-            @click="active(item, index)"
-            :key="index"
-            v-for="(item, index) in userlist"
-            :class="indexs == item.name ? 'actives' : ''"
-          >
+          <div @click="active(item, index)" :key="index" v-for="(item, index) in userlist" :class="indexs == item.name ? 'actives' : ''">
             {{ item.name }}
           </div>
         </div>
         <div class="Individual-right">
           <div v-if="indexs == 'Your Account'">
-            <el-form
-              ref="forms"
-              :rules="rules"
-              :model="form"
-              label-width="120px"
-            >
+            <el-form ref="forms" :rules="rules" :model="form" label-width="120px">
               <el-form-item label="Account" prop="juminhao">
-                <el-input
-                  placeholder="Account"
-                  v-model="form.juminhao"
-                ></el-input>
+                <el-input placeholder="Account" v-model="form.juminhao"></el-input>
               </el-form-item>
               <el-form-item label="Password" prop="mima">
-                <el-input
-                  type="password"
-                  placeholder="Password"
-                  v-model="form.mima"
-                ></el-input>
+                <el-input type="password" placeholder="Password" v-model="form.mima"></el-input>
               </el-form-item>
 
               <el-form-item label="Name" prop="juminxingming">
-                <el-input
-                  placeholder="Name"
-                  v-model="form.juminxingming"
-                ></el-input>
+                <el-input placeholder="Name" v-model="form.juminxingming"></el-input>
               </el-form-item>
               <el-form-item label="Age" prop="nianling">
                 <el-input placeholder="Age" v-model="form.nianling"></el-input>
@@ -54,51 +34,29 @@
                 </el-select>
               </el-form-item>
               <el-form-item prop="nianling">
-                <el-upload
-                  class="avatar-uploader"
-                  action="/eventi/file/upload"
-                  :on-success="succes"
-                  :headers="headers"
-                  :show-file-list="false"
-                >
-                  <img
-                    v-if="
+                <el-upload class="avatar-uploader" action="/eventi/file/upload" :on-success="succes" :headers="headers" :show-file-list="false">
+                  <img v-if="
                       form.juminzhaopian != null && form.juminzhaopian != ''
-                    "
-                    :src="form.juminzhaopian"
-                    class="avatar"
-                  />
+                    " :src="$base.url+form.juminzhaopian" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
 
               <el-form-item label="Mobile" prop="juminshouji">
-                <el-input
-                  placeholder="Mobile"
-                  v-model="form.juminshouji"
-                ></el-input>
+                <el-input placeholder="Mobile" v-model="form.juminshouji"></el-input>
               </el-form-item>
               <el-form-item label="Address" prop="juzhudizhi">
-                <el-input
-                  placeholder="Address"
-                  v-model="form.juzhudizhi"
-                ></el-input>
+                <el-input placeholder="Address" v-model="form.juzhudizhi"></el-input>
               </el-form-item>
               <el-form-item label="HouseNumber" prop="menpaihao">
-                <el-input
-                  placeholder="HouseNumber"
-                  v-model="form.menpaihao"
-                ></el-input>
+                <el-input placeholder="HouseNumber" v-model="form.menpaihao"></el-input>
               </el-form-item>
               <el-form-item label="UnitNumber" prop="danyuanhao">
-                <el-input
-                  placeholder="UnitNumber"
-                  v-model="form.danyuanhao"
-                ></el-input>
+                <el-input placeholder="UnitNumber" v-model="form.danyuanhao"></el-input>
               </el-form-item>
 
               <div class="foot">
-                <p @click="subclikc" class="sub">更新信息</p>
+                <p @click="subclikc" class="sub">Update</p>
                 <p @click="subclikcs" class="sub subs">Log out</p>
               </div>
             </el-form>
@@ -110,41 +68,23 @@
               <el-table-column prop="type" label="Category" width="180">
               </el-table-column>
               <el-table-column prop="name" label="Title"> </el-table-column>
-              <el-table-column
-                width="120"
-                :show-overflow-tooltip="true"
-                prop="email"
-                label="Email"
-              >
+              <el-table-column width="120" :show-overflow-tooltip="true" prop="email" label="Email">
               </el-table-column>
-              <el-table-column
-                width="120"
-                :show-overflow-tooltip="true"
-                prop="content"
-                label="Introduce"
-              >
+              <el-table-column width="120" :show-overflow-tooltip="true" prop="content" label="Introduce">
               </el-table-column>
-              <el-table-column
-                width="120"
-                :show-overflow-tooltip="true"
-                prop="describe"
-                label="Descripition"
-              >
+              <el-table-column width="120" :show-overflow-tooltip="true" prop="describe" label="Descripition">
               </el-table-column>
-              <el-table-column
-                width="120"
-                :show-overflow-tooltip="true"
-                prop="address"
-                label="Address"
-              >
+              <el-table-column width="120" :show-overflow-tooltip="true" prop="address" label="Address">
               </el-table-column>
-              <el-table-column
-                width="120"
-                :show-overflow-tooltip="true"
-                prop="imgUrl"
-                label="图片信息"
-              >
+              <el-table-column width="120" :show-overflow-tooltip="true" prop="imgUrl" label="图片信息">
               </el-table-column>
+              <el-table-column fixed="right" width="120" label="操作">
+                <template slot-scope="scope">
+                  <p class="dels" @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
+                    删除</p>
+                </template>
+              </el-table-column>
+
             </el-table>
             <!-- <el-pagination layout="prev, pager, next" :total="total">
             </el-pagination> -->
@@ -154,11 +94,7 @@
               <el-row :gutter="20">
                 <el-col :key="index" v-for="(item, index) in market" :span="6">
                   <div class="grid-content">
-                    <img
-                      @click="gotodetali(item)"
-                      :src="$base.url + item.imgUrl"
-                      alt=""
-                    />
+                    <img @click="gotodetali(item)" :src="$base.url + item.imgUrl" alt="" />
                   </div>
                   <div class="text-font">
                     <p>{{ item.name }}</p>
@@ -173,6 +109,13 @@
         </div>
       </div>
     </div>
+    <el-dialog title="Prompt" :visible.sync="deldialogVisible" width="30%" :before-close="handleClose">
+      <span>Are you sure to proceed with the [Delete] operation?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="deldialogVisible = false">Cancel</el-button>
+        <el-button @click="save">Confirm</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -182,10 +125,11 @@ import {
   session,
   updates,
   selectMyMaterial,
+  materialdel
 } from "@/assets/api/api.js";
 import storage from "@/utils/storage";
 export default {
-  data() {
+  data () {
     return {
       url: "https://d.mousenat.cn/eventi/",
       market: [],
@@ -250,28 +194,57 @@ export default {
       page: 1,
       limit: 10,
       total: 0,
+      deldialogVisible: false
     };
   },
-  created() {
+  created () {
     this.getuser();
   },
   methods: {
-    subclikcs() {
+    handleClose () {
+      this.deldialogVisible = false
+    },
+    save () {
+      let params = [];
+      params.push(this.materialId);
+      materialdel(params)
+        .then((res) => {
+          // console.log(res);
+          if (res.data.code == "0") {
+            this.$message({
+              message: "删除成功",
+              type: "success",
+            });
+            this.deldialogVisible = false;
+            this.getfabulist();
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
+    },
+    del (item, value) {
+      this.materialId = item.id;
+      this.deldialogVisible = true;
+    },
+    subclikcs () {
       this.$storage.remove("Token");
       this.$router.replace({ name: "/event/login" });
     },
-    succes(file) {
+    succes (file) {
       console.log(file);
       this.form.juminzhaopian = "upload/" + file.file;
     },
-    gotodetali(item) {
+    gotodetali (item) {
       //   console.log(123);
       this.$router.push({
         path: "/event/marketking/detali",
         query: item,
       });
     },
-    getuser() {
+    getuser () {
       let params = {};
       session(params)
         .then((res) => {
@@ -282,9 +255,9 @@ export default {
             this.$message.error(res.data.msg);
           }
         })
-        .catch((erro) => {});
+        .catch((erro) => { });
     },
-    active(item, index) {
+    active (item, index) {
       this.indexs = item.name;
       //   console.log(this.indexs);
       if (this.indexs == "Your Favourite") {
@@ -295,7 +268,7 @@ export default {
         this.getuser();
       }
     },
-    getfabulist() {
+    getfabulist () {
       let params = {
         page: this.page,
         limit: this.limit,
@@ -323,7 +296,7 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    getmarklist() {
+    getmarklist () {
       let params = {
         materialId: "",
         // type: this.values
@@ -347,7 +320,7 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    subclikc() {
+    subclikc () {
       let params = this.form;
       updates(params)
         .then((res) => {
@@ -361,7 +334,7 @@ export default {
             this.$message.error(res.data.msg);
           }
         })
-        .catch((erro) => {});
+        .catch((erro) => { });
     },
   },
 };
@@ -507,5 +480,8 @@ export default {
 }
 .el-select {
   width: 100%;
+}
+.dels {
+  cursor: pointer;
 }
 </style>

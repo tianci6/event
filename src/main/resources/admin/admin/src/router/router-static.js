@@ -96,9 +96,6 @@ const routes = [{
         name: 'discuss',
         component: discuss
       },
-
-
-
     ]
 
   },

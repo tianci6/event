@@ -5,7 +5,7 @@
         <el-form-item label="Ttitle">
           <el-input v-model="name" placeholder="Ttitle"></el-input>
         </el-form-item>
-        <el-form-item label="商品类型">
+        <el-form-item label="Category">
           <el-select clearable v-model="type" placeholder="Category">
             <el-option label="Promotion" value="A"></el-option>
             <el-option label="Business" value="B"></el-option>
@@ -40,14 +40,8 @@
       </el-table-column>
       <el-table-column fixed="right" prop="address" label="operate" width="180">
         <template slot-scope="scope">
-          <el-button
-            @click="dalogshow(scope.row, true)"
-            type="success"
-            icon="el-icon-tickets"
-            size="mini"
-          >
-            Comment Record</el-button
-          >
+          <el-button @click="dalogshow(scope.row, true)" type="success" icon="el-icon-tickets" size="mini">
+            Comment Record</el-button>
           <!-- <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
             收藏记录</el-button> -->
           <!-- <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
@@ -58,37 +52,18 @@
     <div class="pagination">
       <el-pagination layout="prev, pager, next" :total="total"> </el-pagination>
     </div>
-    <el-dialog
-      :title="title"
-      :visible.sync="dialogVisible"
-      width="60%"
-      :before-close="handleClose"
-    >
-      <el-table
-        v-if="title == 'Comment Record'"
-        :data="ptableData"
-        style="width: 100%"
-      >
+    <el-dialog :title="title" :visible.sync="dialogVisible" width="60%" :before-close="handleClose">
+      <el-table v-if="title == 'Comment Record'" :data="ptableData" style="width: 100%">
         <el-table-column prop="username" label="Comment user" width="180">
         </el-table-column>
-        <el-table-column
-          :show-overflow-tooltip="true"
-          prop="content"
-          label="Comment content"
-        >
+        <el-table-column :show-overflow-tooltip="true" prop="content" label="Comment content">
         </el-table-column>
         <el-table-column prop="createTime" label="Comment time">
         </el-table-column>
         <el-table-column prop="address" label="operate" width="180">
           <template slot-scope="scope">
-            <el-button
-              @click="dels(scope.row, false)"
-              type="success"
-              icon="el-icon-tickets"
-              size="mini"
-            >
-              delete</el-button
-            >
+            <el-button @click="dels(scope.row, false)" type="success" icon="el-icon-tickets" size="mini">
+              delete</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -101,24 +76,14 @@
         <el-button @click="dialogVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
-    <el-dialog
-      title="提示"
-      :visible.sync="deldialogVisible"
-      width="30%"
-      :before-close="handleClose"
-    >
+    <el-dialog title="提示" :visible.sync="deldialogVisible" width="30%" :before-close="handleClose">
       <span>确定进行[删除]操作?</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="deldialogVisible = false">取 消</el-button>
         <el-button @click="save">确 定</el-button>
       </span>
     </el-dialog>
-    <el-dialog
-      title="提示"
-      :visible.sync="disdialogVisible"
-      width="30%"
-      :before-close="handleClose"
-    >
+    <el-dialog title="提示" :visible.sync="disdialogVisible" width="30%" :before-close="handleClose">
       <span>确定进行[删除]操作?</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="disdialogVisible = false">取 消</el-button>
@@ -138,7 +103,7 @@ import {
   materialEvaluate,
 } from "@/assets/api/api.js";
 export default {
-  data() {
+  data () {
     return {
       disdialogVisible: false,
       deldialogVisible: false,
@@ -156,13 +121,13 @@ export default {
       materialId: "",
     };
   },
-  mounted() {
+  mounted () {
     this.getlist();
   },
   methods: {
-    handleClose() {},
+    handleClose () { },
 
-    save() {
+    save () {
       let params = [];
       // materialId: this.materialId
       params.push(this.materialId);
@@ -184,7 +149,7 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    saves() {
+    saves () {
       let params = [];
       // materialId: this.materialId
       params.push(this.materialId);
@@ -206,15 +171,15 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    del(item, value) {
+    del (item, value) {
       this.materialId = item.id;
       this.deldialogVisible = true;
     },
-    dels(item, value) {
+    dels (item, value) {
       this.materialId = item.id;
       this.disdialogVisible = true;
     },
-    dalogshow(item, value) {
+    dalogshow (item, value) {
       if (value) {
         this.title = "Comment Record";
         this.getplist();
@@ -225,7 +190,7 @@ export default {
       }
       this.dialogVisible = true;
     },
-    getcanglist() {
+    getcanglist () {
       let params = {
         materialId: this.materialId,
       };
@@ -242,7 +207,7 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    getplist() {
+    getplist () {
       let params = {};
       page(params)
         .then((res) => {
@@ -264,11 +229,11 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    onSubmit() {
+    onSubmit () {
       this.page = 1;
       this.getlist();
     },
-    getlist() {
+    getlist () {
       let params = {
         name: "%" + this.name + "%",
         page: this.page,
@@ -294,12 +259,13 @@ export default {
             // this.tableData.sort((a, b) => new Date(a.createTime).getTime() - new
             //   Date(b.createTime).getTime())
             this.tableData.forEach((item) => {
+
               if (item.type == "A") {
-                item.type = "活动";
+                item.type = "Promotion";
               } else if (item.type == "B") {
-                item.type = "商品";
+                item.type = "Business";
               } else if (item.type == "C") {
-                item.type = "二手商品";
+                item.type = "C2C/Trading";
               }
             });
           } else {

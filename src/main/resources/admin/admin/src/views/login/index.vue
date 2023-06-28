@@ -3,92 +3,47 @@
     <div class="login-bgc"></div>
     <div class="login-form">
       <p class="title">Community Support System</p>
-      <el-form
-        v-if="loginshow"
-        :rules="rules"
-        ref="ruleForm"
-        :model="form"
-        label-width="0px"
-      >
+      <el-form v-if="loginshow" :rules="rules" ref="ruleForm" :model="form" label-width="0px">
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
-            <el-input
-              placeholder="Community Account"
-              v-model="form.name"
-            ></el-input>
+            <el-input placeholder="Community Account" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="Password"
-              v-model="form.password"
-            ></el-input>
+            <el-input type="password" placeholder="Password" v-model="form.password"></el-input>
           </el-form-item>
           <p @click="loginsave" class="button">Login</p>
           <p @click="reset" class="zhuce">Create Your Community Account</p>
         </div>
       </el-form>
-      <el-form
-        v-else
-        :rules="rules"
-        ref="ruleForms"
-        :model="form"
-        label-width="0px"
-      >
+      <el-form v-else :rules="rules" ref="ruleForms" :model="form" label-width="0px">
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="juminhao">
-            <el-input
-              placeholder="Community Account Name"
-              v-model="form.juminhao"
-            ></el-input>
+            <el-input placeholder="Community Account Name" v-model="form.juminhao"></el-input>
           </el-form-item>
           <el-form-item prop="mima">
-            <el-input
-              type="password"
-              placeholder="Password"
-              v-model="form.mima"
-            ></el-input>
+            <el-input type="password" placeholder="Password" v-model="form.mima"></el-input>
           </el-form-item>
           <el-form-item prop="mima2">
-            <el-input
-              type="password"
-              placeholder="Password Again"
-              v-model="form.mima2"
-            ></el-input>
+            <el-input type="password" placeholder="Password Again" v-model="form.mima2"></el-input>
           </el-form-item>
           <el-form-item prop="juminxingming">
-            <el-input
-              placeholder="Real Name"
-              v-model="form.juminxingming"
-            ></el-input>
+            <el-input placeholder="Real Name" v-model="form.juminxingming"></el-input>
           </el-form-item>
           <el-form-item prop="nianling">
             <el-input placeholder="Age" v-model="form.nianling"></el-input>
           </el-form-item>
           <el-form-item prop="juminshouji">
-            <el-input
-              placeholder="Mobile Number"
-              v-model="form.juminshouji"
-            ></el-input>
+            <el-input type="number" placeholder="Mobile Number" v-model="form.juminshouji"></el-input>
           </el-form-item>
 
           <el-form-item prop="juzhudizhi">
-            <el-input
-              placeholder="Community Address"
-              v-model="form.juzhudizhi"
-            ></el-input>
+            <el-input placeholder="Community Address" v-model="form.juzhudizhi"></el-input>
           </el-form-item>
           <el-form-item prop="menpaihao">
-            <el-input
-              placeholder="HouseNumber"
-              v-model="form.menpaihao"
-            ></el-input>
+            <el-input placeholder="HouseNumber" v-model="form.menpaihao"></el-input>
           </el-form-item>
           <el-form-item prop="danyuanhao">
-            <el-input
-              placeholder="UnitNumber"
-              v-model="form.danyuanhao"
-            ></el-input>
+            <el-input type="number" placeholder="UnitNumber" v-model="form.danyuanhao"></el-input>
           </el-form-item>
 
           <p @click="zhuce" class="button">Create Your Community Account</p>
@@ -96,13 +51,16 @@
         </div>
       </el-form>
     </div>
+    <div @click="back" class="back">
+      <p>Back</p>
+    </div>
   </div>
 </template>
 
 <script>
 import { login, register, registers, logins } from "@/assets/api/api.js";
 export default {
-  data() {
+  data () {
     return {
       form: {
         juminhao: "",
@@ -189,15 +147,18 @@ export default {
     };
   },
   methods: {
-    logins() {
+    back () {
+      this.$router.push("/event/home")
+    },
+    logins () {
       this.loginshow = true;
       this.$refs.ruleForms.resetFields();
     },
-    reset() {
+    reset () {
       this.loginshow = false;
       this.$refs.ruleForm.resetFields();
     },
-    zhuce() {
+    zhuce () {
       this.$refs.ruleForms.validate((valid) => {
         if (valid) {
           let params = this.form;
@@ -250,7 +211,7 @@ export default {
         }
       });
     }, */
-    loginsave() {
+    loginsave () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           if (this.$route.query.source == "1") {
@@ -369,7 +330,7 @@ export default {
   height: 44px;
 }
 .button {
-  width: 80%;
+  background-color: rgb(203, 148, 92);
   padding: 0px 10px;
   box-shadow: rgba(255, 0, 0, 0.5) 0px 0px 0px;
   margin: 10px auto;
@@ -385,5 +346,17 @@ export default {
 }
 .zhuce {
   text-align: center;
+}
+.back {
+  cursor: pointer;
+  border-radius: 10px;
+  color: #fff;
+  position: fixed;
+  right: 30px;
+  top: 30px;
+  // background-color: rgb(203, 148, 92);
+  padding: 10px 15px;
+
+  background-color: rgb(203, 148, 92);
 }
 </style>
