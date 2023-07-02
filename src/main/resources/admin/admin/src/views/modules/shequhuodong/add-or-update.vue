@@ -8,17 +8,16 @@
       label-width="80px"
 	  :style="{backgroundColor:addEditForm.addEditBoxColor}"
     >
-
       <el-row >
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="EventName" prop="huodongmingcheng">
+        <el-form-item class="input" v-if="type!='info'"  label="Name" prop="huodongmingcheng">
           <el-input v-model="ruleForm.huodongmingcheng" 
-              placeholder="EventName" clearable  :readonly="ro.huodongmingcheng"></el-input>
+              placeholder="Name" clearable  :readonly="ro.huodongmingcheng"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="EventName" prop="huodongmingcheng">
+          <el-form-item class="input" label="Name" prop="huodongmingcheng">
               <el-input v-model="ruleForm.huodongmingcheng" 
-                placeholder="EventName" readonly></el-input>
+                placeholder="Name" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -37,29 +36,29 @@
       <el-col :span="24">  
         <el-form-item class="upload" v-if="type!='info' && !ro.huodongfengmian" label="Cover" prop="huodongfengmian">
           <file-upload
-          tip="点击上传Cover"
+          tip="click to upload cover"
           action="file/upload"
           :limit="3"
           :multiple="true"
           :fileUrls="ruleForm.huodongfengmian?ruleForm.huodongfengmian:''"
-          @Change="huodongfengmianUploadChange"
+          @change="huodongfengmianUploadChange"
           ></file-upload>
         </el-form-item>
         <div v-else>
-          <el-form-item v-if="ruleForm.huodongfengmian" label="Cover" prop="huodongfengmian">
+          <el-form-item v-if="ruleForm.huodongfengmian" label="活动封面" prop="huodongfengmian">
             <img style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.huodongfengmian.split(',')" :src="$base.url+item" width="100" height="100">
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="Location" prop="huodongdidian">
+        <el-form-item class="input" v-if="type!='info'"  label="location" prop="huodongdidian">
           <el-input v-model="ruleForm.huodongdidian" 
-              placeholder="Location" clearable  :readonly="ro.huodongdidian"></el-input>
+              placeholder="location" clearable  :readonly="ro.huodongdidian"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="Location" prop="huodongdidian">
+          <el-form-item class="input" label="活动地点" prop="huodongdidian">
               <el-input v-model="ruleForm.huodongdidian" 
-                placeholder="Location" readonly></el-input>
+                placeholder="活动地点" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -70,84 +69,84 @@
                 v-model="ruleForm.kaishishijian" 
                 type="datetime"
                 :readonly="ro.kaishishijian"
-                placeholder="StartTime">
+                placeholder="Activity Start time">
             </el-date-picker>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.kaishishijian" label="StartTime" prop="kaishishijian">
+          <el-form-item class="input" v-if="ruleForm.kaishishijian" label="开始时间" prop="kaishishijian">
               <el-input v-model="ruleForm.kaishishijian" 
-                placeholder="StartTime" readonly></el-input>
+                placeholder="开始时间" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="EndTime" prop="jieshushijian">
+        <el-form-item class="date" v-if="type!='info'" label="endTime" prop="jieshushijian">
             <el-date-picker
                 value-format="yyyy-MM-dd HH:mm:ss"
                 v-model="ruleForm.jieshushijian" 
                 type="datetime"
                 :readonly="ro.jieshushijian"
-                placeholder="EndTime">
+                placeholder="Activity end time">
             </el-date-picker>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.jieshushijian" label="EndTime" prop="jieshushijian">
+          <el-form-item class="input" v-if="ruleForm.jieshushijian" label="结束时间" prop="jieshushijian">
               <el-input v-model="ruleForm.jieshushijian" 
-                placeholder="EndTime" readonly></el-input>
+                placeholder="结束时间" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="date" v-if="type!='info'" label="RegisterDeadline" prop="baomingjiezhi">
+        <el-form-item class="date" v-if="type!='info'" label="Deadline" prop="baomingjiezhi">
             <el-date-picker
-                format="yyyy 年 MM 月 dd 日"
+                format="yyyy / MM / dd "
                 value-format="yyyy-MM-dd"
                 v-model="ruleForm.baomingjiezhi" 
                 type="date"
                 :readonly="ro.baomingjiezhi"
-                placeholder="RegisterDeadline">
+                placeholder="Registration Deadline">
             </el-date-picker> 
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" v-if="ruleForm.baomingjiezhi" label="RegisterDeadline" prop="baomingjiezhi">
+          <el-form-item class="input" v-if="ruleForm.baomingjiezhi" label="报名截止" prop="baomingjiezhi">
               <el-input v-model="ruleForm.baomingjiezhi" 
-                placeholder="RegisterDeadline" readonly></el-input>
+                placeholder="报名截止" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="NumberOfApplicants" prop="baomingrenshu">
+        <el-form-item class="input" v-if="type!='info'"  label="Number" prop="baomingrenshu">
           <el-input v-model="ruleForm.baomingrenshu" 
-              placeholder="NumberOfApplicants" clearable  :readonly="ro.baomingrenshu"></el-input>
+              placeholder="number of people" clearable  :readonly="ro.baomingrenshu"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="NumberOfApplicants" prop="baomingrenshu">
+          <el-form-item class="input" label="报名人数" prop="baomingrenshu">
               <el-input v-model="ruleForm.baomingrenshu" 
-                placeholder="NumberOfApplicants" readonly></el-input>
+                placeholder="报名人数" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="contactperson" prop="lianxiren">
+        <el-form-item class="input" v-if="type!='info'"  label="contact" prop="lianxiren">
           <el-input v-model="ruleForm.lianxiren" 
-              placeholder="contactperson" clearable  :readonly="ro.lianxiren"></el-input>
+              placeholder="activity manager" clearable  :readonly="ro.lianxiren"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="contactperson" prop="lianxiren">
+          <el-form-item class="input" label="联系人" prop="lianxiren">
               <el-input v-model="ruleForm.lianxiren" 
-                placeholder="contactperson" readonly></el-input>
+                placeholder="联系人" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
       <el-col :span="12">
-        <el-form-item class="input" v-if="type!='info'"  label="contactPhone" prop="lianluodianhua">
+        <el-form-item class="input" v-if="type!='info'"  label="contact" prop="lianluodianhua">
           <el-input v-model="ruleForm.lianluodianhua" 
-              placeholder="contactPhone" clearable  :readonly="ro.lianluodianhua"></el-input>
+              placeholder="contact number" clearable  :readonly="ro.lianluodianhua"></el-input>
         </el-form-item>
         <div v-else>
-          <el-form-item class="input" label="contactPhone" prop="lianluodianhua">
+          <el-form-item class="input" label="contact" prop="lianluodianhua">
               <el-input v-model="ruleForm.lianluodianhua" 
-                placeholder="contactPhone" readonly></el-input>
+                placeholder="contact number" readonly></el-input>
           </el-form-item>
         </div>
       </el-col>
@@ -163,16 +162,16 @@
                 </editor>
               </el-form-item>
               <div v-else>
-                <el-form-item v-if="ruleForm.huodongneirong" label="content" prop="huodongneirong">
+                <el-form-item v-if="ruleForm.huodongneirong" label="活动内容" prop="huodongneirong">
                     <span v-html="ruleForm.huodongneirong"></span>
                 </el-form-item>
               </div>
             </el-col>
           </el-row>
       <el-form-item class="btn">
-        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">submit</el-button>
-        <el-button v-if="type!='info'" class="btn-close" @click="back()">cancel</el-button>
-        <el-button v-if="type=='info'" class="btn-close" @click="back()">return</el-button>
+        <el-button  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">Submit</el-button>
+        <el-button v-if="type!='info'" class="btn-close" @click="back()">Cancel</el-button>
+        <el-button v-if="type=='info'" class="btn-close" @click="back()">Return</el-button>
       </el-form-item>
     </el-form>
     
@@ -452,7 +451,7 @@ export default {
         this.ruleForm = data.data;
 	//解决前台上传图片后台不显示的问题
 	let reg=new RegExp('../../../upload','g')//g代表全部
-	this.ruleForm.huodongneirong = this.ruleForm.huodongneirong.replace(reg,'../../../eventi/upload');
+	this.ruleForm.huodongneirong = this.ruleForm.huodongneirong.replace(reg,'../../../springboot7znd1/upload');
         } else {
           this.$message.error(data.msg);
         }
@@ -460,7 +459,7 @@ export default {
     },
 
 
-    // submit
+    // 提交
     onSubmit() {
 
 

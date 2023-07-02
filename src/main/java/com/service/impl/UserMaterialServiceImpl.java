@@ -108,7 +108,7 @@ public class UserMaterialServiceImpl extends ServiceImpl<UserMaterialDao, UserMa
             ew.eq("user_id", userId).eq("material_id",materialId);
             baseMapper.delete(ew);
         }
-        return R.ok("操作成功");
+        return R.ok("Operation succeeded");
     }
 
     /**

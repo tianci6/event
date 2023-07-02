@@ -12,7 +12,7 @@ export function isEmail (s) {
  * @param {*} s
  */
 export function isMobile (s) {
-  return /^1[0-9]{10}$/.test(s)
+  return /^01[0-9]{8,9}$/.test(s)
 }
 
 /**

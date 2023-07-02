@@ -19,7 +19,7 @@
 		</div>
 		<div class="right-menu">
 			<div class="user-info" :style="{color:heads.headUserInfoFontColor,fontSize:heads.headUserInfoFontSize}">{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
-			<div v-if="this.$storage.get('role')!='administered'" class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onIndexTap">退出到前台</div>
+			<div v-if="this.$storage.get('role')!='administered'" class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onIndexTap">Exiting to the foreground</div>
 			<div class="logout" :style="{color:heads.headLogoutFontColor,fontSize:heads.headLogoutFontSize}" @click="onLogout">LogOut</div>
 		</div>
 	</div>

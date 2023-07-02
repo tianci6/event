@@ -78,9 +78,9 @@
 				<table class="layui-table" lay-skin="nob">
 					<thead>
 						<tr>
-							<th>标题</th>
-							<th>发布时间</th>
-							<th>操作</th>
+							<th>title</th>
+							<th>published time</th>
+							<th>Operation</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -89,10 +89,10 @@
 							<td style="text-align:left">{{item.addtime}}</td>
 							<td style="text-align:left">
 								<button @click="jump('../forum/update.html?id='+item.id);" type="button" class="layui-btn layui-btn-radius btn-warm">
-									修改
+									change
 								</button>
 								<button @click="deleteClick(item.id)" type="button" class="layui-btn layui-btn-radius btn-theme">
-									删除
+									delete
 								</button>
 							</td>
 						</tr>

@@ -94,10 +94,10 @@
 				</div>
 				<div :style='{"padding":"0","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"0 auto","borderColor":"rgba(0,0,0,1)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","width":"80%","borderStyle":"solid","height":"64px"}' class="form-item layui-form-text">
 					<label v-if="false" :style='{"padding":"0 10px","boxShadow":"0 0 6px rgba(255,0,0,0)","borderColor":"rgba(0,0,0,0)","backgroundColor":"transparent","color":"#333","borderRadius":"0","textAlign":"right","borderWidth":"0","width":"84px","fontSize":"16px","borderStyle":"solid"}' class="form-label">UnitNumber：</label>
-					<input :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(0,0,0,.5)","borderColor":"#ccc","backgroundColor":"rgba(233, 233, 233, 1)","color":"#333","borderRadius":"8px","textAlign":"left","borderWidth":"0","width":"100%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="text"   id="danyuanhao" name="danyuanhao" placeholder="请输入UnitNumber" autocomplete="off" class="layui-input">
+					<input :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(0,0,0,.5)","borderColor":"#ccc","backgroundColor":"rgba(233, 233, 233, 1)","color":"#333","borderRadius":"8px","textAlign":"left","borderWidth":"0","width":"100%","fontSize":"14px","borderStyle":"solid","height":"44px"}' type="text"   id="danyuanhao" name="danyuanhao" placeholder="Please Input UnitNumber" autocomplete="off" class="layui-input">
 				</div>
 				<button :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"10px auto","borderColor":"#ccc","backgroundColor":"rgba(203, 148, 92, 1)","color":"#fff","borderRadius":"44px","borderWidth":"0","width":"80%","lineHeight":"44px","fontSize":"14px","borderStyle":"solid"}' class="layui-btn layui-btn-fluid layui-btn-danger btn-submit" lay-submit lay-filter="register" style="width: 280px;">register</button>
-            	<p :style='{"color":"rgba(0, 0, 0, 1)","textAlign":"center","fontSize":"12px"}' class="txt"><a style="color: inherit;" href="javascript:window.location.href='../login/login.html'">已有账号登录</a></p>
+            	<p :style='{"color":"rgba(0, 0, 0, 1)","textAlign":"center","fontSize":"12px"}' class="txt"><a style="color: inherit;" href="javascript:window.location.href='../login/login.html'">Login with an existing account</a></p>
 			</form>
 		</div>
 
@@ -157,7 +157,7 @@
                         return false
                     }
                     if(!isMobile(data.juminshouji)){
-                        layer.msg('居民手机应输入手机格式', {
+                        layer.msg('The resident mobile phone should input the mobile phone format', {
 							time: 2000,
 							icon: 5
 						});

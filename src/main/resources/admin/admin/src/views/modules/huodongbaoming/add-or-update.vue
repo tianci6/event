@@ -221,7 +221,7 @@ export default {
       if(!value){
         callback();
       } else if (!isMobile(value)) {
-        callback(new Error("请输入正确的手机号码"));
+        callback(new Error("Please enter the correct mobile phone number"));
       } else {
         callback();
       }
@@ -587,7 +587,7 @@ var objcross = this.$storage.getObj('crossObj');
 					 }).then(({ data }) => {
 					   if (data && data.code === 0) {
 					     this.$message({
-					       message: "操作成功",
+					       message: "Operation succeeded",
 					       type: "success",
 					       duration: 1500,
 					       onClose: () => {
@@ -625,7 +625,7 @@ var objcross = this.$storage.getObj('crossObj');
                       data: objcross
                     }).then(({ data }) => {});
 			     this.$message({
-			       message: "操作成功",
+			       message: "Operation succeeded",
 			       type: "success",
 			       duration: 1500,
 			       onClose: () => {

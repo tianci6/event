@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="seach">
-      <el-input @change="seach" placeholder="请输入内容" v-model="input3" class="input-with-select">
+      <el-input @change="seach" placeholder="Please input content" v-model="input3" class="input-with-select">
       </el-input>
       <i @click="seach" class="el-icon-search seach"></i>
     </div>

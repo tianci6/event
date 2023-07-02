@@ -15,7 +15,7 @@
           </p>
           <p class="conter">{{detaliboj.address}}</p>
           <p v-if="saveshow" @click="subclikc('A')" class="sub">收藏</p>
-          <p v-if="!saveshow" @click="subclikc('B')" class="sub">取消收藏</p>
+          <p v-if="!saveshow" @click="subclikc('B')" class="sub">cancel collection</p>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
                 <div>
                   <p class="conter">Your review *</p>
                   <div style="width:98%;margin-top:20px">
-                    <el-input type="textarea" :rows="4" placeholder="请输入内容" v-model="textarea">
+                    <el-input type="textarea" :rows="4" placeholder="Please input content" v-model="textarea">
                     </el-input>
                   </div>
                 </div>
