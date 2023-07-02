@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.dao.MaterialDao;
 import com.dao.MaterialEvaluateDao;
+import com.entity.MaterialEntity;
 import com.entity.MaterialEvaluateEntity;
 import com.service.MaterialEvaluateService;
 import com.service.MaterialService;
@@ -58,6 +59,16 @@ public class MaterialEvaluateServiceImpl extends ServiceImpl<MaterialEvaluateDao
     @Override
     public MaterialEvaluateEntity selectView(Wrapper<MaterialEvaluateEntity> wrapper) {
         return baseMapper.selectView(wrapper);
+    }
+
+    /**
+     * 商品评论查询
+     * @param id
+     * @return
+     */
+    @Override
+    public List<MaterialEvaluateEntity> getByMaterial(Long id){
+        return baseMapper.getByMaterial(id);
     }
 
 

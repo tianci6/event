@@ -2,6 +2,7 @@ package com.service;
 
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.IService;
+import com.entity.MaterialEntity;
 import com.entity.MaterialEvaluateEntity;
 import com.entity.MaterialEvaluateEntity;
 import com.utils.PageUtils;
@@ -29,5 +30,11 @@ public interface MaterialEvaluateService extends IService<MaterialEvaluateEntity
     PageUtils queryPage(Map<String, Object> params, Wrapper<MaterialEvaluateEntity> wrapper);
 
 
+    /**
+     * 商品评论查询
+     * @param id
+     * @return
+     */
+    List<MaterialEvaluateEntity> getByMaterial(Long id);
 }
 

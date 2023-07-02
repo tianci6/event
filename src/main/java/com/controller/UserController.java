@@ -38,10 +38,10 @@ import com.utils.ValidatorUtils;
 @RequestMapping("users")
 @RestController
 public class UserController{
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private TokenService tokenService;
 
@@ -53,12 +53,13 @@ public class UserController{
 	public R login(String username, String password, String captcha, HttpServletRequest request) {
 		UserEntity user = userService.selectOne(new EntityWrapper<UserEntity>().eq("username", username));
 		if(user==null || !user.getPassword().equals(password)) {
-			return R.error("账号或密码不正确");
+			// 账号或密码不正确
+			return R.error("Account or Password incorrect");
 		}
 		String token = tokenService.generateToken(user.getId(),username, "users", user.getRole());
 		return R.ok().put("token", token);
 	}
-	
+
 	/**
 	 * 注册
 	 */
@@ -81,7 +82,7 @@ public class UserController{
 		request.getSession().invalidate();
 		return R.ok("退出成功");
 	}
-	
+
 	/**
      * 密码重置
      */
@@ -96,7 +97,7 @@ public class UserController{
         userService.update(user,null);
         return R.ok("密码已重置为：123456");
     }
-	
+
 	/**
      * 列表
      */
@@ -113,7 +114,7 @@ public class UserController{
     @RequestMapping("/list")
     public R list( UserEntity user){
        	EntityWrapper<UserEntity> ew = new EntityWrapper<UserEntity>();
-      	ew.allEq(MPUtil.allEQMapPre( user, "user")); 
+      	ew.allEq(MPUtil.allEQMapPre( user, "user"));
         return R.ok().put("data", userService.selectListView(ew));
     }
 
@@ -125,7 +126,7 @@ public class UserController{
         UserEntity user = userService.selectById(id);
         return R.ok().put("data", user);
     }
-    
+
     /**
      * 获取用户的session用户信息
      */

@@ -33,7 +33,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
 
     @Autowired
     private TokenService tokenService;
-    
+
 	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -48,7 +48,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         	response.setStatus(HttpStatus.OK.value());
             return false;
         }
-        
+
         IgnoreAuth annotation;
         if (handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(IgnoreAuth.class);
@@ -58,19 +58,19 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
 
         //从header中获取token
         String token = request.getHeader(LOGIN_TOKEN_KEY);
-        
+
         /**
          * 不需要验证权限的方法直接放过
          */
         if(annotation!=null) {
         	return true;
         }
-        
+
         TokenEntity tokenEntity = null;
         if(StringUtils.isNotBlank(token)) {
         	tokenEntity = tokenService.getTokenEntity(token);
         }
-        
+
         if(tokenEntity != null) {
         	request.getSession().setAttribute("userId", tokenEntity.getUserid());
         	request.getSession().setAttribute("role", tokenEntity.getRole());
@@ -78,13 +78,13 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         	request.getSession().setAttribute("username", tokenEntity.getUsername());
         	return true;
         }
-        
+
 		PrintWriter writer = null;
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=utf-8");
 		try {
 		    writer = response.getWriter();
-		    writer.print(JSONObject.toJSONString(R.error(401, "请先登录")));
+		    writer.print(JSONObject.toJSONString(R.error(401, "please Login")));
 		} finally {
 		    if(writer != null){
 		        writer.close();

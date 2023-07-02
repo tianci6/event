@@ -1,5 +1,5 @@
 <template>
-  <div class="uploader">
+  <div>
     <div class="form">
       <el-form
         ref="forms"
@@ -17,9 +17,22 @@
         <el-form-item prop="content" label="Intrdouce">
           <el-input v-model="form.content"></el-input>
         </el-form-item>
+
         <el-form-item prop="describe" label="Description">
           <el-input v-model="form.describe"></el-input>
         </el-form-item>
+        <el-form-item label="Category">
+          <el-select v-model="form.type" placeholder="Category">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+
         <el-form-item prop="address" label="Address">
           <el-input v-model="form.address"></el-input>
         </el-form-item>
@@ -54,12 +67,22 @@ import storage from "@/utils/storage";
 export default {
   data() {
     return {
+      options: [
+        {
+          value: "A",
+          label: "Promotion",
+        },
+        {
+          value: "B",
+          label: "Business",
+        },
+      ],
       headers: {
         Token: storage.get("Token"),
       },
       form: {
         name: "",
-        type: "C",
+        type: "A",
         email: "",
         content: "",
         describe: "",
@@ -107,7 +130,7 @@ export default {
           add(this.form)
             .then((res) => {
               if (res.data.code == "0") {
-                this.$router.push("/event/marketking");
+                this.$router.push("/event/homerulel/comment");
               } else {
                 this.$message.error(res.data.msg);
               }
@@ -152,5 +175,8 @@ export default {
   padding-left: 20px;
   font-size: 16px;
   border-radius: 30px;
+}
+.el-select {
+  width: 100%;
 }
 </style>

@@ -40,71 +40,54 @@
       </el-table-column>
       <el-table-column fixed="right" prop="address" label="operate" width="180">
         <template slot-scope="scope">
-          <!-- <el-button @click="dalogshow(scope.row,true)" type="success" icon="el-icon-tickets" size="mini">
-            评论记录</el-button> -->
-          <el-button
-            @click="dalogshow(scope.row, false)"
-            type="success"
-            icon="el-icon-tickets"
-            size="mini"
-          >
-            Favourite History</el-button
-          >
-          <el-button
-            @click="del(scope.row, false)"
-            type="success"
-            icon="el-icon-tickets"
-            size="mini"
-          >
-            delete</el-button
-          >
+          <el-button @click="dalogshow(scope.row, true)" type="success" icon="el-icon-tickets" size="mini">
+            Comment Record</el-button>
+          <!-- <el-button @click="dalogshow(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
+            收藏记录</el-button> -->
+          <!-- <el-button @click="del(scope.row,false)" type="success" icon="el-icon-tickets" size="mini">
+            删除</el-button> -->
         </template>
       </el-table-column>
     </el-table>
     <div class="pagination">
       <el-pagination layout="prev, pager, next" :total="total"> </el-pagination>
     </div>
-    <el-dialog
-      :title="title"
-      :visible.sync="dialogVisible"
-      width="60%"
-      :before-close="handleClose"
-    >
-      <el-table
-        v-if="title == 'Comment Record'"
-        :data="ptableData"
-        style="width: 100%"
-      >
-        <el-table-column prop="username" label="评论用户" width="180">
+    <el-dialog :title="title" :visible.sync="dialogVisible" width="60%" :before-close="handleClose">
+      <el-table v-if="title == 'Comment Record'" :data="ptableData" style="width: 100%">
+        <el-table-column prop="username" label="Comment user" width="180">
         </el-table-column>
-        <el-table-column
-          :show-overflow-tooltip="true"
-          prop="content"
-          label="评论内容"
-        >
+        <el-table-column :show-overflow-tooltip="true" prop="content" label="Comment content">
         </el-table-column>
-        <el-table-column prop="createTime" label="评论时间"> </el-table-column>
+        <el-table-column prop="createTime" label="Comment time">
+        </el-table-column>
+        <el-table-column prop="address" label="operate" width="180">
+          <template slot-scope="scope">
+            <el-button @click="dels(scope.row, false)" type="success" icon="el-icon-tickets" size="mini">
+              delete</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <el-table v-else :data="cangtableData" style="width: 100%">
-        <el-table-column prop="username" label="Collect people" width="180">
+        <el-table-column prop="username" label="收藏人" width="180">
         </el-table-column>
       </el-table>
-
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">Cancel</el-button>
         <el-button @click="dialogVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
-    <el-dialog
-      title="Prompt"
-      :visible.sync="deldialogVisible"
-      width="30%"
-      :before-close="handleClose"
-    >
-      <span>Are you sure to proceed with the [Delete] operation?</span>
+    <el-dialog title="提示" :visible.sync="deldialogVisible" width="30%" :before-close="handleClose">
+      <span>确定进行[删除]操作?</span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="deldialogVisible = false">Cancel</el-button>
-        <el-button @click="save">Confirm</el-button>
+        <el-button @click="deldialogVisible = false">取 消</el-button>
+        <el-button @click="save">确 定</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog title="提示" :visible.sync="disdialogVisible" width="30%" :before-close="handleClose">
+      <span>确定进行[删除]操作?</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="disdialogVisible = false">取 消</el-button>
+        <el-button @click="saves">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -117,10 +100,12 @@ import {
   userMaterial,
   deletes,
   materialdel,
+  materialEvaluate,
 } from "@/assets/api/api.js";
 export default {
-  data() {
+  data () {
     return {
+      disdialogVisible: false,
       deldialogVisible: false,
       cangtableData: [],
       ptableData: [],
@@ -136,13 +121,15 @@ export default {
       materialId: "",
     };
   },
-  mounted() {
+  mounted () {
     this.getlist();
   },
   methods: {
-    handleClose() {},
-    save() {
+    handleClose () { },
+
+    save () {
       let params = [];
+      // materialId: this.materialId
       params.push(this.materialId);
       materialdel(params)
         .then((res) => {
@@ -162,11 +149,37 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    del(item, value) {
+    saves () {
+      let params = [];
+      // materialId: this.materialId
+      params.push(this.materialId);
+      materialEvaluate(params)
+        .then((res) => {
+          // console.log(res);
+          if (res.data.code == "0") {
+            this.$message({
+              message: "删除成功",
+              type: "success",
+            });
+            this.disdialogVisible = false;
+            this.getplist();
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch((erro) => {
+          this.$message.error(erro.msg);
+        });
+    },
+    del (item, value) {
       this.materialId = item.id;
       this.deldialogVisible = true;
     },
-    dalogshow(item, value) {
+    dels (item, value) {
+      this.materialId = item.id;
+      this.disdialogVisible = true;
+    },
+    dalogshow (item, value) {
       if (value) {
         this.title = "Comment Record";
         this.getplist();
@@ -177,7 +190,7 @@ export default {
       }
       this.dialogVisible = true;
     },
-    getcanglist() {
+    getcanglist () {
       let params = {
         materialId: this.materialId,
       };
@@ -194,7 +207,7 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    getplist() {
+    getplist () {
       let params = {};
       page(params)
         .then((res) => {
@@ -216,11 +229,11 @@ export default {
           this.$message.error(erro.msg);
         });
     },
-    onSubmit() {
+    onSubmit () {
       this.page = 1;
       this.getlist();
     },
-    getlist() {
+    getlist () {
       let params = {
         name: "%" + this.name + "%",
         page: this.page,
@@ -246,6 +259,7 @@ export default {
             // this.tableData.sort((a, b) => new Date(a.createTime).getTime() - new
             //   Date(b.createTime).getTime())
             this.tableData.forEach((item) => {
+
               if (item.type == "A") {
                 item.type = "Promotion";
               } else if (item.type == "B") {
