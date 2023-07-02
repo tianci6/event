@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.MaterialEvaluateDao">
+
+    <resultMap type="com.entity.MaterialEvaluateEntity" id="materialMap">
+        <result column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="state" property="state" />
+        <result column="user_id" property="userId" />
+        <result column="material_id" property="materialId" />
+        <result column="content" property="content" />
+        <result column="score" property="score" />
+
+        <result column="username" property="username" />
+    </resultMap>
+
+    <select id="selectListVO" resultType="com.entity.MaterialEvaluateEntity">
+        SELECT *
+        FROM b_material_evaluate
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectVO" resultType="com.entity.MaterialEvaluateEntity">
+        SELECT *
+        FROM b_material_evaluate
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectListView" resultMap="materialMap">
+        SELECT m.*, u.username
+        FROM b_material_evaluate m
+        left join users u on (m.user_id = u.id)
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+
+    <select id="selectView" resultType="com.entity.MaterialEvaluateEntity">
+        SELECT *
+        FROM b_material_evaluate
+        <where>
+            1 = 1 ${ew.sqlSegment}
+        </where>
+    </select>
+</mapper>

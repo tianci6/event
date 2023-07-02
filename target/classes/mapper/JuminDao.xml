@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.JuminDao">
+
+	<!-- 也许要使用 -->
+    <resultMap type="com.entity.JuminEntity" id="juminMap">
+        <result property="juminhao" column="juminhao"/>
+        <result property="mima" column="mima"/>
+        <result property="juminxingming" column="juminxingming"/>
+        <result property="xingbie" column="xingbie"/>
+        <result property="nianling" column="nianling"/>
+        <result property="juminzhaopian" column="juminzhaopian"/>
+        <result property="juminshouji" column="juminshouji"/>
+        <result property="juzhudizhi" column="juzhudizhi"/>
+        <result property="menpaihao" column="menpaihao"/>
+        <result property="danyuanhao" column="danyuanhao"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.JuminVO" >
+		SELECT * FROM jumin  jumin         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.JuminVO" >
+		SELECT  jumin.* FROM jumin  jumin 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.JuminView" >
+
+		SELECT  jumin.* FROM jumin  jumin 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.JuminView" >
+		SELECT * FROM jumin  jumin <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+
+</mapper>
