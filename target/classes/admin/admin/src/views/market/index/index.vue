@@ -2,8 +2,10 @@
   <div class="markethome">
     <div>
       <div class="home-bgc">
+
         <el-carousel indicator-position="outside">
           <el-carousel-item v-for="(item,index) in list" :key="index">
+
             <img class="img" :src="$base.url+ item.value" alt="">
             <!-- <h3>{{  }}</h3> -->
           </el-carousel-item>
