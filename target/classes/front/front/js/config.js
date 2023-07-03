@@ -40,7 +40,23 @@ var centerMenu = [{
 {
         name: 'my collection',
         url: '../storeup/list.html'
-}
+},
+    {
+        name: 'Upload Report',
+        url: '../uploadReport/addReport.html'
+    },
+    {
+        name: 'View Report',
+        url: '../viewReport/viewReport.html'
+    },
+    {
+        name: 'Map',
+        url: '../map/map.html'
+    },
+    {
+        name: 'SOS',
+        url: '../sos/sos.html'
+    }
 ]
 
 
