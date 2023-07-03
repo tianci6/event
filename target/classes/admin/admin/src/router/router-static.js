@@ -35,6 +35,9 @@ import Individual from '@/views/market/Individual/index'
 import homerulel from '@/views/marketrulel/index'
 import homerulelindex from '@/views/marketrulel/homerulelindex'
 import comment from '@/views/marketrulel/comment'
+import upload from '@/views/marketrulel/upload'
+import discuss from '@/views/marketrulel/discuss'
+
 
 //2.配置路由 注意：name
 const originalPush = VueRouter.prototype.push;
@@ -82,8 +85,17 @@ const routes = [{
         path: '/event/homerulel/config',
         name: 'system',
         component: config
-      }
-
+      },
+      {
+        path: '/event/homerulel/upload',
+        name: 'upload',
+        component: upload
+      },
+      {
+        path: '/event/homerulel/discuss',
+        name: 'discuss',
+        component: discuss
+      },
     ]
 
   },

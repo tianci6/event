@@ -2,104 +2,172 @@
   <div class="login">
     <div class="login-bgc"></div>
     <div class="login-form">
-      <p class="title">Please protect your privacy</p>
-      <el-form
-        v-if="loginshow"
-        :rules="rules"
-        ref="ruleForm"
-        :model="form"
-        label-width="0px"
-      >
+      <p class="title">Community Support System</p>
+      <el-form v-if="loginshow" :rules="rules" ref="ruleForm" :model="form" label-width="0px">
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
           <el-form-item prop="name">
-            <el-input placeholder="input username" v-model="form.name"></el-input>
+            <el-input placeholder="Community Account" v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="input password"
-              v-model="form.password"
-            ></el-input>
+            <el-input type="password" placeholder="Password" v-model="form.password"></el-input>
           </el-form-item>
-          <p @click="loginsave" class="button">登录</p>
-          <p @click="reset" class="zhuce">registerresident</p>
+          <p @click="loginsave" class="button">Login</p>
+          <p @click="reset" class="zhuce">Create Your Community Account</p>
         </div>
       </el-form>
-      <el-form
-        v-else
-        :rules="rules"
-        ref="ruleForms"
-        :model="form"
-        label-width="0px"
-      >
+      <el-form v-else :rules="rules" ref="ruleForms" :model="form" label-width="0px">
         <div style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
-          <el-form-item prop="name">
-            <el-input placeholder="input username" v-model="form.name"></el-input>
+          <el-form-item prop="juminhao">
+            <el-input placeholder="Community Account Name" v-model="form.juminhao"></el-input>
           </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              type="password"
-              placeholder="input password"
-              v-model="form.password"
-            ></el-input>
+          <el-form-item prop="mima">
+            <el-input type="password" placeholder="Password" v-model="form.mima"></el-input>
           </el-form-item>
-          <el-form-item prop="passwords">
-            <el-input
-              type="password"
-              placeholder="请输入再次确认密码"
-              v-model="form.passwords"
-            ></el-input>
+          <el-form-item prop="mima2">
+            <el-input type="password" placeholder="Password Again" v-model="form.mima2"></el-input>
           </el-form-item>
-          <p @click="zhuce" class="button">register</p>
-          <p @click="logins" class="zhuce">already have account</p>
+          <el-form-item prop="juminxingming">
+            <el-input placeholder="Real Name" v-model="form.juminxingming"></el-input>
+          </el-form-item>
+          <el-form-item prop="nianling">
+            <el-input placeholder="Age" v-model="form.nianling"></el-input>
+          </el-form-item>
+          <el-form-item prop="juminshouji">
+            <el-input type="number" placeholder="Mobile Number" v-model="form.juminshouji"></el-input>
+          </el-form-item>
+
+          <el-form-item prop="juzhudizhi">
+            <el-input placeholder="Community Address" v-model="form.juzhudizhi"></el-input>
+          </el-form-item>
+          <el-form-item prop="menpaihao">
+            <el-input placeholder="HouseNumber" v-model="form.menpaihao"></el-input>
+          </el-form-item>
+          <el-form-item prop="danyuanhao">
+            <el-input type="number" placeholder="UnitNumber" v-model="form.danyuanhao"></el-input>
+          </el-form-item>
+
+          <p @click="zhuce" class="button">Create Your Community Account</p>
+          <p @click="logins" class="zhuce">Existing Account Login</p>
         </div>
       </el-form>
+    </div>
+    <div @click="back" class="back">
+      <p>Back</p>
     </div>
   </div>
 </template>
 
 <script>
-import { login, register } from "@/assets/api/api.js";
+import { login, register, registers, logins } from "@/assets/api/api.js";
 export default {
-  data() {
+  data () {
     return {
       form: {
+        juminhao: "",
+        mima: "",
+        mima2: "",
+        juminxingming: "",
+        nianling: "",
+        juminshouji: "",
+        juzhudizhi: "",
+        menpaihao: "",
+        danyuanhao: "",
         name: "",
         password: "",
-        passwords: "",
       },
       loginshow: true,
       rules: {
-        name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-        password: [{ required: true, message: "input password", trigger: "blur" }],
-        passwords: [
-          { required: true, message: "请输入再次确认密码", trigger: "blur" },
+        name: [
+          {
+            required: true,
+            message: "Please Input Your Community Account",
+            trigger: "blur",
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: "Please Input Your Password",
+            trigger: "blur",
+          },
+        ],
+        juminxingming: [
+          {
+            required: true,
+            message: "Please Input Your Real Name",
+            trigger: "blur",
+          },
+        ],
+        mima: [
+          {
+            required: true,
+            message: "Please Input Your Password",
+            trigger: "blur",
+          },
+        ],
+        mima2: [
+          {
+            required: true,
+            message: "Please Input Your Password Again",
+            trigger: "blur",
+          },
+        ],
+        nianling: [
+          { required: true, message: "Please Input Your Age", trigger: "blur" },
+        ],
+        juminshouji: [
+          {
+            required: true,
+            message: "Please Input Your Real Phone",
+            trigger: "blur",
+          },
+        ],
+        juzhudizhi: [
+          {
+            required: true,
+            message: "Please Input Your Real Address",
+            trigger: "blur",
+          },
+        ],
+        menpaihao: [
+          {
+            required: true,
+            message: "Please Input Your HouseNumber",
+            trigger: "blur",
+          },
+        ],
+        danyuanhao: [
+          {
+            required: true,
+            message: "Please Input Your UnitNumber",
+            trigger: "blur",
+          },
         ],
       },
     };
   },
   methods: {
-    logins() {
+    back () {
+      this.$router.push("/event/home")
+    },
+    logins () {
       this.loginshow = true;
       this.$refs.ruleForms.resetFields();
     },
-    reset() {
+    reset () {
       this.loginshow = false;
       this.$refs.ruleForm.resetFields();
     },
-    zhuce() {
+    zhuce () {
       this.$refs.ruleForms.validate((valid) => {
         if (valid) {
-          let params = {
-            username: this.form.name,
-            password: this.form.password,
-          };
-          register(params)
+          let params = this.form;
+          registers(params)
             .then((res) => {
               if (res.data.code == 0) {
                 this.loginshow = true;
                 this.$refs.ruleForms.resetFields();
-                this.$message.success("注册成功");
+                this.$message.success("Register Successful");
               } else {
                 this.$message.error(res.data.msg);
               }
@@ -113,7 +181,7 @@ export default {
         }
       });
     },
-    loginsave() {
+    /* loginsave () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           let params = {
@@ -138,6 +206,58 @@ export default {
             .catch((erro) => {
               this.$message.error(erro.msg);
             });
+        } else {
+          return false;
+        }
+      });
+    }, */
+    loginsave () {
+      this.$refs.ruleForm.validate((valid) => {
+        if (valid) {
+          if (this.$route.query.source == "1") {
+            let params = {
+              username: this.form.name,
+              password: this.form.password,
+            };
+            logins(params)
+              .then((res) => {
+                if (res.data.code == "0") {
+                  this.$storage.set("Token", res.data.token);
+                  // sessionStorage.setItem("token", res.data.token)
+                  this.$message.success("Login Successful");
+
+                  this.$router.push("/event/homerulel");
+
+                  // this.$router.push("/event/home");
+                } else {
+                  this.$message.error(res.data.msg);
+                }
+              })
+              .catch((erro) => {
+                this.$message.error(erro.msg);
+              });
+          } else {
+            let params = {
+              username: this.form.name,
+              password: this.form.password,
+            };
+            login(params)
+              .then((res) => {
+                if (res.data.code == "0") {
+                  this.$storage.set("Token", res.data.token);
+                  // sessionStorage.setItem("token", res.data.token)
+                  this.$message.success("Login Successful");
+                  // this.$router.push("/event/homerulel");
+
+                  this.$router.push("/event/home");
+                } else {
+                  this.$message.error(res.data.msg);
+                }
+              })
+              .catch((erro) => {
+                this.$message.error(erro.msg);
+              });
+          }
         } else {
           return false;
         }
@@ -180,6 +300,7 @@ export default {
       line-height: 32px;
       font-size: 18px;
       border-style: solid;
+      text-align: center;
     }
   }
 }
@@ -209,7 +330,7 @@ export default {
   height: 44px;
 }
 .button {
-  width: 80%;
+  background-color: rgb(203, 148, 92);
   padding: 0px 10px;
   box-shadow: rgba(255, 0, 0, 0.5) 0px 0px 0px;
   margin: 10px auto;
@@ -225,5 +346,17 @@ export default {
 }
 .zhuce {
   text-align: center;
+}
+.back {
+  cursor: pointer;
+  border-radius: 10px;
+  color: #fff;
+  position: fixed;
+  right: 30px;
+  top: 30px;
+  // background-color: rgb(203, 148, 92);
+  padding: 10px 15px;
+
+  background-color: rgb(203, 148, 92);
 }
 </style>

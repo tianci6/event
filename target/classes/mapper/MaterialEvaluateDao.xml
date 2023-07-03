@@ -35,9 +35,10 @@
     </select>
 
     <select id="selectListView" resultMap="materialMap">
-        SELECT m.*, u.username
+
+        SELECT m.*, u.juminxingming as username
         FROM b_material_evaluate m
-        left join users u on (m.user_id = u.id)
+        left join jumin u on (m.user_id = u.id)
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>
@@ -49,5 +50,13 @@
         <where>
             1 = 1 ${ew.sqlSegment}
         </where>
+    </select>
+    <!--商品评论查询-->
+    <select id="getByMaterial" resultType="com.entity.MaterialEvaluateEntity">
+        SELECT m.*, u.juminxingming as username, u.juminzhaopian as userphone
+        FROM b_material_evaluate m
+        left join jumin u on (m.user_id = u.id)
+        where m.material_id = #{id}
+        order by m.create_time desc
     </select>
 </mapper>

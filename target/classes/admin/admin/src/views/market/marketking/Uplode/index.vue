@@ -1,47 +1,61 @@
 <template>
   <div class="uploader">
     <div class="form">
-      <el-form ref="forms" :rules="rules" label-position="top" :model="form" label-width="80px">
-        <el-form-item prop="name" label="商品名称">
+      <el-form
+        ref="forms"
+        :rules="rules"
+        label-position="top"
+        :model="form"
+        label-width="80px"
+      >
+        <el-form-item prop="name" label="Title">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item prop="email" label="邮件">
+        <el-form-item prop="email" label="Email">
           <el-input v-model="form.email"></el-input>
         </el-form-item>
-        <el-form-item prop="content" label="商品介绍">
+        <el-form-item prop="content" label="Intrdouce">
           <el-input v-model="form.content"></el-input>
         </el-form-item>
-        <el-form-item prop="describe" label="商品描述">
+        <el-form-item prop="describe" label="Description">
           <el-input v-model="form.describe"></el-input>
         </el-form-item>
-        <el-form-item prop="address" label="地址">
+        <el-form-item prop="address" label="Address">
           <el-input v-model="form.address"></el-input>
         </el-form-item>
 
-        <el-form-item prop="imgUrl" label="商品图片">
-          <el-upload action="/eventi/file/upload" :on-success="succes" :headers="headers" class="upload-demo" drag>
+        <el-form-item prop="imgUrl" label="Image">
+          <el-upload
+            action="/eventi/file/upload"
+            :on-success="succes"
+            :headers="headers"
+            class="upload-demo"
+            drag
+          >
             <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+            <div class="el-upload__text">
+              Please Input Image，Or <em>Click to upload</em>
+            </div>
+            <div class="el-upload__tip" slot="tip">
+              Only jpg/png files can be uploaded, and the size should not exceed
+              500kb
+            </div>
           </el-upload>
         </el-form-item>
-        <p @click="subclikc" class="sub">submit</p>
+        <p @click="subclikc" class="sub">Upload</p>
       </el-form>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  upload,
-  add
-} from "@/assets/api/api.js";
-import storage from '@/utils/storage'
+import { upload, add } from "@/assets/api/api.js";
+import storage from "@/utils/storage";
 export default {
-  data () {
+  data() {
     return {
       headers: {
-        Token: storage.get('Token')
+        Token: storage.get("Token"),
       },
       form: {
         name: "",
@@ -50,60 +64,64 @@ export default {
         content: "",
         describe: "",
         address: "",
-        imgUrl: ""
+        imgUrl: "",
       },
       rules: {
         name: [
-          { required: true, message: '请输入商品名称', trigger: 'blur' },
+          { required: true, message: "Please Input Title", trigger: "blur" },
         ],
         email: [
-          { required: true, message: '请输入邮件', trigger: 'blur' },
+          { required: true, message: "Please Input Email", trigger: "blur" },
         ],
         content: [
-          { required: true, message: '请输入商品介绍', trigger: 'blur' },
+          {
+            required: true,
+            message: "Please Input Introduce",
+            trigger: "blur",
+          },
         ],
         describe: [
-          { required: true, message: '请输入商品描述', trigger: 'blur' },
+          {
+            required: true,
+            message: "Please Input Descripition",
+            trigger: "blur",
+          },
         ],
         address: [
-          { required: true, message: '请输入地址', trigger: 'blur' },
+          { required: true, message: "Please Input Address", trigger: "blur" },
         ],
         imgUrl: [
-          { required: true, message: '请输入商品图片', trigger: 'blur' },
+          { required: true, message: "Please Input Image", trigger: "blur" },
         ],
-      }
-    }
+      },
+    };
   },
   methods: {
-    beforeupload (item) {
-
-
-
+    beforeupload(item) {},
+    succes(file) {
+      this.form.imgUrl = "upload/" + file.file;
     },
-    succes (file) {
-
-      this.form.imgUrl = "upload/" + file.file
-    },
-    subclikc () {
+    subclikc() {
       this.$refs.forms.validate((valid) => {
         if (valid) {
-          add(this.form).then(res => {
-            if (res.data.code == '0') {
-              this.$router.push("/event/marketking")
-            } else {
-              this.$message.error(res.data.msg);
-            }
-          }).catch((erro) => {
-            this.$message.error(erro.msg);
-          });
+          add(this.form)
+            .then((res) => {
+              if (res.data.code == "0") {
+                this.$router.push("/event/marketking");
+              } else {
+                this.$message.error(res.data.msg);
+              }
+            })
+            .catch((erro) => {
+              this.$message.error(erro.msg);
+            });
         } else {
-
           return false;
         }
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
