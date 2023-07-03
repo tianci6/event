@@ -21,13 +21,13 @@
       <h2 class="title">Local Bussiness Marketing Category</h2>
       <div class="conter">
         <div @click="gotomarkte('C')" class="conter-box">
-          <p>Bussiness</p>
+          <p>Business</p>
         </div>
         <div @click="gotomarkte('A')" class="conter-box conter-boxs">
-          <p>prodouct</p>
+          <p>Product</p>
         </div>
         <div @click="gotomarkte('B')" class="conter-box conter-boxss">
-          <p>promotio</p>
+          <p>Promotion</p>
         </div>
 
       </div>

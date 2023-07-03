@@ -24,11 +24,11 @@ export default {
           path: "/event/home"
         },
         {
-          name: "Marketking",
+          name: "Marketplace",
           path: "/event/marketking"
         },
         {
-          name: "Uplode",
+          name: "Upload",
           path: "/event/Uplode"
         },
         //{
@@ -40,7 +40,7 @@ export default {
           path: "/event/Individual"
         },
         {
-          name: "background",
+          name: "management",
           path: "/event/login?source=1"
         }
 

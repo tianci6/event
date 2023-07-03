@@ -208,10 +208,10 @@
             <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
                 <label
                         :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
-                        class="layui-form-label">Crime Category: </label>
+                        class="layui-form-label">Category: </label>
                 <div class="layui-input-block">
                     <select name="classification" id="classification" lay-filter="classification" >
-                        <option value="">Please Choose</option>
+                        <option value="">Please Choose Category</option>
                         <option value="Murder">Murder</option>
                         <option value="Robbery">Robbery</option>
                         <option value="Theft">Theft</option>
@@ -230,7 +230,7 @@
                  class="layui-form-item" pane>
                 <label
                         :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
-                        class="layui-form-label">Date1: </label>
+                        class="layui-form-label">Date: </label>
                 <div class="layui-input-inline">
                     <!--                    <div :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'-->
                     <!--                         id="datetime" type="datetime" name="datetime" id="datetime" lay-verify="datetime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"></div>-->
@@ -257,6 +257,29 @@
                         <option value="Business District">Business District</option>
                         <!--<option v-for="(item,index) in crimeCategory" v-bind:key="index" :value="item">{{item}}</option>-->
                     </select>
+                </div>
+            </div>
+
+            <!--Photo-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Photo: </label>
+                <div class="layui-input-block">
+                    <div v-if="detail.reportPhoto" style="display:inline-block;margin-right:10px;">
+                        <img id="reportPhotoImg"
+                             style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;"
+                             :src="baseurl+detail.reportPhoto.split(',')[0]">
+                        <input type="hidden" :value="detail.reportPhoto" id="reportPhoto"
+                               name="reportPhoto" />
+                    </div>
+                    <button v-if="!ro.reportPhoto"
+                            :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}'
+                            type="button" class="layui-btn btn-theme" id="reportPhotoUpload">
+                        <i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}'
+                           class="layui-icon">&#xe67c;</i>Upload report photo
+                    </button>
                 </div>
             </div>
 
@@ -314,7 +337,7 @@
                 <div class="layui-input-inline">
                     <input
                             :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
-                            type="tel" name="phone" id="phone" lay-verify="required|phone" placeholder="+6xxxxxxxxxx/6xxxxxxxxxxx" autocomplete="off" class="layui-input">
+                            type="tel" name="phone" id="phone" lay-verify="required|phone" placeholder="134********/180********/130********/182********/..." autocomplete="off" class="layui-input">
                 </div>
             </div>
 
@@ -332,28 +355,6 @@
                 </div>
             </div>
 
-            <!--Photo-->
-            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
-                 class="layui-form-item" pane>
-                <label
-                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
-                        class="layui-form-label">Photo: </label>
-                <div class="layui-input-block">
-                    <div v-if="detail.reportPhoto" style="display:inline-block;margin-right:10px;">
-                        <img id="reportPhotoImg"
-                             style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;"
-                             :src="baseurl+detail.reportPhoto.split(',')[0]">
-                        <input type="hidden" :value="detail.reportPhoto" id="reportPhoto"
-                               name="reportPhoto" />
-                    </div>
-                    <button v-if="!ro.reportPhoto"
-                            :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}'
-                            type="button" class="layui-btn btn-theme" id="reportPhotoUpload">
-                        <i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}'
-                           class="layui-icon">&#xe67c;</i>Upload report photo
-                    </button>
-                </div>
-            </div>
 
             <!--Submit and Reset-->
             <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
@@ -557,7 +558,7 @@
                 console.log(res);
                 layer.closeAll();
                 if (res.code == 0) {
-                    layer.msg("上传成功", {
+                    layer.msg("Submit successful", {
                         time: 2000,
                         icon: 6
                     })
@@ -575,7 +576,7 @@
             //请求异常回调
             error: function () {
                 layer.closeAll();
-                layer.msg("请求接口异常", {
+                layer.msg("request fail", {
                     time: 2000,
                     icon: 5
                 })
@@ -709,14 +710,14 @@
             data = data.field;
             // 数据校验
             if(!data.classification){
-                layer.msg('犯罪类型不能为空',{
+                layer.msg('Crime category cannot be empty',{
                     time: 2000,
                     icon: 5
                 });
                 return false
             }
             if (!data.location) {
-                layer.msg('报告地点不能为空', {
+                layer.msg('Location cannot be empty', {
                     time: 2000,
                     icon: 5
                 });
@@ -725,7 +726,7 @@
             var description = tinymce.get('#description').getContent()
             data.description = description;
             if (!isMobile(data.phone)) {
-                layer.msg('联络电话应输入手机格式', {
+                layer.msg('Phone number should be mobile module', {
                     time: 2000,
                     icon: 5
                 });
@@ -787,7 +788,7 @@
 
                         // 提交数据
                         http.requestJson('report' + '/add', 'post', data, function (res) {
-                            layer.msg('提交成功', {
+                            layer.msg('Submit successful', {
                                 time: 2000,
                                 icon: 6
                             }, function () {
@@ -800,7 +801,7 @@
                 // 跨表计算
                 // 提交数据
                 http.requestJson('report' + '/add', 'post', data, function (res) {
-                    layer.msg('提交成功', {
+                    layer.msg('Submit successful', {
                         time: 2000,
                         icon: 6
                     }, function () {
@@ -866,7 +867,7 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            alert("浏览器不支持Geolocation API");
+            alert("No Geolocation API");
         }
     }
 
