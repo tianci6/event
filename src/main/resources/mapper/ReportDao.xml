@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.ReportDao">
+
+
+    <select id="selectListVO"
+            resultType="com.entity.vo.ReportVO" >
+        SELECT * FROM report  report
+        <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+    <select id="selectVO"
+            resultType="com.entity.vo.ReportVO" >
+        SELECT  report.* FROM report  report
+        <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+    <select id="selectListView"
+            resultType="com.entity.view.ReportView" >
+
+        SELECT  report.* FROM report  report
+        <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+    <select id="selectView"
+            resultType="com.entity.view.ReportView" >
+        SELECT * FROM report  report <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+    <select id="queryCount"
+            resultType="com.entity.view.ReportCount" >
+        SELECT count(1) typeNum,r.reporttype FROM report r
+        <if test="userId != 'admin'">
+            where r.`name`=#{userId}
+        </if>
+        group by r.reporttype
+    </select>
+
+    <select id="queryLineCount"
+            resultType="com.entity.view.ReportCount" >
+        select a.dateStr,a.reporttype,count(1) typeNum from (
+            select r.reporttype,LEFT(r.datetime,7) dateStr from report r
+                <if test="userId != 'admin'">
+                    where r.`name`=#{userId}
+                </if>
+            ) as a group by a.dateStr,a.reporttype ORDER BY a.dateStr
+    </select>
+
+    <select id="queryLocationCount"
+            resultType="com.entity.view.ReportLocationCount" >
+        select a.*,FORMAT(a.lotNum/a.totalNum*100,2) percentage from (
+         select r.location,count(1) as lotNum,
+                (select count(1) from report t where t.reporttype=#{type}
+                    <if test="userId != 'admin'">
+                        and t.`name`=#{userId}
+                    </if>
+                ) as totalNum
+         from report r where r.reporttype=#{type}
+                        <if test="userId != 'admin'">
+                            and r.`name`=#{userId}
+                        </if>
+                        GROUP BY r.location ) as a order by a.lotNum desc
+    </select>
+
+    <select id="queryLocationLineCount"
+            resultType="com.entity.view.ReportLocationCount" >
+        select a.dateStr,count(1) lotNum from (
+              select LEFT(r.datetime,7) dateStr from report r
+              where r.reporttype=#{type}
+                    <if test="userId != 'admin'">
+                        and r.`name`=#{userId}
+                    </if>
+              ) as a group by a.dateStr ORDER BY a.dateStr
+    </select>
+
+</mapper>

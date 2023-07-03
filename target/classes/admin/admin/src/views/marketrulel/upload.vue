@@ -38,7 +38,7 @@
         </el-form-item>
 
         <el-form-item prop="imgUrl" label="Image">
-          <el-
+          <el-upload
             action="/eventi/file/upload"
             :on-success="succes"
             :headers="headers"

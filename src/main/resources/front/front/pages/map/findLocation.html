@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Location</title>
+  <style>
+    /*筛选器*/
+    .select-container {
+      display: inline-block;
+      position: fixed;
+      top: 15px;
+      right: 20px;
+    }
+
+    .select-container select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .select-container select:focus {
+      outline: none;
+      border-color: #8c8c8c;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+    /* 设置整体布局样式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* 设置标题样式 */
+    h1 {
+      text-align: center;
+    }
+
+    /* 设置表单样式 */
+    .form-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 5px 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* 设置地图容器样式 */
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+    /* 设置距离信息样式 */
+    #distance-info {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>Find Location</h1>
+<div class="select-container">
+  <p style="text-align: right; font-size: 16px; color: blue;">Functions</p>
+  <select onchange="redirectToPage(this.value)">
+    <option value="findLocation.html">Find Location</option>
+    <option value="map.html">View Map</option>
+    <!--测试，绝对路径切换页面-->
+    <!--<option value="D:\FYP-Local Safety Monitoring Subsystem\Front\pages\SOS\sos.html">View Accident Reports</option>-->
+  </select>
+</div>
+
+<div style="text-align: center;">
+  <label for="origin-input">Choose a location:</label>
+  <input type="text" id="origin-input" placeholder="Choose a location">
+  <label for="destination-input">Destination:</label>
+  <input type="text" id="destination-input" placeholder="Destination">
+  <button onclick="calculateAndDisplayRoute()">Show Route</button>
+</div>
+<!--<div id="distance-info"></div>-->
+<div id="map"></div>
+
+<script>
+  let map;
+  let directionsService;
+  let directionsRenderer;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 0, lng: 0 },
+      zoom: 15,
+    });
+
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+      map: map,
+    });
+    // 获取当前位置并将地图定位到该位置
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const userLatLng = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        // 创建当前位置的标记
+        const userMarker = new google.maps.Marker({
+          position: userLatLng,
+          map: map,
+          title: 'Current Location'
+        });
+
+        // 将地图中心设置为当前位置
+        map.setCenter(userLatLng);
+      });
+    }
+  }
+
+  function calculateAndDisplayRoute() {
+    const originInput = document.getElementById("origin-input").value;
+    const destinationInput = document.getElementById("destination-input")
+            .value;
+
+    directionsService.route(
+            {
+              origin: originInput,
+              destination: destinationInput,
+              travelMode: "DRIVING",
+            },
+            function (response, status) {
+              if (status === "OK") {
+                directionsRenderer.setDirections(response);
+              } else {
+                window.alert("Directions request failed:" + status);
+              }
+            }
+    );
+  }
+  function displayDistanceInfo(response) {
+    const route = response.routes[0];
+    const distance = route.legs[0].distance.text;
+    const distanceValue = parseFloat(distance.replace(" km", ""));
+
+    const progressBar = document.querySelector(".progress-bar");
+    const progressBarWidth = (distanceValue / 100) * 100; // 假设进度条总长度为100
+    progressBarFill.style.width = `${progressBarWidth}%`;
+
+    const distanceInfoDiv = document.getElementById("distance-info");
+    distanceInfoDiv.innerHTML = `
+          <p>距离：${distanceValue.toFixed(2)} 公里</p>
+          <p>进度：${progressBarWidth.toFixed(2)}%</p>
+        `;
+  }
+  /*function displayRouteInfo(response) {
+    const route = response.routes[0];
+    const distance = route.legs[0].distance.text;
+    const duration = route.legs[0].duration.text;
+    const travelMode = route.legs[0].steps[0].travel_mode;
+
+    const routeInfoDiv = document.getElementById("route-info");
+    routeInfoDiv.innerHTML = `
+      <p>距离：${distance}</p>
+      <p>预计时间：${duration}</p>
+      <p>交通方式：${getTravelModeLabel(travelMode)}</p>
+    `;
+  }
+
+  function getTravelModeLabel(travelMode) {
+    switch (travelMode) {
+      case "DRIVING":
+        return "驾车";
+      case "WALKING":
+        return "步行";
+      case "BICYCLING":
+        return "骑行";
+      case "TRANSIT":
+        return "公交";
+      default:
+        return "未知";
+    }
+  }*/
+</script>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+        async
+        defer
+></script>
+<!--筛选器-->
+<script>
+  function redirectToPage(value) {
+    if (value) {
+      window.location.href = value;
+    }
+  }
+</script>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Location and marker the line</title>
+  <style>
+    /* 地图容器 */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+
+    /* 表单容器 */
+    #search-form {
+      margin-top: 10px;
+    }
+
+    /* 输入框和按钮样式 */
+    input[type="text"],
+    button {
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* 标题样式 */
+    h1 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>寻找位置并标记路线</h1>
+
+  <div id="map"></div>
+  <form id="search-form">
+    <input type="text" id="destination-input" placeholder="输入目的地">
+    <button type="submit">搜索</button>
+  </form>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" async defer></script>
+  <script>
+    let map;
+    let directionsService;
+    let directionsRenderer;
+    let destinationInput;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.7128, lng: -74.0060}, // 设置地图中心坐标
+        zoom: 16 // 设置缩放级别
+      });
+
+      // 创建路线服务和路线显示器
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map
+      });
+
+      // 获取目的地输入框
+      destinationInput = document.getElementById('destination-input');
+
+      // 提交搜索表单时执行搜索操作
+      const searchForm = document.getElementById('search-form');
+      searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        searchLocationAndDisplayRoute();
+      });
+
+      // 获取当前位置并将地图定位到该位置
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const userLatLng = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          // 创建当前位置的标记
+          const userMarker = new google.maps.Marker({
+            position: userLatLng,
+            map: map,
+            title: '当前位置'
+          });
+
+          // 将地图中心设置为当前位置
+          map.setCenter(userLatLng);
+        });
+      }
+    }
+
+    // 搜索位置并显示路线
+    function searchLocationAndDisplayRoute() {
+      const destination = destinationInput.value;
+
+      // 获取当前位置
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const userLatLng = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          // 创建当前位置的标记
+          const userMarker = new google.maps.Marker({
+            position: userLatLng,
+            map: map,
+            title: '当前位置'
+          });
+
+          // 计算并显示路线
+          calculateAndDisplayRoute(userLatLng, destination);
+        });
+      }
+    }
+
+    // 计算并显示路线
+    function calculateAndDisplayRoute(origin, destination) {
+      directionsService.route(
+        {
+          origin: origin,
+          destination: destination,
+          travelMode: 'DRIVING' // 设置出行方式（这里以驾车为例）
+        },
+        function(response, status) {
+          if (status === 'OK') {
+            // 显示路线在地图上
+            directionsRenderer.setDirections(response);
+
+            // 标记目的地位置
+            const destinationMarker = new google.maps.Marker({
+              position: response.routes[0].legs[0].end_location,
+              map: map,
+              title: '目的地'
+            });
+          } else {
+            alert('路线请求失败：' + status);
+          }
+        }
+      );
+    }
+  </script>
+</body>
+</html>

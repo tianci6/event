@@ -7,7 +7,7 @@
 
       <p @click="gotorouter(item,index)" :class="status ==item.path ?'active':''" :key="index" v-for="(item,index) in list">{{item.name}}</p>
       <p style="text-decoration: none"><a href="http://localhost:8080/eventi/front/index.html" class="menumain" style="text-decoration: none"><i v-if="false" style="text-decoration: none"></i>Community Events</a></p>
-      <p style="text-decoration: none"><a href="http://localhost:8080/eventi/front/index.html" class="menumain" style="text-decoration: none"><i v-if="false" style="text-decoration: none"></i>Community Safety</a></p>
+      <p style="text-decoration: none"><a href="http://localhost:8080/eventi/front/index1.html" class="menumain" style="text-decoration: none"><i v-if="false" style="text-decoration: none"></i>Community Safety</a></p>
     </div>
   </div>
 </template>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.1/dist/apexcharts.min.js"></script>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 50px;
+    }
+
+    .button-container {
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+    .index-pv1 .animation-box:hover {
+      transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.1) rotate(0deg) skew(0deg, 0deg);
+      transition: all 0.3s;
+    }
+
+    .index-pv1 .animation-box img:hover {
+      transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1) rotate(0deg) skew(0deg, 0deg);
+      transition: all 0.3s;
+    }
+  </style>
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    #report-counts {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #pie-chart,
+    #line-chart {
+      width: 600px;
+      margin: 0 auto;
+    }
+    .select-container {
+      display: inline-block;
+      position: fixed;
+      top: 0px;
+      right: 20px;
+    }
+
+    .select-container select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .select-container select:focus {
+      outline: none;
+      border-color: #8c8c8c;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+    html::after {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      content: '';
+      display: block;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
+    #swiper {
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    #swiper .layui-carousel-ind li {
+      width: 16px;
+      height: 10px;
+      border-width: 0;
+      border-style: solid;
+      border-color: rgba(0,0,0,.3);
+      border-radius: 3px;
+      background-color: #f7f7f7;
+      box-shadow: 0 0 6px rgba(255,0,0,.8);
+    }
+    #swiper .layui-carousel-ind li.layui-this {
+      width: 24px;
+      height: 10px;
+      border-width: 0;
+      border-style: solid;
+      border-color: rgba(0,0,0,.3);
+      border-radius: 0;
+      background-color: red;
+      box-shadow: 0 0 6px rgba(255,0,0,.8);
+    }
+
+    button, button:focus {
+      outline: none;
+    }
+
+    .data-add-container .add .layui-select-title .layui-unselect {
+      padding: 0 12px;
+      height: 40px;
+      font-size: 14px;
+      color: #333;
+      border-radius: 0;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 1);
+      background-color: #fff;
+      box-shadow: 0 0 0px rgba(255,0,0,.8);
+      text-align: left;
+    }
+    .data-add-container .add .layui-form-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .data-add-container .layui-form-pane .layui-form-item[pane] .layui-form-label {
+      margin: 0;
+      position: inherit;
+      background: transparent;
+      border: 0;
+    }
+    .data-add-container .add .layui-input-block {
+      margin: 0;
+      flex: 1;
+    }
+    .data-add-container .layui-form-pane .layui-form-item[pane] .layui-input-inline {
+      margin: 0;
+      flex: 1;
+      display: flex;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .chart-container {
+      width: 400px;
+      height: 400px;
+      margin: 20px;
+    }
+    h1 {
+      color: #d5a97a;
+    }
+    h2 {
+      color: #d5a97a;
+    }
+    p {
+      color: #d5a97a;
+    }
+    p {
+      font-size: 18px;
+    }
+    .theme-text {
+      color: #d5a97a;
+    }
+
+    .red-text {
+      color: red;
+    }
+    .container {
+      background-color: #EEEEEE;
+      padding: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%!important;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+<h1 style="text-align: center; font-size: 24px; color: #d5a97a;">Please Choose the report Type: </h1>
+<div class="button-container">
+  <a href="TrafficReport.html" class="button">Click here to upload Accident Report</a>
+  <a href="CrimeReport.html" class="button">Click here to upload Crime Report</a>
+</div>
+
+
+</body>
+</html>

@@ -37,6 +37,8 @@ import homerulelindex from '@/views/marketrulel/homerulelindex'
 import comment from '@/views/marketrulel/comment'
 import upload from '@/views/marketrulel/upload'
 import discuss from '@/views/marketrulel/discuss'
+import announcement from '@/views/modules/announcement/list'
+import uploadreport from '@/views/modules/uploadreport/list'
 
 
 //2.配置路由 注意：name
@@ -155,7 +157,7 @@ const routes = [{
     name: 'Resident',
     component: jumin
   }
-    , {
+  , {
     path: '/forum',
     name: 'Forum',
     component: forum
@@ -209,7 +211,15 @@ const routes = [{
     path: '/shequchangdi',
     name: 'community venue',
     component: shequchangdi
-  }
+  }, {
+      path: '/announcement',
+      name: 'announcement',
+      component: announcement
+    }, {
+      path: '/report',
+      name: 'report',
+      component: uploadreport
+    }
   ]
 },
 {

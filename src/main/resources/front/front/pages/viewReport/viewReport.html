@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.1/dist/apexcharts.min.js"></script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #report-counts {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #pie-chart,
+        #line-chart {
+            width: 600px;
+            margin: 0 auto;
+        }
+        .select-container {
+            display: inline-block;
+            position: fixed;
+            top: 0px;
+            right: 20px;
+        }
+
+        .select-container select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .select-container select:focus {
+            outline: none;
+            border-color: #8c8c8c;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+        html::after {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            content: '';
+            display: block;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        #swiper {
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        #swiper .layui-carousel-ind li {
+            width: 16px;
+            height: 10px;
+            border-width: 0;
+            border-style: solid;
+            border-color: rgba(0,0,0,.3);
+            border-radius: 3px;
+            background-color: #f7f7f7;
+            box-shadow: 0 0 6px rgba(255,0,0,.8);
+        }
+        #swiper .layui-carousel-ind li.layui-this {
+            width: 24px;
+            height: 10px;
+            border-width: 0;
+            border-style: solid;
+            border-color: rgba(0,0,0,.3);
+            border-radius: 0;
+            background-color: red;
+            box-shadow: 0 0 6px rgba(255,0,0,.8);
+        }
+
+        button, button:focus {
+            outline: none;
+        }
+
+        .data-add-container .add .layui-select-title .layui-unselect {
+            padding: 0 12px;
+            height: 40px;
+            font-size: 14px;
+            color: #333;
+            border-radius: 0;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 1);
+            background-color: #fff;
+            box-shadow: 0 0 0px rgba(255,0,0,.8);
+            text-align: left;
+        }
+        .data-add-container .add .layui-form-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .data-add-container .layui-form-pane .layui-form-item[pane] .layui-form-label {
+            margin: 0;
+            position: inherit;
+            background: transparent;
+            border: 0;
+        }
+        .data-add-container .add .layui-input-block {
+            margin: 0;
+            flex: 1;
+        }
+        .data-add-container .layui-form-pane .layui-form-item[pane] .layui-input-inline {
+            margin: 0;
+            flex: 1;
+            display: flex;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+        }
+        h1 {
+            color: #d5a97a;
+        }
+        h2 {
+            color: #d5a97a;
+        }
+        p {
+            color: #d5a97a;
+        }
+        p {
+            font-size: 18px;
+        }
+        .theme-text {
+            color: #d5a97a;
+        }
+
+        .red-text {
+            color: red;
+        }
+        .container {
+            background-color: #EEEEEE;
+            padding: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%!important;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h1>Report Statistics</h1><hr>
+<!--筛选器-->
+<div class="select-container">
+    <p style="text-align: right; font-size: 16px; color: blue;">Choose Report Type</p>
+    <select onchange="redirectToPage(this.value)">
+        <option value="viewReport.html">View Report</option>
+        <option value="viewAccidentReport.html">View Accident Reports</option>
+        <option value="viewCrimeReport.html">View Crime Reports</option>
+    </select>
+</div>
+
+<div id="report-counts">
+    <h2>Number of Reports</h2>
+    <p>Total Reports: <span id="total-reports">0</span></p>
+    <p>Accident Reports: <span id="accident-reports">0</span></p>
+    <p>Crime Reports: <span id="crime-reports">0</span></p>
+</div>
+<hr>
+
+<h1 style="text-align: center; font-size: 16px; color: green;">Pie Chart</h1>
+<div id="pie-chart"></div><hr>
+<h2 style="text-align: center; font-size: 16px; color: green;">Line Chart</h2>
+<div id="line-chart"></div><hr>
+<h3 style="text-align: center; font-size: 16px; color: green;">Reports that you uploaded</h3>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Report Type</th>
+            <th>UserID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Long Detail</th>
+            <th>Low Detail</th>
+            <th>Phone No.</th>
+            <th>Description</th>
+            <th>Photo</th>
+        </tr>
+        </thead>
+        <tbody id="reportList">
+            <!-- 这里使用后端数据填充表格内容-->
+        </tbody>
+    </table>
+</div>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- 组件配置信息 -->
+<script src="../../js/config.js"></script>
+<!-- 扩展插件配置信息 -->
+<script src="../../modules/config.js"></script>
+<!-- 工具方法 -->
+<script src="../../js/utils.js"></script>
+<!-- 校验格式工具类 -->
+<script src="../../js/validate.js"></script>
+<!-- 地图 -->
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript"
+        src="http://webapi.amap.com/maps?v=1.3&key=ca04cee7ac952691aa67a131e6f0cee0"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.AMapPositionPicker.js"></script>
+<script>
+
+    layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery', 'form', 'upload', 'laydate', 'tinymce'], function () {
+        var http = layui.http;
+        http.request('report' + '/queryReportList/'+localStorage.getItem("userid"), 'get',{}, function (res) {
+            $.each(res.data,function (index,item){
+                $("#reportList").append('<tr>' +
+                    '            <td>'+(item['reporttype'] || '') +'</td>' +
+                    '            <td>'+(item['userid'] || '') +'</td>' +
+                    '            <td>'+(item['name'] || '') +'</td>' +
+                    '            <td>'+(item['datetime'] || '') +'</td>' +
+                    '            <td>'+(item['location'] || '') +'</td>' +
+                    '            <td>'+(item['longitude'] || '') +'</td>' +
+                    '            <td>'+(item['latitude'] || '') +'</td>' +
+                    '            <td>'+(item['phone'] || '') +'</td>' +
+                    '            <td>'+(item['description'] || '') +'</td>' +
+                    '            <td>'+(item['photo'] || '') +'</td>' +
+                    '        </tr>')
+            })
+        });
+
+        http.request('report' + '/queryReportCount/'+localStorage.getItem("userid"), 'get',{}, function (res) {
+            console.log(res.data)
+            var total = 0;
+            $("#accident-reports").html("0");
+            $("#crime-reports").html("0");
+            $("#total-reports").html("0");
+            $.each(res.data.numCount,function (index,item){
+                if (item['reportType'] == "Traffic Accident") {
+                    $("#accident-reports").html(item['typeNum']);
+                }
+                if (item['reportType'] == "Crime Sence") {
+                    $("#crime-reports").html(item['typeNum']);
+                }
+                total += Number.parseInt(item['typeNum']);
+            })
+            $("#total-reports").html(total);
+            console.log(Number.parseInt($("#accident-reports").html()));
+            console.log(Number.parseInt($("#crime-reports").html()));
+            // 创建饼状图
+            const pieChartOptions = {
+                series: [Number.parseInt($("#accident-reports").html()), Number.parseInt($("#crime-reports").html())],
+                labels: ['Accident Reports', 'Crime Reports'],
+                chart: {
+                    type: 'donut',
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+            new ApexCharts(document.getElementById("pie-chart"), pieChartOptions).render();
+
+
+            // 创建折线图
+            const monthlyData = Object.entries(res.data.lineData).map(([month, { total, accident, crime }]) => ({
+                month,
+                total,
+                accident,
+                crime
+            }));
+
+            const lineChartOptions = {
+                series: [{
+                    name: 'Total Reports',
+                    data: monthlyData.map(item => item.total)
+                }, {
+                    name: 'Accident Reports',
+                    data: monthlyData.map(item => item.accident)
+                }, {
+                    name: 'Crime Reports',
+                    data: monthlyData.map(item => item.crime)
+                }],
+                chart: {
+                    height: 350,
+                    type: 'line',
+                },
+                xaxis: {
+                    categories: monthlyData.map(item => item.month),
+                },
+            };
+            new ApexCharts(document.getElementById("line-chart"), lineChartOptions).render();
+        });
+    })
+
+
+    // 模拟从后端获取的数据
+    // const data = {
+    //     totalReports: 100,
+    //     accidentReports: 30,
+    //     crimeReports: 70,
+    //     monthlyReports: {
+    //         'Jan': { total: 20, accident: 5, crime: 15 },
+    //         'Feb': { total: 30, accident: 10, crime: 20 },
+    //         'Mar': { total: 40, accident: 15, crime: 25 },
+    //         'Apr': { total: 35, accident: 14, crime: 21 },
+    //         // 添加更多月份的数据...
+    //     }
+    // };
+
+
+
+
+</script>
+<!--筛选器-->
+<script>
+    function redirectToPage(value) {
+        if (value) {
+            window.location.href = value;
+        }
+    }
+</script>
+</body>
+</html>
+
+

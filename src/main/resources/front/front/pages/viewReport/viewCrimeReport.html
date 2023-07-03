@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crime Reports</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- bootstrap样式，地图插件使用 -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <!-- 样式 -->
+    <link rel="stylesheet" href="../../css/style.css" />
+    <!-- 主题（主要颜色设置） -->
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <!-- 通用的css -->
+    <link rel="stylesheet" href="../../css/common.css" />
+    <style>
+        .select-container {
+            display: inline-block;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+        }
+
+        .select-container select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .select-container select:focus {
+            outline: none;
+            border-color: #8c8c8c;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+        html::after {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            content: '';
+            display: block;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        #swiper {
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        #swiper .layui-carousel-ind li {
+            width: 16px;
+            height: 10px;
+            border-width: 0;
+            border-style: solid;
+            border-color: rgba(0,0,0,.3);
+            border-radius: 3px;
+            background-color: #f7f7f7;
+            box-shadow: 0 0 6px rgba(255,0,0,.8);
+        }
+        #swiper .layui-carousel-ind li.layui-this {
+            width: 24px;
+            height: 10px;
+            border-width: 0;
+            border-style: solid;
+            border-color: rgba(0,0,0,.3);
+            border-radius: 0;
+            background-color: red;
+            box-shadow: 0 0 6px rgba(255,0,0,.8);
+        }
+
+        button, button:focus {
+            outline: none;
+        }
+
+        .data-add-container .add .layui-select-title .layui-unselect {
+            padding: 0 12px;
+            height: 40px;
+            font-size: 14px;
+            color: #333;
+            border-radius: 0;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 1);
+            background-color: #fff;
+            box-shadow: 0 0 0px rgba(255,0,0,.8);
+            text-align: left;
+        }
+        .data-add-container .add .layui-form-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .data-add-container .layui-form-pane .layui-form-item[pane] .layui-form-label {
+            margin: 0;
+            position: inherit;
+            background: transparent;
+            border: 0;
+        }
+        .data-add-container .add .layui-input-block {
+            margin: 0;
+            flex: 1;
+        }
+        .data-add-container .layui-form-pane .layui-form-item[pane] .layui-input-inline {
+            margin: 0;
+            flex: 1;
+            display: flex;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+        }
+        h1 {
+            color: #d5a97a;
+        }
+        h2 {
+            color: #d5a97a;
+        }
+        p {
+            color: #d5a97a;
+        }
+        p {
+            font-size: 18px;
+        }
+        .theme-text {
+            color: #d5a97a;
+        }
+
+        .red-text {
+            color: red;
+        }
+        .container {
+            background-color: #EEEEEE;
+            padding: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%!important;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body style="background: #EEEEEE; ">
+<h1>Crime Report</h1>
+
+<hr>
+<div class="select-container">
+    <p style="text-align: right; font-size: 16px; color: blue;">Choose Report Type</p>
+    <select onchange="redirectToPage(this.value)">
+        <option value="viewCrimeReport.html">View Crime Reports</option>
+        <option value="viewReport.html">View Report</option>
+        <option value="viewAccidentReport.html">View Accident Reports</option>
+        <!--测试，绝对路径切换页面-->
+        <!--<option value="D:\FYP-Local Safety Monitoring Subsystem\Front\pages\SOS\sos.html">View Accident Reports</option>-->
+    </select>
+</div>
+
+<div class="container">
+    <div style="white-space: pre-wrap;">
+        <h2>Crime Report Statistics</h2>
+        <p id="totalReports">Number of Crime Reports: </p>
+        <p id="top3Locations">Top 3 Crime Location: </p>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div id="pieChartContainer" class="chart-container">
+        <h2>Reporting Locations</h2>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <div id="lineChartContainer" class="chart-container">
+        <h2>Time and Location trends</h2>
+        <canvas id="lineChart"></canvas>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Location</th>
+            <th>Percentage</th>
+        </tr>
+        </thead>
+        <tbody id="locationData">
+        </tbody>
+    </table>
+</div>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- 组件配置信息 -->
+<script src="../../js/config.js"></script>
+<!-- 扩展插件配置信息 -->
+<script src="../../modules/config.js"></script>
+<!-- 工具方法 -->
+<script src="../../js/utils.js"></script>
+<!-- 校验格式工具类 -->
+<script src="../../js/validate.js"></script>
+<!-- 地图 -->
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript"
+        src="http://webapi.amap.com/maps?v=1.3&key=ca04cee7ac952691aa67a131e6f0cee0"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.AMapPositionPicker.js"></script>
+<script>
+
+    // 更新报告数量统计和 Top 3 地点
+    layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery', 'form', 'upload', 'laydate', 'tinymce'], function () {
+        var http = layui.http;
+        http.request('report' + '/queryReportCount/'+localStorage.getItem("userid")+"/2", 'get',{}, function (res) {
+            console.log(res.data)
+            var total = 0;
+            $.each(res.data.numCount,function(i,item){
+                if (item['reportType'] == 'Crime Sence') {
+                    total = item['typeNum'];
+                }
+            })
+            document.getElementById('totalReports').textContent += total;
+
+            var top3Data = [];
+            var top3Percentages = [];
+            $.each(res.data.locationCount,function(i,item){
+                if (top3Data.length < 3) {
+                    top3Data[i] = item.location;
+                    top3Percentages[i] = item.percentage;
+                }
+
+                $("#locationData").append('<tr>' +
+                    '            <td>'+item.location+'</td>' +
+                    '            <td>'+item.percentage+'</td>' +
+                    '        </tr>')
+            })
+            document.getElementById('top3Locations').textContent += top3Data.join(', ');
+
+
+
+            // 创建饼状图
+            var pieChartCtx = document.getElementById('pieChart').getContext('2d');
+            var pieChart = new Chart(pieChartCtx, {
+                type: 'pie',
+                data: {
+                    labels: top3Data,
+                    datasets: [{
+                        data: top3Percentages,
+                        backgroundColor: ['red', 'blue', 'green']
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+
+            var dates = [];
+            var values = [];
+            $.each(res.data.locationLineCount,function(i,item){
+                dates[i] = item.dateStr;
+                values[i] = item.lotNum;
+            })
+            // 创建折线图
+            var lineChartCtx = document.getElementById('lineChart').getContext('2d');
+            var lineChart = new Chart(lineChartCtx, {
+                type: 'line',
+                data: {
+                    labels:dates,
+                    datasets: [{
+                        label: 'Location report quantity',
+                        data: values,
+                        borderColor: 'blue',
+                        backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Month'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Reports'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    })
+
+</script>
+<!--筛选器-->
+<script>
+    function redirectToPage(value) {
+        if (value) {
+            window.location.href = value;
+        }
+    }
+</script>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>犯罪报告查看</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.1/dist/apexcharts.min.js"></script>
+    <!-- bootstrap样式，地图插件使用 ->
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<!-- 样式 ->
+	<link rel="stylesheet" href="../../css/style.css" />
+	<!-- 主题（主要颜色设置） ->
+	<link rel="stylesheet" href="../../css/theme.css" />
+	<!-- 通用的css ->
+	<link rel="stylesheet" href="../../css/common.css" />
+    <style>
+        html::after {
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			content: '';
+			display: block;
+			background-attachment: fixed;
+			background-size: cover;
+			background-position: center;
+			z-index: -1;
+		}
+		#swiper {
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		#swiper .layui-carousel-ind li {
+			width: 16px;
+			height: 10px;
+			border-width: 0;
+			border-style: solid;
+			border-color: rgba(0,0,0,.3);
+			border-radius: 3px;
+			background-color: #f7f7f7;
+			box-shadow: 0 0 6px rgba(255,0,0,.8);
+		}
+		#swiper .layui-carousel-ind li.layui-this {
+			width: 24px;
+			height: 10px;
+			border-width: 0;
+			border-style: solid;
+			border-color: rgba(0,0,0,.3);
+			border-radius: 0;
+			background-color: red;
+			box-shadow: 0 0 6px rgba(255,0,0,.8);
+		}
+
+		button, button:focus {
+			outline: none;
+		}
+
+		.data-add-container .add .layui-select-title .layui-unselect {
+			padding: 0 12px;
+			height: 40px;
+			font-size: 14px;
+			color: #333;
+			border-radius: 0;
+			border-width: 1px;
+			border-style: solid;
+			border-color: rgba(0, 0, 0, 1);
+			background-color: #fff;
+			box-shadow: 0 0 0px rgba(255,0,0,.8);
+			text-align: left;
+		}
+		.data-add-container .add .layui-form-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.data-add-container .layui-form-pane .layui-form-item[pane] .layui-form-label {
+			margin: 0;
+			position: inherit;
+			background: transparent;
+			border: 0;
+		}
+		.data-add-container .add .layui-input-block {
+			margin: 0;
+			flex: 1;
+		}
+		.data-add-container .layui-form-pane .layui-form-item[pane] .layui-input-inline {
+			margin: 0;
+			flex: 1;
+			display: flex;
+		}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+        }
+        h1 {
+        color: #d5a97a;
+        }
+        h2 {
+        color: #d5a97a;
+        }
+        p {
+        color: #d5a97a;
+        }
+        p {
+        font-size: 18px;
+        }
+        .theme-text {
+        color: #d5a97a;
+        }
+
+        .red-text {
+        color: red;
+        }
+        .container {
+        background-color: #EEEEEE;
+        padding: 10px;
+        }
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+        }
+    </style>
+</head>
+<body style="background: #EEEEEE; ">
+    <h1 :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid","color:red"}'>Crime Report</h1>
+
+    <div id="summary-container">
+        <h2 style="text-align: center;">Statistics on the total number of crime reports.</h2>
+        <br>
+        <p class="theme-text" style="text-align: center;">Number of Crime Reports: <span id="total-reports"></span></p><hr>
+        <p class="red-text" style="text-align: center;">Top 3 Crime Locations:</p>
+        <br>
+        <ul class="red-text" id="top-3-locations" style="text-align: center;"></ul><hr>
+        <div class="container">
+            <p>The pie chart below shows the proportion of crime probability in each region.</p>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Percentage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 这里使用后端数据填充表格内容->
+                  <tr>
+                    <td>数据1</td>
+                    <td>数据2</td>
+                  </tr>
+                  <tr>
+                    <td>数据4</td>
+                    <td>数据5</td>
+                  </tr>
+                </tbody>
+              </table>
+            <div id="crime-pie-chart" class="chart-container"></div>
+        </div>
+        <hr>
+        <div class="container">
+            <P :style="font-size: 18px">The line chart below shows the change in time of crimes per month.</P>
+            <table>
+                <thead>
+                  <tr>
+                    <th>列标题1</th>
+                    <th>列标题2</th>
+                    <th>列标题3</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 这里使用后端数据填充表格内容 ->
+                  <tr>
+                    <td>数据1</td>
+                    <td>数据2</td>
+                    <td>数据3</td>
+                  </tr>
+                  <tr>
+                    <td>数据4</td>
+                    <td>数据5</td>
+                    <td>数据6</td>
+                  </tr>
+                </tbody>
+              </table>
+            <div id="time-location-line-chart" class="chart-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // 假设的报告数据
+        const reportData = {
+            totalReports: 100,
+            topLocations: [
+                { name: "Location 1", count: 30 },
+                { name: "Location 2", count: 20 },
+                { name: "Location 3", count: 15 }
+            ],
+            crimeDistribution: [
+                { location: "Location 1", count: 30 },
+                { location: "Location 2", count: 20 },
+                { location: "Location 3", count: 15 },
+                // ...更多数据
+            ],
+            timeLocationData: [
+                { month: "Jan", count: 5 },
+                { month: "Feb", count: 3 },
+                { month: "Mar", count: 2 },
+                // ...更多数据
+            ]
+        };
+
+        // 更新报告数量统计
+        const totalReportsElement = document.getElementById("total-reports");
+        totalReportsElement.textContent = reportData.totalReports;
+
+        // 更新 Top 3 地点
+        const topLocationsElement = document.getElementById("top-3-locations");
+        reportData.topLocations.forEach((location, index) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${index + 1}. ${location.name} (${location.count} reports)`;
+            topLocationsElement.appendChild(listItem);
+        });
+
+        // 创建犯罪报告饼状图
+        const crimePieChart = new ApexCharts(document.getElementById("crime-pie-chart"), {
+            series: reportData.crimeDistribution.map(item => item.count),
+            labels: reportData.crimeDistribution.map(item => item.location),
+            chart: {
+                type: "pie",
+                height: 400
+            },
+            legend: {
+                position: "bottom"
+            },
+            colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00D9E9', '#FF66C3']
+        });
+        crimePieChart.render();
+
+        // 创建时间地点折线图
+        const timeLocationLineChart = new ApexCharts(document.getElementById("time-location-line-chart"), {
+            series: reportData.topLocations.map(location => ({
+                name: location.name,
+                data: reportData.timeLocationData
+                    .filter(item => item.location === location.name)
+                    .map(item => item.count)
+            })),
+            xaxis: {
+                categories: reportData.timeLocationData.map(item => item.month)
+            },
+            chart: {
+                type: "line",
+                height: 400
+            },
+            legend: {
+                position: "bottom"
+            },
+            colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00D9E9', '#FF66C3']
+        });
+        timeLocationLineChart.render();
+    </script>
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>犯罪报告查看</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.1/dist/apexcharts.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>犯罪报告查看</h1>
+
+    <div id="summary-container">
+        <h2>报告数量统计</h2>
+        <p>总报告数量: <span id="total-reports"></span></p>
+        <p>Top 3 地点:</p>
+        <ul id="top-3-locations"></ul>
+    </div>
+
+    <div class="container">
+        <div id="crime-pie-chart" class="chart-container"></div>
+        <div id="time-location-line-chart" class="chart-container"></div>
+    </div>
+
+    <script>
+        // 从后端获取数据并更新页面
+        fetch('/api/crime-reports')
+            .then(response => response.json())
+            .then(data => {
+                // 更新报告数量统计
+                const totalReportsElement = document.getElementById('total-reports');
+                totalReportsElement.textContent = data.totalReports;
+
+                // 更新 Top 3 地点
+                const topLocationsElement = document.getElementById('top-3-locations');
+                data.topLocations.forEach(location => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${location.name} (${location.count} 个报告)`;
+                    topLocationsElement.appendChild(listItem);
+                });
+
+                // 创建犯罪报告饼状图
+                const crimePieChart = new ApexCharts(document.getElementById('crime-pie-chart'), {
+                    series: data.crimeDistribution.map(item => item.count),
+                    labels: data.crimeDistribution.map(item => item.location),
+                    chart: {
+                        type: 'pie',
+                        height: 400
+                    },
+                    legend: {
+                        position: 'bottom'
+                    },
+                    colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00D9E9', '#FF66C3']
+                });
+                crimePieChart.render();
+
+                // 创建时间地点折线图
+                const timeLocationLineChart = new ApexCharts(document.getElementById('time-location-line-chart'), {
+                    series: data.topLocations.map(location => ({
+                        name: location.name,
+                        data: data.timeLocationData
+                            .filter(item => item.location === location.name)
+                            .map(item => item.count)
+                    })),
+                    xaxis: {
+                        categories: data.timeLocationData.map(item => item.month)
+                    },
+                    chart: {
+                        type: 'line',
+                        height: 400
+                    },
+                    legend: {
+                        position: 'bottom'
+                    },
+                    colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0', '#00D9E9', '#FF66C3']
+                });
+                timeLocationLineChart.render();
+            })
+            .catch(error => {
+                console.error('Failed to fetch data:', error);
+            });
+    </script>
+</body>
+</html>-->

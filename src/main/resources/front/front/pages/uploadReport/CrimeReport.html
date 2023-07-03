@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Crime Report</title>
+    <!-- bootstrap样式，地图插件使用 -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <!-- 样式 -->
+    <link rel="stylesheet" href="../../css/style.css" />
+    <!-- 主题（主要颜色设置） -->
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <!-- 通用的css -->
+    <link rel="stylesheet" href="../../css/common.css" />
+</head>
+<style>
+    html::after {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        content: '';
+        display: block;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+    }
+
+    #swiper {
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    #swiper .layui-carousel-ind li {
+        width: 16px;
+        height: 10px;
+        border-width: 0;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-radius: 3px;
+        background-color: #f7f7f7;
+        box-shadow: 0 0 6px rgba(255, 0, 0, .8);
+    }
+
+    #swiper .layui-carousel-ind li.layui-this {
+        width: 24px;
+        height: 10px;
+        border-width: 0;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-radius: 0;
+        background-color: red;
+        box-shadow: 0 0 6px rgba(255, 0, 0, .8);
+    }
+
+    button,
+    button:focus {
+        outline: none;
+    }
+
+    .data-add-container .add .layui-select-title .layui-unselect {
+        padding: 0 12px;
+        height: 40px;
+        font-size: 14px;
+        color: #333;
+        border-radius: 0;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(0, 0, 0, 1);
+        background-color: #fff;
+        box-shadow: 0 0 0px rgba(255, 0, 0, .8);
+        text-align: left;
+    }
+
+    .data-add-container .add .layui-form-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .data-add-container .layui-form-pane .layui-form-item[pane] .layui-form-label {
+        margin: 0;
+        position: inherit;
+        background: transparent;
+        border: 0;
+    }
+
+    .data-add-container .add .layui-input-block {
+        margin: 0;
+        flex: 1;
+    }
+
+    .data-add-container .layui-form-pane .layui-form-item[pane] .layui-input-inline {
+        margin: 0;
+        flex: 1;
+        display: flex;
+    }
+    /*#reportType {*/
+    /*    font-size: 14px!important;*/
+    /*    align-items: center!important;*/
+    /*    display: flex;*/
+    /*    justify-content: flex-start;*/
+    /*    align-items: center;*/
+    /*    text-align: left!important;*/
+    /*}*/
+    #datetime {
+        font-size: 14px!important;
+        align-items: center!important;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left!important;
+    }
+    #datetime-box {
+        border: 1px solid #ccc; /* 设置边框样式 */
+        padding: 10px; /* 设置内边距 */
+        font-size: 18px; /* 设置字体大小 */
+    }
+    .container {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .layui-laypage .layui-laypage-count {
+        padding: 0 10px;
+    }
+    .layui-laypage .layui-laypage-skip {
+        padding-left: 10px;
+    }
+</style>
+
+<body style="background: #EEEEEE; ">
+
+
+<div id="app">
+
+    <!--
+        <div class="layui-carousel" id="swiper">
+            <div carousel-item id="swiper-item">
+                <div v-for="(item,index) in swiperList" v-bind:key="index">
+                    <img class="swiper-item" :src="item.img">
+                </div>
+            </div>
+        </div> -->
+    <div class="layui-carousel" id="swiper"
+         :style='{"boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"0","borderWidth":"0","width":"100%","borderStyle":"solid"}'>
+        <div carousel-item id="swiper-item">
+            <div v-for="(item,index) in swiperList" :key="index">
+                <img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" />
+            </div>
+        </div>
+    </div>
+    <!-- 轮播图 -->
+
+    <div class="data-add-container"
+         :style='{"padding":"20px","boxShadow":"0px 0px 0px rgba(255,0,0,.8)","margin":"30px auto","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+        <form class="layui-form layui-form-pane add" lay-filter="myForm">
+            <!--报告类型-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Report Type: </label>
+                <div class="layui-input-block">
+                    <select name="reporttype" id="reporttype" lay-filter="reporttype" disabled>
+                        <option value="">Please Choose</option>
+                        <option value="Traffic Accident" >Traffic Accident</option>
+                        <option value="Crime Sence" selected>Crime Sence</option>
+                        <!--<option v-for="(item,index) in crimeCategory" v-bind:key="index" :value="item">{{item}}</option>-->
+                    </select>
+                </div>
+            </div>
+            <!--User ID-->
+            <div style="display: none" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">User ID: </label>
+                <div class="layui-input-block">
+                    <input readonly="readonly"
+                           :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                           v-model="detail.userid" type="text" :readonly="ro.userid"
+                           name="userid" lay-verify="userid" id="userid" autocomplete="off" placeholder="UserID" class="layui-input">
+                </div>
+            </div>
+
+            <!--Name-->
+            <div style="display: none" :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Name: </label>
+                <div class="layui-input-block">
+                    <input readonly="readonly"
+                           :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                           v-model="detail.name" type="text" :readonly="ro.name"
+                           name="name" lay-verify="name" id="name" autocomplete="off" placeholder="Username" class="layui-input">
+                    <!--自动生成-->
+                    <!--<button type="button" onclick="generateFormName()">自动填写</button>-->
+
+                </div>
+            </div>
+
+            <!--Crime Type-->
+            <div  :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Crime Category: </label>
+                <div class="layui-input-block">
+                    <select name="classification" id="classification" lay-filter="classification" >
+                        <option value="">Please Choose</option>
+                        <option value="Murder">Murder</option>
+                        <option value="Robbery">Robbery</option>
+                        <option value="Theft">Theft</option>
+                        <option value="Fraud">Fraud</option>
+                        <option value="Huamn Trafficking">Huamn Trafficking</option>
+                        <option value="Rape">Rape</option>
+                        <option value="Abuse">Abuse</option>
+                        <option value="Drug Offenses">Drug Offenses</option>
+                        <!--<option v-for="(item,index) in accidentCategory" v-bind:key="index" :value="item">{{item}}</option>-->
+                    </select>
+                </div>
+            </div>
+
+            <!--Date-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Date1: </label>
+                <div class="layui-input-inline">
+                    <!--                    <div :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'-->
+                    <!--                         id="datetime" type="datetime" name="datetime" id="datetime" lay-verify="datetime" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"></div>-->
+                    <input
+                            :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                            type="datetime"  name="datetime" id="datetime" lay-verify="datetime" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                    <!--                    <div id="datetime"></div>-->
+                </div>
+            </div>
+
+            <!--Location-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Location: </label>
+                <div class="layui-input-block">
+                    <select name="location" id="location" lay-filter="location" >
+                        <option value="">Please Choose</option>
+                        <option value="Park">Park</option>
+                        <option value="Lift">Lift</option>
+                        <option value="Car Park">Car Park</option>
+                        <option value="Swimming Pool">Swimming Pool</option>
+                        <option value="Business District">Business District</option>
+                        <!--<option v-for="(item,index) in crimeCategory" v-bind:key="index" :value="item">{{item}}</option>-->
+                    </select>
+                </div>
+            </div>
+
+            <!--longdetail-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Longitude:</label>
+                <div class="layui-input-block">
+                    <input
+                            :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                            v-model="detail.longitude" type="text" :readonly="ro.longitude" name="longitude"
+                            id="longitude" lay-verify="longitude" autocomplete="off" placeholder="Longitude" class="layui-input">
+                </div>
+            </div>
+            <!--lowdetail-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Latitude:</label>
+                <div class="layui-input-block">
+                    <input
+                            :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                            v-model="detail.latitude" type="text" :readonly="ro.latitude" name="latitude"
+                            id="latitude" lay-verify="latitude" autocomplete="off" placeholder="latitude" class="layui-input">
+                </div>
+            </div>
+
+<!--            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'-->
+<!--                 class="layui-form-item" pane>-->
+<!--                <div class="container">-->
+<!--                    <input type="button" value="Get the longitude and latitude" onclick="getLocation()">-->
+<!--                </div>-->
+<!--            </div>-->
+            <!--跳转到谷歌地图-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                class="layui-form-item" pane>
+                <label
+                    :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                    class="layui-form-label">Google Map:</label>
+                <div class="layui-input-block">
+                    <input type="button" value="Get the longitude and latitude" onclick="getLocation()">
+                    <button onclick="openGoogleMaps()">Open Google Maps for Longdetail and Lowdetail</button>
+                </div>
+            </div>
+
+            <!--Contract Number-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Phone No.: </label>
+                <div class="layui-input-inline">
+                    <input
+                            :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                            type="tel" name="phone" id="phone" lay-verify="required|phone" placeholder="+6xxxxxxxxxx/6xxxxxxxxxxx" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <!--Crime Description-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item layui-form-text" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Description: </label>
+                <div class="layui-input-block">
+                        <textarea
+                                :style='{"padding":"0 12px","boxShadow":"0 0 0px rgba(255,0,0,.8)","borderColor":"rgba(0, 0, 0, 1)","backgroundColor":"#fff","color":"#333","borderRadius":"0","textAlign":"left","borderWidth":"1px","fontSize":"14px","borderStyle":"solid","height":"40px"}'
+                                v-model="detail.description" type="description" :readonly="ro.description" name="description"
+                                id="description" placeholder="Please enter" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+            </div>
+
+            <!--Photo-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item" pane>
+                <label
+                        :style='{"width":"110px","padding":"0 12px 0 0","fontSize":"16px","color":"rgba(0, 0, 0, 1)","textAlign":"right"}'
+                        class="layui-form-label">Photo: </label>
+                <div class="layui-input-block">
+                    <div v-if="detail.reportPhoto" style="display:inline-block;margin-right:10px;">
+                        <img id="reportPhotoImg"
+                             style="width: 100px;height: 100px;border-radius: 50%;border: 2px solid #EEEEEE;"
+                             :src="baseurl+detail.reportPhoto.split(',')[0]">
+                        <input type="hidden" :value="detail.reportPhoto" id="reportPhoto"
+                               name="reportPhoto" />
+                    </div>
+                    <button v-if="!ro.reportPhoto"
+                            :style='{"padding":"0 20px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px 0 0","borderColor":"#ccc","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"44px","borderWidth":"0","width":"auto","fontSize":"14px","borderStyle":"solid","height":"44px"}'
+                            type="button" class="layui-btn btn-theme" id="reportPhotoUpload">
+                        <i v-if="true" :style='{"color":"rgba(0, 0, 0, 1)","show":true,"fontSize":"14px"}'
+                           class="layui-icon">&#xe67c;</i>Upload report photo
+                    </button>
+                </div>
+            </div>
+
+            <!--Submit and Reset-->
+            <div :style='{"padding":"10px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(255,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'
+                 class="layui-form-item">
+                <div class="layui-input-block" style="text-align: right;">
+                    <button
+                            :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(213, 169, 122, 1)","backgroundColor":"rgba(223, 195, 153, 1)","color":"rgba(0, 0, 0, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}'
+                            class="layui-btn btn-submit" lay-submit lay-filter="*">Submit</button>
+                    <button
+                            :style='{"padding":"0 10px","boxShadow":"0 0 0px rgba(255,0,0,.5)","margin":"0 10px","borderColor":"rgba(143, 143, 143, 1)","backgroundColor":"rgba(217, 217, 217, 1)","color":"rgba(143, 143, 143, 1)","borderRadius":"10px","borderWidth":"10px 0 0","width":"10%","fontSize":"14px","borderStyle":"solid","height":"44px"}'
+                            type="reset" class="layui-btn layui-btn-primary">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../layui/layui.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- 组件配置信息 -->
+<script src="../../js/config.js"></script>
+<!-- 扩展插件配置信息 -->
+<script src="../../modules/config.js"></script>
+<!-- 工具方法 -->
+<script src="../../js/utils.js"></script>
+<!-- 校验格式工具类 -->
+<script src="../../js/validate.js"></script>
+<!-- 地图 -->
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript"
+        src="http://webapi.amap.com/maps?v=1.3&key=ca04cee7ac952691aa67a131e6f0cee0"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.AMapPositionPicker.js"></script>
+
+<!--时间-->
+<!--<script>-->
+<!--    function displayDateTime() {-->
+<!--        var date = new Date(); // 创建一个 Date 对象-->
+<!--        var dateTime = date.toLocaleString(); // 获取本地日期和时间的字符串表示-->
+
+<!--        document.getElementById("datetime").textContent = dateTime; // 将日期和时间显示在指定的元素中-->
+<!--    }-->
+
+<!--    // 每秒钟调用一次 displayDateTime 函数-->
+<!--    setInterval(displayDateTime, 1000);-->
+<!--</script>-->
+<!--跳转到谷歌地图-->
+<script>
+    function openGoogleMaps() {
+        // 谷歌地图的URL
+        var googleMapsUrl = "https://maps.google.com";
+
+        // 在新标签页中打开谷歌地图
+        window.open(googleMapsUrl, "_blank");
+    }
+</script>
+<script>
+    // var jquery = $;
+
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            // 轮播图
+            swiperList: [{
+                img: '../../img/banner.jpg'
+            }],
+            dataList: [],
+            baseurl: '',
+            ro: {
+                reporttype: false,
+                userid: false,
+                name: false,
+                longitude: false,
+                latitude: false,
+                description: false,
+                location: false,
+                classification: false,
+                reportPhoto: false,
+                phone: false,
+                datetime: false,
+            },
+            detail: {
+                reporttype: '',
+                userid: '',
+                name: localStorage.getItem('userid'),
+                longitude: '',
+                latitude: '',
+                description: '',
+                location: '',
+                classification: '',
+                reportPhoto: '',
+                phone: '',
+                datetime: '',
+            },
+            reporttype: 'Traffic Accident, Crime Sence'.split(','),
+            classification: 'Murder, Robbery, Theft, Fraud, Huamn Trafficking, Rape, Abuse, Drug Offenses'.split(','),
+            location: 'Park, Lift, Car Park, Swimming Pool, Business District'.split(','),
+            centerMenu: centerMenu
+        },
+        updated: function () {
+            layui.form.render('select', 'myForm');
+        },
+        computed: {
+
+
+
+        },
+        methods: {
+            jump(url) {
+                jump(url)
+            }
+        }
+    })
+
+
+    layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery', 'form', 'upload', 'laydate', 'tinymce'], function () {
+        var layer = layui.layer;
+        var element = layui.element;
+        var carousel = layui.carousel;
+        var laypage = layui.laypage;
+        var http = layui.http;
+        var jquery = layui.jquery;
+        var form = layui.form;
+        var upload = layui.upload;
+        var laydate = layui.laydate;
+        var tinymce = layui.tinymce;
+        vue.baseurl = http.baseurl;
+
+        // 获取轮播图 数据
+        http.request('config/list', 'get', {
+            page: 1,
+            limit: 5
+        }, function (res) {
+            if (res.data.list.length > 0) {
+                var swiperItemHtml = '';
+                for (let item of res.data.list) {
+                    if (item.name.indexOf('picture') >= 0 && item.value && item.value != "" && item.value != null) {
+                        swiperItemHtml +=
+                            '<div>' +
+                            '<img style="width: 100%;height: 100%;object-fit:cover;" class="swiper-item" src="' + http.baseurl + item.value + '">' +
+                            '</div>';
+                    }
+                }
+                jquery('#swiper-item').html(swiperItemHtml);
+                // 轮播图
+                vue.$nextTick(() => {
+                    carousel.render({
+                        elem: '#swiper',
+                        width: '100%',
+                        height: '300px',
+                        arrow: 'hover',
+                        anim: 'default',
+                        autoplay: 'true',
+                        interval: '3000',
+                        indicator: 'none'
+                    });
+
+                })
+                // carousel.render({
+                // 	elem: '#swiper',
+                // 	width: swiper.width,height:swiper.height,
+                // 	arrow: swiper.arrow,
+                // 	anim: swiper.anim,
+                // 	interval: swiper.interval,
+                // 	indicator: "none"
+                // });
+            }
+        });
+
+        //选项
+        form.on('select(reporttype)',function(data){
+            vue.detail.reporttype=data.value;
+        })
+        form.on('select(classification)',function(data){
+            vue.detail.classification=data.value;
+        })
+        form.on('select(location)',function(data){
+            vue.detail.location=data.value;
+        })
+
+        // 上传图片
+        var reportPhotoUpload = upload.render({
+            //绑定元素
+            elem: '#reportPhotoUpload',
+            //上传接口
+            url: http.baseurl + 'file/upload',
+            // 请求头
+            headers: {
+                Token: localStorage.getItem('Token')
+            },
+            // 允许上传时校验的文件类型
+            accept: 'images',
+            before: function () {
+                //loading层
+                var index = layer.load(1, {
+                    shade: [0.1, '#fff'] //0.1透明度的白色背景
+                });
+            },
+            // 上传成功
+            done: function (res) {
+                console.log(res);
+                layer.closeAll();
+                if (res.code == 0) {
+                    layer.msg("上传成功", {
+                        time: 2000,
+                        icon: 6
+                    })
+                    var url = 'upload/' + res.file;
+                    jquery('#reportPhoto').val(url);
+                    jquery('#reportPhotoImg').attr('src', url)
+                    vue.detail.reportPhoto = url;
+                } else {
+                    layer.msg(res.msg, {
+                        time: 2000,
+                        icon: 5
+                    })
+                }
+            },
+            //请求异常回调
+            error: function () {
+                layer.closeAll();
+                layer.msg("请求接口异常", {
+                    time: 2000,
+                    icon: 5
+                })
+            }
+        });
+        laydate.render({
+            elem: '#datetime',
+            type: 'datetime'
+        });
+        var edit = tinymce.render({
+            elem: "#description",
+            height: 600,
+            images_upload_handler: function (blobInfo, succFun, failFun) {
+                var xhr, formData;
+                var file = blobInfo.blob(); //转化为易于理解的file对象
+                xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+                xhr.open('POST', http.baseurl + 'file/upload');
+                xhr.setRequestHeader("Token", localStorage.getItem('Token')); //设置请求头
+                xhr.onload = function () {
+                    var json;
+                    if (xhr.status != 200) {
+                        failFun('HTTP Error: ' + xhr.status);
+                        return;
+                    }
+                    json = JSON.parse(xhr.responseText);
+                    if (!json || typeof json.file != 'string') {
+                        failFun('Invalid JSON: ' + xhr.responseText);
+                        return;
+                    }
+                    succFun(http.baseurl + 'upload/' + json.file);
+                };
+                formData = new FormData();
+                formData.append('file', file, file.name); //此处与源文档不一样
+                xhr.send(formData);
+            }
+        }, (opt) => {
+
+        });
+        laydate.render({
+            elem: '#datetime',
+            type: 'datetime'
+        });
+        // laydate.render({
+        //     elem: '#clicktime',
+        //     type: 'datetime'
+        // });
+
+        // session独取
+        let table = localStorage.getItem("userTable");
+        http.request(`${table}/session`, 'get', {}, function (data) {
+            // 表单赋值
+            //form.val("myForm", data.data);
+            data = data.data
+            for (var key in data) {
+            }
+        });
+
+        // 跨表
+        if (http.getParam('corss')) {
+            var obj = JSON.parse(localStorage.getItem('crossObj'));
+            for (var o in obj) {
+                if (o == 'reporttype') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.reporttype = true;
+                    continue;
+                }
+                if (o == 'userid') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.userid = true;
+                    continue;
+                }
+                if (o == 'name') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.name = true;
+                    continue;
+                }
+                if (o == 'longitude') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.longdetail = true;
+                    continue;
+                }
+                if (o == 'datetime') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.datetime = true;
+                    jquery('#datetime').val(obj[o]);
+                    continue;
+                }
+                if (o == 'latitude') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.lowdetail = true;
+                    continue;
+                }
+                if (o == 'description') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.description = true;
+                    continue;
+                }
+                if (o == 'location') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.location = true;
+                    continue;
+                }
+                if (o == 'classification') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.crimeCategory = true;
+                    continue;
+                }
+                if (o == 'reportPhoto') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.reportPhoto = true;
+                    continue;
+                }
+                if (o == 'phone') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.phone = true;
+                    continue;
+                }
+                if (o == 'datetime') {
+                    vue.detail[o] = obj[o];
+                    vue.ro.datetime = true;
+                    jquery('#datetime').val(obj[o]);
+                    continue;
+                }
+            }
+        }
+
+
+        // 提交
+        form.on('submit(*)', function (data) {
+            data = data.field;
+            // 数据校验
+            if(!data.classification){
+                layer.msg('犯罪类型不能为空',{
+                    time: 2000,
+                    icon: 5
+                });
+                return false
+            }
+            if (!data.location) {
+                layer.msg('报告地点不能为空', {
+                    time: 2000,
+                    icon: 5
+                });
+                return false
+            }
+            var description = tinymce.get('#description').getContent()
+            data.description = description;
+            if (!isMobile(data.phone)) {
+                layer.msg('联络电话应输入手机格式', {
+                    time: 2000,
+                    icon: 5
+                });
+                return false
+            }
+
+            // 跨表计算判断
+
+            // 比较大小
+
+            //更新跨表属性
+            var crossuserid;
+            var crossrefid;
+            var crossoptnum;
+            if (http.getParam('corss')) {
+                var statusColumnName = localStorage.getItem('statusColumnName');
+                var statusColumnValue = localStorage.getItem('statusColumnValue');
+                if (statusColumnName != '') {
+                    var obj = JSON.parse(localStorage.getItem('crossObj'));
+                    if (!statusColumnName.startsWith("[")) {
+                        for (var o in obj) {
+                            if (o == statusColumnName) {
+                                obj[o] = statusColumnValue;
+                            }
+                        }
+                        var table = localStorage.getItem('crossTable');
+                        http.requestJson(`${table}/update`, 'post', obj, (res) => { });
+                    } else {
+                        crossuserid = Number(localStorage.getItem('userid'));
+                        crossrefid = obj['id'];
+                        crossoptnum = localStorage.getItem('statusColumnName');
+                        crossoptnum = crossoptnum.replace(/\[/, "").replace(/\]/, "");
+                    }
+                }
+            }
+            console.log(data);
+            data['datetime'] = $("#datetime").val();
+            console.log(data);
+            data['photo'] = data['reportPhoto'];
+            console.log(data);
+            if (crossrefid && crossuserid) {
+                data.crossuserid = crossuserid;
+                data.crossrefid = crossrefid;
+                http.request('report/list', 'get', {
+                    page: 1,
+                    limit: 10,
+                    crossuserid: crossuserid,
+                    crossrefid: crossrefid,
+                }, function (res) {
+                    if (res.data.total >= crossoptnum) {
+                        layer.msg(localStorage.getItem('tips'), {
+                            time: 2000,
+                            icon: 6
+                        })
+                        return false;
+                    } else {
+                        // 跨表计算
+
+
+                        // 提交数据
+                        http.requestJson('report' + '/add', 'post', data, function (res) {
+                            layer.msg('提交成功', {
+                                time: 2000,
+                                icon: 6
+                            }, function () {
+                                back();
+                            });
+                        });
+                    }
+                });
+            } else {
+                // 跨表计算
+                // 提交数据
+                http.requestJson('report' + '/add', 'post', data, function (res) {
+                    layer.msg('提交成功', {
+                        time: 2000,
+                        icon: 6
+                    }, function () {
+                        back();
+                    });
+                });
+            }
+
+            return false
+        });
+
+    });
+    pageList();
+
+    //搜索按钮
+    jquery('#btn-search').click(function(e){
+        pageList();
+    });
+
+    function pageList() {
+        // 获取列表数据
+        http.request('report', 'get', {
+            page: 1,
+            limit: limit,
+            title: '%' + jquery('#title').val() + '%',
+        }, function(res) {
+            vue.dataList = res.data.list
+            // 分页
+            laypage.render({
+                elem: 'pager',
+                count: res.data.total,
+                limit: limit,
+                groups: 5,
+                layout: ["prev","page","next"],
+                theme: '#CB945C',
+                jump: function(obj, first) {
+                    //首次不执行
+                    if (!first) {
+                        http.request('report', 'get', {
+                            page: obj.curr,
+                            limit: obj.limit
+                        }, function(res) {
+                            vue.dataList = res.data.list
+                        })
+                    }
+                }
+            });
+        })
+    }
+
+</script>
+<!--自动生成姓名脚本-->
+<script>
+    function generateFormName() {
+        var fullName = "张三丰";
+        document.getElementById('first-name').value = fullName;
+        document.getElementById('last-name').value = "";
+    }
+</script>
+<!--获取经纬度-->
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("浏览器不支持Geolocation API");
+        }
+    }
+
+    function showPosition(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        document.getElementById("latitude").value = latitude;
+        document.getElementById("longitude").value = longitude;
+    }
+</script>
+</body>
+
+</html>

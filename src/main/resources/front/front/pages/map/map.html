@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accurately locate and mark the announcement address</title>
+    <style>
+        /*筛选器*/
+        .select-container {
+            display: inline-block;
+            position: fixed;
+            top: 5px;
+            right: 20px;
+        }
+
+        .select-container select {
+            padding: 3px;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+        }
+
+        .select-container select:focus {
+            outline: none;
+            border-color: #8c8c8c;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+        /* 在这里添加样式 */
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        /* 设置公告栏样式 */
+        /*.announcement {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+          }
+
+          /* 设置公告滚动动画 */
+        /*@keyframes marquee {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        /* 设置公告栏样式 */
+        .announcement {
+            position: absolute;
+            top: 70;
+            left: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 1px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* 设置公告滚动动画 */
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; color: blue;">Accurately locate and mark the announcement address</h1>
+<div class="select-container">
+    <p style="text-align: right; font-size: 16px; color: blue;">Functions</p>
+    <select onchange="redirectToPage(this.value)">
+        <option value="map.html">View Map</option>
+        <option value="findLocation.html">Find Location</option>
+        <!--测试，绝对路径切换页面-->
+        <!--<option value="D:\FYP-Local Safety Monitoring Subsystem\Front\pages\SOS\sos.html">View Accident Reports</option>-->
+    </select>
+</div>
+<div class="announcement">
+    <span>A serious traffic accident occurred on the First Bridge in Penang, which caused a very serious traffic jam. Please detour and cause inconvenience to you. We would like to express our apologies to you</span>
+</div>
+<hr><br>
+<div id="map"></div>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- 组件配置信息 -->
+<script src="../../js/config.js"></script>
+<!-- 扩展插件配置信息 -->
+<script src="../../modules/config.js"></script>
+<!-- 工具方法 -->
+<script src="../../js/utils.js"></script>
+<!-- 校验格式工具类 -->
+<script src="../../js/validate.js"></script>
+<!-- 地图 -->
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<script type="text/javascript"
+        src="http://webapi.amap.com/maps?v=1.3&key=ca04cee7ac952691aa67a131e6f0cee0"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.AMapPositionPicker.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" async defer></script>
+<script>
+    let map;
+    let marker;
+    let infoWindow;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 0, lng: 0}, // 初始位置设置为0,0
+            zoom: 12 // 设置缩放级别
+        });
+
+        // 创建信息窗口
+        infoWindow = new google.maps.InfoWindow();
+
+        // 获取当前位置并将地图定位到该位置
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const userLatLng = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                map.setCenter(userLatLng); // 将地图中心设置为当前位置
+                map.setZoom(15); // 设置放大的缩放级别
+
+                // 公告地址数组
+                // const addresses = [
+                //     {
+                //         position: {lat: 5.360213515127623, lng: 100.29371191534038},
+                //         content: '<h3>shuxiangge</h3><p>拿吃的要死。</p>'
+                //     },
+                //     {
+                //         position: {lat: 5.355086172275425, lng: 100.29598642838091},
+                //         content: '<h3>uncle hool</h3><p>一个华人叔叔的饭堂，经济又实惠</p>'
+                //     },
+                //     {
+                //         position: {lat: 5.3549333455513635, lng: 100.30146432787848},
+                //         content: '<h3>计算机学校</h3><p>上课的地方</p>'
+                //     }
+                // ];
+
+                // 创建标记并将其添加到地图上
+                marker = new google.maps.Marker({
+                    position: userLatLng,
+                    map: map
+                });
+                // 点击标记时显示信息窗口
+                marker.addListener('click', function() {
+                    infoWindow.setContent('Your Current Location');
+                    infoWindow.open(map, marker);
+                });
+
+
+                layui.use(['layer', 'element', 'carousel', 'laypage', 'http', 'jquery', 'form', 'upload', 'laydate', 'tinymce'], function () {
+                    var http = layui.http;
+                    http.request('annoucement' + '/queryList', 'get', {}, function (res) {
+                        console.log('=============')
+                        console.log(res.data)
+                        $.each(res.data, function (index, item) {
+                            console.log({lat: parseFloat(item['announcementlatitude'] || '0'), lng: parseFloat(item['announcemnetlongitude'] || '')})
+                            const marker = new google.maps.Marker({
+                                position: {lat: parseFloat(item['announcementlatitude'] || ''), lng: parseFloat(item['announcemnetlongitude'] || '')},
+                                map: map
+                            });
+
+                            marker.addListener('click', function() {
+                                infoWindow.setContent('<h3>'+item['annoucementid']+'</h3><p>'+item['announcementdescription']+'</p>');
+                                infoWindow.open(map, marker);
+                            });
+
+                        })
+                    });
+                })
+
+            });
+        }
+    }
+</script>
+<!--筛选器-->
+<script>
+    function redirectToPage(value) {
+        if (value) {
+            window.location.href = value;
+        }
+    }
+</script>
+</body>
+</html>
