@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SOS</title>
+  <!-- bootstrap样式，地图插件使用 -->
+  <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../layui/css/layui.css">
+  <!-- 样式 -->
+  <link rel="stylesheet" href="../../css/style.css" />
+  <!-- 主题（主要颜色设置） -->
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <!-- 通用的css -->
+  <link rel="stylesheet" href="../../css/common.css" />
+  <!--联系人-->
+  <style>
+    .contact {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .contact-name {
+      font-weight: bold;
+    }
+
+    .contact-email {
+      color: gray;
+    }
+
+    .contact-phone {
+      color: gray;
+    }
+
+  </style>
+  <style>
+    /* 添加样式以美化页面 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      text-decoration: underline;
+    }
+
+    #sos-button {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 18px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #location-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #contact-list {
+      margin-bottom: 20px;
+    }
+
+    .contact {
+      margin-bottom: 10px;
+    }
+
+    #message {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #emergency-call {
+      text-align: center;
+    }
+
+    .sos-log {
+      margin-bottom: 20px;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+    /* 设置表单样式 */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* 设置表单字段样式 */
+    form input {
+      margin: 10px 0;
+      padding: 5px;
+      width: 200px;
+    }
+
+    /* 设置按钮样式 */
+    form button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: rgb(241, 233, 233)!important;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<h1>SOS</h1>
+<hr>
+<!--<div id="location-info">-->
+<!--  <form class="layui-form" action="" style="text-align: center;">-->
+<!--    <div class="layui-form-item">-->
+<!--      <label class="layui-form-label" style="text-align: center;">SOS Latitude: </label>-->
+<!--      <div class="layui-input-inline" style="text-align: center;">-->
+<!--        <input type="text" id="latitude" name="latitude" placeholder="latitude" class="layui-input">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="layui-form-item">-->
+<!--      <label class="layui-form-label" style="text-align: center;">SOS Longitude: </label>-->
+<!--      <div class="layui-input-inline" style="text-align: center;">-->
+<!--        <input type="text" id="longitude" name="longitude" placeholder="longitude" class="layui-input">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="layui-form-item">-->
+<!--      <label class="layui-form-label" style="text-align: center;">Current Location: </label>-->
+<!--      <div class="layui-input-inline" style="text-align: center;">-->
+<!--        <input type="text" id="address" name="address" placeholder="address" class="layui-input">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="layui-form-item">-->
+<!--      <div class="layui-input-block">-->
+<!--        <button style="background-color: red;" type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">Send SOS</button>-->
+<!--        <button style="background-color: greenyellow;" type="reset" class="layui-btn layui-btn-primary">Reset</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
+
+<button id="sos-button">Send SOS</button>
+
+<!--<div id="location-info">
+    <p>Current Location:</p>
+    <p id="latitude">Latitude: </p>
+    <p id="longitude">Longitude: </p>
+    <p id="address">Address: </p>
+</div>-->
+<hr>
+
+
+<!--<div id="contact-list" style="text-align: center;">-->
+<!--  <h3>Emergency Contacts:</h3>-->
+<!--  <div id="emergencyContacts"></div>-->
+<!--</div>-->
+<!--<hr>-->
+
+<!--<div class="sos-log" style="text-align: center;">
+    <h3>SOS Log:</h3>
+    <p>Date: 2023-05-30, Time: 10:30 AM</p>
+    <p>Location: Latitude: 40.7128, Longitude: -74.0060</p>
+    <p>Status: SOS Sent</p>
+</div>
+<hr>-->
+
+<div id="map"></div>
+
+<!--紧急联系人-->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var emergencyContactsElement = document.getElementById("emergencyContacts");
+
+    // 从后台获取紧急联系人信息的逻辑
+    // 这里使用示例数据来模拟从后台获取的联系人信息
+    var emergencyContacts = [
+      {
+        name: "张三",
+        email: "zhangsan@example.com",
+        phone: "123456789"
+      },
+      {
+        name: "李四",
+        email: "lisi@example.com",
+        phone: "987654321"
+      },
+      {
+        name: "王五",
+        email: "wangwu@example.com",
+        phone: "555555555"
+      }
+    ];
+
+    // 根据获取的紧急联系人信息创建 HTML 元素
+    emergencyContacts.forEach(function(contact) {
+      var contactElement = document.createElement("div");
+      contactElement.classList.add("contact");
+
+      var nameElement = document.createElement("div");
+      nameElement.classList.add("contact-name");
+      nameElement.textContent = contact.name;
+
+      var emailElement = document.createElement("div");
+      emailElement.classList.add("contact-email");
+      emailElement.textContent = contact.email;
+
+      var phoneElement = document.createElement("div");
+      phoneElement.classList.add("contact-phone");
+      phoneElement.textContent = contact.phone;
+
+      contactElement.appendChild(nameElement);
+      contactElement.appendChild(emailElement);
+      contactElement.appendChild(phoneElement);
+
+      emergencyContactsElement.appendChild(contactElement);
+    });
+  });
+
+</script>
+
+<script>
+
+  // SOS按钮点击事件
+  var sosButton = document.getElementById("sos-button");
+  sosButton.addEventListener("click", function() {
+    // 发送SOS逻辑
+
+    // 更新消息状态
+    //document.getElementById("message").textContent = "Status: SOS Sent";
+
+    // 执行发送紧急邮件操作
+    sendEmergencyEmail();
+  });
+
+  function sendEmergencyEmail() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        var emailContent = "This is an emergency alert. Please take immediate action!   " + "Longitude：" + longitude + ", Latitude：" + latitude;
+        var emailSubject = "Emergency Alert";
+        var emailRecipient1 = "hankun@student.usm.my;";
+        var emailRecipient2 = "tianci@student.usm.my;";
+        var emailRecipient3 = "lihaodong@student.usm.my";
+
+        var mailtoLink = "mailto:" + emailRecipient1 + emailRecipient2 + emailRecipient3 + "?subject=" + encodeURIComponent(emailSubject) + "&body=" + encodeURIComponent(emailContent);
+
+        window.location.href = mailtoLink;
+      }, function(error) {
+        console.log("Unable to get location information: " + error.message);
+      });
+    } else {
+      console.log("Browser does not support geolocation");
+    }
+  }
+
+  // // 发送紧急邮件函数
+  // function sendEmergencyEmail() {
+  //   // 构建邮件内容
+  //   var currentAddress = window.location.href;
+  //   var recipient = "hankun@student.usm.my"; // 设置收件人邮箱
+  //   var subject = "Emergency Alert";
+  //   var body = "This is an emergency alert. Please take immediate action!" + currentAddress;
+  //
+  //   // 构建邮件链接
+  //   var mailtoLink = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  //   //var mailtoLink = "mailto:" + emailRecipients.join(",") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  //
+  //   // 打开邮件客户端发送邮件
+  //   window.location.href = mailtoLink;
+  // }
+</script>
+<!--定位-->
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 0, lng: 0 },
+      zoom: 16,
+    });
+
+    // 获取当前位置并将地图定位到该位置
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const userLatLng = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        // 创建当前位置的标记
+        const userMarker = new google.maps.Marker({
+          position: userLatLng,
+          map: map,
+          title: 'Current Location'
+        });
+
+        // 将地图中心设置为当前位置
+        map.setCenter(userLatLng);
+      });
+    }
+
+    // 检查是否支持地理位置API，并询问用户是否允许定位
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+              function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                // 更新表单中的纬度和经度字段
+                document.getElementById("latitude").value = latitude;
+                document.getElementById("longitude").value = longitude;
+
+                // 使用逆地理编码将经纬度转换为地址
+                const geocoder = new google.maps.Geocoder();
+                const latLng = new google.maps.LatLng(latitude, longitude);
+                geocoder.geocode({ location: latLng }, function (results, status) {
+                  if (status === "OK") {
+                    if (results[0]) {
+                      // 更新表单中的地址字段
+                      document.getElementById("address").value =
+                              results[0].formatted_address;
+                    }
+                  }
+                });
+              },
+              function (error) {
+                console.error("无法获取当前位置: " + error.message);
+              }
+      );
+    } else {
+      console.error("浏览器不支持地理位置API。");
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" async defer></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.AnnouncementDao">
+
+	<resultMap type="com.entity.view.AnnouncementView" id="annoucementMap">
+		<result property="annoucementid" column="annoucement_id"/>
+		<result property="announcementlatitude" column="announcement_latitude"/>
+		<result property="announcemnetlongitude" column="announcemnet_longitude"/>
+		<result property="announcementdescription" column="announcement_description"/>
+		<result property="announcementphoto" column="announcement_photo"/>
+		<result property="announcementdate" column="announcement_date"/>
+	</resultMap>
+
+    <select id="selectListView"
+		resultMap="annoucementMap" >
+		SELECT  announcement.* FROM announcement  announcement
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+	<delete id="deleteById">
+		delete from announcement where annoucement_id=#{id}
+	</delete>
+
+	<select id="queryById" resultMap="annoucementMap">
+		SELECT  announcement.* FROM announcement  announcement  where annoucement_id=#{id}
+	</select>
+
+	<select id="queryList" resultMap="annoucementMap">
+		SELECT  announcement.* FROM announcement  announcement order by announcement_date desc
+	</select>
+
+	<insert id="insertItem">
+		insert into announcement (annoucement_id,announcement_latitude,announcemnet_longitude,announcement_description,announcement_photo,announcement_date)
+		values(#{params.annoucementid},#{params.announcementlatitude},#{params.announcemnetlongitude},#{params.announcementdescription},#{params.announcementphoto},#{params.announcementdate})
+	</insert>
+
+	<update id="updateItem">
+		update announcement set
+			announcement_latitude=#{params.announcementlatitude},
+			announcemnet_longitude=#{params.announcemnetlongitude},
+			announcement_description=#{params.announcementdescription},
+			announcement_photo=#{params.announcementphoto}
+        where annoucement_id = #{params.annoucementid}
+	</update>
+
+</mapper>

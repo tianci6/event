@@ -13,8 +13,8 @@ function publicPath () {
 }
 // vue.config.js
 module.exports = {
-     publicPath:"././",
-    //publicPath: publicPath(),
+     //publicPath:"././",
+    publicPath: publicPath(),
     // 国际化配置 使用其它语言，默认情况下中文语言包依旧是被引入的
     configureWebpack: {
         // plugins: [

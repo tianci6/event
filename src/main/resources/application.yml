@@ -11,7 +11,7 @@ spring:
         driverClassName: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/springboot7znd1?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
         username: root
-        password: 1234
+        password: admin
 #          driverClassName: com.mysql.cj.jdbc.Driver
 #          url: jdbc:mysql://rm-cn-zxu39qaxn0004wwo.rwlb.rds.aliyuncs.com:3306/springboot7znd1?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 #          username: root
