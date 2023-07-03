@@ -193,8 +193,9 @@
 						<li class='current'><a href="javascript:navPage('./pages/home/home.html')" class="menumain"><i v-if="false" class="layui-icon layui-icon-home"></i>Home</a></li>
 						<li v-for="(item,index) in indexNav" v-bind:key="index"><a :href="'javascript:navPage(\''+item.url+'\')'" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon" :class="iconArr[index]"></i>{{item.name}}</a></li>
 						<li><a href="http://localhost:8080/eventi/admin/dist/index.html#/event/home" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>Local marketing</a></li>
+						<li><a href="http://localhost:8080/eventi/admin/dist/index.html#/event/home" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>Local safety</a></li>
 						<li><a href="javascript:centerPage();" class="menumain"><i v-if="false" class="layui-icon layui-icon-username"></i>Individual center</a></li>
-						<li><a :href="adminurl" target="_blank" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon layui-icon-link"></i>background</a></li>
+						<li><a :href="adminurl" target="_blank" class="menumain" style="cursor: pointer;"><i v-if="false" class="layui-icon layui-icon-link"></i>Management</a></li>
 					</ul>
 				</div>
 		    </div>
